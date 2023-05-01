@@ -3,6 +3,8 @@
 #include <utility>
 #include <vector>
 
+#include <cppitertools/itertools.hpp>
+
 namespace packing {
 
 BoolCuboid::BoolCuboid(const Size size)
@@ -11,12 +13,11 @@ BoolCuboid::BoolCuboid(const Size size)
 
 
 auto BoolCuboid::occupy(const Size & initial_position, const Size & final_position) -> void {
-    for (auto x = initial_position.x(); x < final_position.x(); ++x) {
-        for (auto y = initial_position.y(); y < final_position.y(); ++y) {
-            for (auto z = initial_position.z(); z < final_position.z(); ++z) {
-                this->_data[x][y][z] = true;
-            }
-        }
+    const auto range_x = iter::range(initial_position.x(), final_position.x());
+    const auto range_y = iter::range(initial_position.y(), final_position.y());
+    const auto range_z = iter::range(initial_position.z(), final_position.z());
+    for (auto&& [x, y, z] : iter::product(range_x, range_y, range_z)) {
+        this->_data[x][y][z] = true;
     }
     return;
 }

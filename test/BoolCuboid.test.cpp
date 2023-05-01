@@ -25,7 +25,7 @@ TEST_CASE("set position as occupied", "[BoolCuboid]") {
     auto cuboid = BoolCuboid{{size_x, size_y, size_z}};
     SECTION("occupy space") {
         const auto initial_position = Size{1, 1, 1};
-        const auto final_position = Size{2, 2, 2};
+        const auto final_position = Size{3, 3, 3};
         cuboid.occupy(initial_position, final_position);
         for (auto&& [x, y, z] : iter::product(iter::range(size_x), iter::range(size_y), iter::range(size_z))) {
             const auto within_x = initial_position.x() <= x && x < final_position.x();
