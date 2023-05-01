@@ -1,12 +1,10 @@
 #include <catch2/benchmark/catch_benchmark.hpp>
 #include <catch2/catch_test_macros.hpp>
 
-#include "fibonacci.hpp"
+#include "SmallItem.hpp"
 
-constexpr auto n = Value{34};
-
-TEST_CASE("Fibonacci Benchmark", "[benchmark][factorial]") {
-    BENCHMARK("fibonacci") {
-        return fibonacci(n);
+TEST_CASE("SmallItem Benchmark", "[benchmark][SmallItem]") {
+    BENCHMARK("null") {
+        return 1;
     };
 }

@@ -27,7 +27,7 @@ set(SOURCE_DIR ${CMAKE_SOURCE_DIR}/source)
 
 set(
     PROJECT_SOURCE_FILES
-    ${SOURCE_DIR}/fibonacci/fibonacci.cpp
+    ${SOURCE_DIR}/SmallItem.cpp
 )
 
 add_library(${PROJECT_LIBRARY} SHARED ${PROJECT_SOURCE_FILES})
