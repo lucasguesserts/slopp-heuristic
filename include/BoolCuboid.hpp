@@ -21,9 +21,7 @@ public:
         return this->_data[x][y][z];
     }
 
-    auto occupy(const SizeType & x, const SizeType & y, const SizeType & z) -> void {
-        this->_data[x][y][z] = true;
-    }
+    auto occupy(const Size & initial_position, const Size & final_position) -> void;
 
 private:
     const Size _size;
