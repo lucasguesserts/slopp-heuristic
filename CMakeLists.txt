@@ -29,6 +29,7 @@ set(
     PROJECT_SOURCE_FILES
     ${SOURCE_DIR}/Size.cpp
     ${SOURCE_DIR}/SmallItem.cpp
+    ${SOURCE_DIR}/LargeObject.cpp
 )
 
 add_library(${PROJECT_LIBRARY} SHARED ${PROJECT_SOURCE_FILES})

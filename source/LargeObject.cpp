@@ -1,11 +1,12 @@
-#include "SmallItem.hpp"
+#include "LargeObject.hpp"
+
 #include <utility>
 
 #include "Size.hpp"
 
 namespace packing {
 
-SmallItem::SmallItem(const Size size)
+LargeObject::LargeObject(const Size size)
     : _size(std::move(size)) {}
 
 } // namespace packing

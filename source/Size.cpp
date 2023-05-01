@@ -1,4 +1,5 @@
 #include "Size.hpp"
+
 #include <utility>
 
 namespace packing {
