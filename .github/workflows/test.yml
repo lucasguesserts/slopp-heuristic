@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - trunk
+      - initial-implementation
 jobs:
   test-gcc:
     runs-on: ubuntu-22.04
