@@ -21,6 +21,10 @@ public:
         return this->_data[x][y][z];
     }
 
+    auto occupy(const SizeType & x, const SizeType & y, const SizeType & z) -> void {
+        this->_data[x][y][z] = true;
+    }
+
 private:
     const Size _size;
     std::vector<std::vector<std::vector<bool>>> _data;
