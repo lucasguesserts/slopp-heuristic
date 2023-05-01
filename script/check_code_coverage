@@ -1,0 +1,15 @@
+#!/bin/bash
+
+./script/test
+rm -rf coverage
+mkdir coverage
+cd coverage
+gcovr \
+    --root .. \
+    --exclude ../benchmark/ \
+    --exclude ../test/ \
+    --decisions \
+    --gcov-executable "llvm-cov gcov" \
+    --print-summary \
+    --html-details index.html \
+    --fail-under-line 100

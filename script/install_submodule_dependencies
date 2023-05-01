@@ -1,0 +1,8 @@
+#!/bin/sh
+
+git submodule update --init --recursive
+
+cd dependency/catch2
+cmake -Bbuild -H. -DBUILD_TESTING=OFF
+sudo cmake --build build/ --target install
+cd ../../

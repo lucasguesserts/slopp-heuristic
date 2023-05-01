@@ -1,0 +1,73 @@
+name: Test
+on:
+  push:
+    branches:
+      - trunk
+jobs:
+  test-gcc:
+    runs-on: ubuntu-22.04
+    env:
+      CC: /usr/bin/gcc
+      CXX: /usr/bin/g++
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v2
+      - name: install gcc
+        shell: bash
+        run:  |
+              sudo apt update
+              sudo apt install gcc-11 g++-11 cmake
+      - name: install submodule dependencies
+        run: ./script/install_submodule_dependencies
+      - name: test
+        run: ./script/test
+  test-clang:
+    runs-on: ubuntu-22.04
+    env:
+      CC: /usr/bin/clang
+      CXX: /usr/bin/clang++
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v2
+      - name: install clang
+        shell: bash
+        run:  |
+              sudo apt update
+              sudo apt install clang
+      - name: install submodule dependencies
+        run: ./script/install_submodule_dependencies
+      - name: test
+        run: ./script/test
+  code-style-check:
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        path:
+          - 'src'
+          - 'test'
+          - 'benchmark'
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v2
+      - name: Run clang-format style check for C/C++ programs.
+        uses: jidicula/clang-format-action@v4.11.0
+        with:
+          clang-format-version: '15'
+          check-path: ${{ matrix.path }}
+  code-quality-check:
+    runs-on: ubuntu-22.04
+    env:
+      CC: /usr/bin/clang
+      CXX: /usr/bin/clang++
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v2
+      - name: install clang
+        shell: bash
+        run:  |
+              sudo apt update
+              sudo apt install clang clang-tidy
+      - name: install submodule dependencies
+        run: ./script/install_submodule_dependencies
+      - name: check
+        run: ./script/check_code_quality

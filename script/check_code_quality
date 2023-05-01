@@ -1,0 +1,26 @@
+#!/bin/bash
+
+list_subproject() {
+    SUBPROJECT=$1
+    ls \
+        include/$SUBPROJECT.hpp \
+        source/$SUBPROJECT/* \
+        test/$SUBPROJECT.test.cpp \
+        benchmark/*$SUBPROJECT.cpp
+}
+
+LOG_FILE="code_quality.log"
+
+SRC_FILES=" \
+$(list_subproject fibonacci)
+"
+
+echo $SRC_FILES
+
+./script/build && \
+clang-tidy \
+    --quiet \
+    -p "build/compile_commands.json" \
+    --config-file=.clang-tidy \
+    ${SRC_FILES} \
+    --export-fixes=$LOG_FILE

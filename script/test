@@ -1,0 +1,5 @@
+#!/bin/bash
+
+./script/build &&\
+cd build &&\
+ctest -j $(nproc)
