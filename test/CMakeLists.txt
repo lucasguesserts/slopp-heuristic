@@ -7,7 +7,7 @@ include_directories(${CMAKE_SOURCE_DIR}/${PROJECT_NAME}/)
 set(
     TEST_CASE_SOURCE_LIST
     Size.test.cpp
-    BoolMatrix.test.cpp
+    BoolCuboid.test.cpp
     SmallItem.test.cpp
     LargeObject.test.cpp
 )

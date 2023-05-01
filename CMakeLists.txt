@@ -28,7 +28,7 @@ set(SOURCE_DIR ${CMAKE_SOURCE_DIR}/source)
 set(
     PROJECT_SOURCE_FILES
     ${SOURCE_DIR}/Size.cpp
-    ${SOURCE_DIR}/BoolMatrix.cpp
+    ${SOURCE_DIR}/BoolCuboid.cpp
     ${SOURCE_DIR}/SmallItem.cpp
     ${SOURCE_DIR}/LargeObject.cpp
 )
