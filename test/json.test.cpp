@@ -1,7 +1,7 @@
 #include <catch2/catch_test_macros.hpp>
 
-#include <fstream>
 #include <filesystem>
+#include <fstream>
 #include <string>
 
 #include <nlohmann/json.hpp>
@@ -18,4 +18,3 @@ TEST_CASE("read file", "[json]") {
     CHECK(data["index"].get<unsigned>() == 25u);
     file.close();
 }
-

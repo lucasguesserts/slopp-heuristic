@@ -5,17 +5,17 @@
 #include <string>
 #include <utility>
 
-#include <cppitertools/itertools.hpp>
 #include "SmallItem.hpp"
 #include "SmallItemQuantityManager.hpp"
 #include "Vector3D.hpp"
 #include "nlohmann/json.hpp"
+#include <cppitertools/itertools.hpp>
 
 #include "BoolCuboid.hpp"
 #include "LargeObject.hpp"
 
-using std::string;
 using nlohmann::json;
+using std::string;
 using OrderedJson = nlohmann::ordered_json;
 
 namespace packing {
@@ -23,7 +23,6 @@ namespace packing {
 LargestFitFirstAlgorithm::LargestFitFirstAlgorithm(const LargeObject large_object)
     : large_object(large_object)
     , space(large_object.size()) {}
-
 
 auto LargestFitFirstAlgorithm::from_json(const json data) -> LargestFitFirstAlgorithm {
     const auto type = data["type"].get<string>();
@@ -40,8 +39,7 @@ auto LargestFitFirstAlgorithm::from_json(const json data) -> LargestFitFirstAlgo
     const auto large_object = LargeObject{Vector3D{
         data["large_object"]["length"].get<CoordinateType>(),
         data["large_object"]["width"].get<CoordinateType>(),
-        data["large_object"]["height"].get<CoordinateType>()
-    }};
+        data["large_object"]["height"].get<CoordinateType>()}};
     // algorithm
     auto algorithm = LargestFitFirstAlgorithm{large_object};
     // small items
@@ -50,8 +48,7 @@ auto LargestFitFirstAlgorithm::from_json(const json data) -> LargestFitFirstAlgo
         const auto small_item = SmallItem{Vector3D{
             small_item_data["length"].get<CoordinateType>(),
             small_item_data["width"].get<CoordinateType>(),
-            small_item_data["height"].get<CoordinateType>()
-        }};
+            small_item_data["height"].get<CoordinateType>()}};
         const auto quantity = small_item_data["quantity"].get<Quantity>();
         algorithm.add_item(small_item, quantity);
     }

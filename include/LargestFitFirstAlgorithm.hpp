@@ -45,8 +45,6 @@ private:
     auto allocate_small_item(const SmallItem & small_item, const Vector3D & position) -> bool;
 };
 
-
-
 } // namespace packing
 
 #endif
