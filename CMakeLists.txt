@@ -39,6 +39,7 @@ set(
 add_library(${PROJECT_LIBRARY} SHARED ${PROJECT_SOURCE_FILES})
 
 include_directories(${HEADER_DIR})
+include_directories(${PROJECT_SOURCE_DIR}/dependency/json/)
 
 enable_testing()
 add_subdirectory(test)
