@@ -31,6 +31,7 @@ set(
     ${SOURCE_DIR}/BoolCuboid.cpp
     ${SOURCE_DIR}/SmallItem.cpp
     ${SOURCE_DIR}/LargeObject.cpp
+    ${SOURCE_DIR}/SmallItemQuantityManager.cpp
 )
 
 add_library(${PROJECT_LIBRARY} SHARED ${PROJECT_SOURCE_FILES})
