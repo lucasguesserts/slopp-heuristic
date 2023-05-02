@@ -1,7 +1,7 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.26)
 
 project(
-    dynamic-programming
+    slopp-heuristic
     VERSION 0.0.0
     HOMEPAGE_URL "https://github.com/lucasguesserts/slopp-heuristic"
     LANGUAGES CXX
