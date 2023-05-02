@@ -36,6 +36,7 @@ private:
     auto sort_items_descendig_volume() -> void;
     auto all_space();
     auto is_small_item_available(const SmallItem & small_item) -> bool;
+    auto is_item_within_large_object(const SmallItem & small_item, const Vector3D & position) -> bool;
     auto allocate_small_item(const SmallItem & small_item, const Vector3D & position) -> bool;
 };
 
