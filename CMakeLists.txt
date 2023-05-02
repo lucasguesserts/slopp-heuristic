@@ -33,6 +33,7 @@ set(
     ${SOURCE_DIR}/AllocatedSmallItem.cpp
     ${SOURCE_DIR}/LargeObject.cpp
     ${SOURCE_DIR}/SmallItemQuantityManager.cpp
+    ${SOURCE_DIR}/LargestFitFirstAlgorithm.cpp
 )
 
 add_library(${PROJECT_LIBRARY} SHARED ${PROJECT_SOURCE_FILES})
