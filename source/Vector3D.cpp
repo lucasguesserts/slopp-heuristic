@@ -1,15 +1,15 @@
-#include "Size.hpp"
+#include "Vector3D.hpp"
 
 #include <utility>
 
 namespace packing {
 
-Size::Size(const SizeType x, const SizeType y, const SizeType z)
+Vector3D::Vector3D(const CoordinateType x, const CoordinateType y, const CoordinateType z)
     : _x(std::move(x))
     , _y(std::move(y))
     , _z(std::move(z)) {}
 
-auto Size::operator==(const Size & other) const -> bool {
+auto Vector3D::operator==(const Vector3D & other) const -> bool {
     return (this->x() == other.x()) && (this->y() == other.y()) && (this->z() == other.z());
 }
 

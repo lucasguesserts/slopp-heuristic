@@ -1,11 +1,11 @@
 #include "SmallItem.hpp"
 #include <utility>
 
-#include "Size.hpp"
+#include "Vector3D.hpp"
 
 namespace packing {
 
-SmallItem::SmallItem(const Size size)
+SmallItem::SmallItem(const Vector3D size)
     : _size(std::move(size)) {}
 
 auto SmallItem::operator==(const SmallItem & other) const -> bool {

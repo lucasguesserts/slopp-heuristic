@@ -5,26 +5,26 @@
 #include <utility>
 #include <vector>
 
-#include "Size.hpp"
+#include "Vector3D.hpp"
 
 namespace packing {
 
 class BoolCuboid {
 public:
-    BoolCuboid(const Size size);
+    BoolCuboid(const Vector3D size);
 
-    [[nodiscard]] auto size() const -> Size {
+    [[nodiscard]] auto size() const -> Vector3D {
         return this->_size;
     }
 
-    auto operator()(const SizeType & x, const SizeType & y, const SizeType & z) const -> bool {
+    auto operator()(const CoordinateType & x, const CoordinateType & y, const CoordinateType & z) const -> bool {
         return this->_data[x][y][z];
     }
 
-    auto occupy(const Size & initial_position, const Size & final_position) -> void;
+    auto occupy(const Vector3D & initial_position, const Vector3D & final_position) -> void;
 
 private:
-    const Size _size;
+    const Vector3D _size;
     std::vector<std::vector<std::vector<bool>>> _data;
 };
 

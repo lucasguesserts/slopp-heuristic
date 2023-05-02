@@ -2,11 +2,11 @@
 
 #include <utility>
 
-#include "Size.hpp"
+#include "Vector3D.hpp"
 
 namespace packing {
 
-LargeObject::LargeObject(const Size size)
+LargeObject::LargeObject(const Vector3D size)
     : _size(std::move(size)) {}
 
 } // namespace packing

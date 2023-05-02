@@ -6,7 +6,7 @@ include_directories(${CMAKE_SOURCE_DIR}/${PROJECT_NAME}/)
 
 set(
     TEST_CASE_SOURCE_LIST
-    Size.test.cpp
+    Vector3D.test.cpp
     BoolCuboid.test.cpp
     SmallItem.test.cpp
     LargeObject.test.cpp

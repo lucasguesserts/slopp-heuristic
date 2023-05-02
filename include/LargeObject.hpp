@@ -1,19 +1,19 @@
 #ifndef LARGE_OBJECT_HPP_
 #define LARGE_OBJECT_HPP_
 
-#include "Size.hpp"
+#include "Vector3D.hpp"
 
 namespace packing {
 
 class LargeObject {
 public:
-    LargeObject(const Size size);
-    [[nodiscard]] auto size() const -> Size {
+    LargeObject(const Vector3D size);
+    [[nodiscard]] auto size() const -> Vector3D {
         return this->_size;
     }
 
 private:
-    Size _size;
+    Vector3D _size;
 };
 
 } // namespace packing

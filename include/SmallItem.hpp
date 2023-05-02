@@ -1,21 +1,21 @@
 #ifndef SMALL_ITEM_HPP
 #define SMALL_ITEM_HPP
 
-#include "Size.hpp"
+#include "Vector3D.hpp"
 
 namespace packing {
 
 class SmallItem {
 public:
-    SmallItem(const Size size);
-    [[nodiscard]] auto size() const -> Size {
+    SmallItem(const Vector3D size);
+    [[nodiscard]] auto size() const -> Vector3D {
         return this->_size;
     }
 
     auto operator==(const SmallItem & other) const -> bool;
 
 private:
-    Size _size;
+    Vector3D _size;
 };
 
 } // namespace packing
