@@ -30,6 +30,7 @@ set(
     ${SOURCE_DIR}/Vector3D.cpp
     ${SOURCE_DIR}/BoolCuboid.cpp
     ${SOURCE_DIR}/SmallItem.cpp
+    ${SOURCE_DIR}/AllocatedSmallItem.cpp
     ${SOURCE_DIR}/LargeObject.cpp
     ${SOURCE_DIR}/SmallItemQuantityManager.cpp
 )

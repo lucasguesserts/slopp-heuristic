@@ -9,6 +9,7 @@ set(
     Vector3D.test.cpp
     BoolCuboid.test.cpp
     SmallItem.test.cpp
+    AllocatedSmallItem.test.cpp
     LargeObject.test.cpp
     SmallItemQuantityManager.test.cpp
 )
