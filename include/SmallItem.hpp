@@ -12,6 +12,8 @@ public:
         return this->_size;
     }
 
+    auto operator==(const SmallItem & other) const -> bool;
+
 private:
     Size _size;
 };

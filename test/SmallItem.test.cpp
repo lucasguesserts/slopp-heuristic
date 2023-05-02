@@ -15,3 +15,15 @@ TEST_CASE("constructor", "[SmallItem]") {
     CHECK(item.size().y() == y);
     CHECK(item.size().z() == z);
 }
+
+TEST_CASE("equality operator", "[SmallItem]") {
+    const auto item = SmallItem{{1, 2, 3}};
+    SECTION("equal") {
+        const auto other = SmallItem{{1, 2, 3}};
+        CHECK(item == other);
+    }
+    SECTION("not equal") {
+        const auto other = SmallItem{{2, 2, 3}};
+        CHECK(!(item == other));
+    }
+}
