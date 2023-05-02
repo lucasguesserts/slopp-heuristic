@@ -25,7 +25,15 @@ TEST_CASE("equality", "[Vector3D]") {
         CHECK(vector3D == other);
     }
     SECTION("not equal") {
-        const auto other = Vector3D{x+1, y, z};
+        const auto other = Vector3D{x + 1, y, z};
+        CHECK(!(vector3D == other));
+    }
+    SECTION("not equal") {
+        const auto other = Vector3D{x, y + 1, z};
+        CHECK(!(vector3D == other));
+    }
+    SECTION("not equal") {
+        const auto other = Vector3D{x, y, z + 1};
         CHECK(!(vector3D == other));
     }
 }
