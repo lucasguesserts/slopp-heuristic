@@ -37,6 +37,7 @@ auto LargestFitFirstAlgorithm::allocate() -> void {
             }
         }
     }
+    return;
 }
 
 auto LargestFitFirstAlgorithm::is_small_item_available(const SmallItem & small_item) -> bool {
@@ -57,10 +58,11 @@ auto LargestFitFirstAlgorithm::is_item_within_large_object(const SmallItem & sma
 }
 
 auto LargestFitFirstAlgorithm::allocate_small_item(const SmallItem & small_item, const Vector3D & position) -> bool {
-    const auto final_position = Vector3D{position.x() + small_item.size().x(),
+    const auto final_position = Vector3D{
+        position.x() + small_item.size().x(),
         position.y() + small_item.size().y(),
         position.z() + small_item.size().z()};
-    bool all_space_is_free = this->space.is_free(position, final_position);
+    bool all_space_is_free = this->space.are_all_free(position, final_position);
     if (all_space_is_free) {
         this->allocated_small_items.emplace_back(small_item, position);
         this->quantity_manager[small_item] -= 1;
