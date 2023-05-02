@@ -3,6 +3,8 @@
 
 #include <vector>
 
+#include "nlohmann/json.hpp"
+
 #include "AllocatedSmallItem.hpp"
 #include "BoolCuboid.hpp"
 #include "LargeObject.hpp"
@@ -19,6 +21,9 @@ auto compareSmallItems(const SmallItem & lhs, const SmallItem & rhs) -> bool {
 class LargestFitFirstAlgorithm {
 public:
     LargestFitFirstAlgorithm(const LargeObject large_object);
+    static auto from_json(const nlohmann::json data) -> LargestFitFirstAlgorithm;
+    static auto to_json(const LargestFitFirstAlgorithm & algorithm) -> nlohmann::json;
+
     auto add_item(const SmallItem small_item, const Quantity quantity) -> void;
     auto allocate() -> void;
 
@@ -39,6 +44,8 @@ private:
     auto is_item_within_large_object(const SmallItem & small_item, const Vector3D & position) -> bool;
     auto allocate_small_item(const SmallItem & small_item, const Vector3D & position) -> bool;
 };
+
+
 
 } // namespace packing
 
