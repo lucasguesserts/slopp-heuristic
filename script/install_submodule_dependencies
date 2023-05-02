@@ -7,7 +7,7 @@ cmake -Bbuild -H. -DBUILD_TESTING=OFF
 sudo cmake --build build/ --target install
 cd ../../
 
-cd dependency/itertools
+cd dependency/cppitertools
 cmake -Bbuild
 sudo cmake --build build/ --target install
 cd ../../
