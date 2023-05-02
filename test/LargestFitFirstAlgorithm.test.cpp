@@ -4,13 +4,12 @@
 
 #include <cppitertools/itertools.hpp>
 
-#include "Vector3D.hpp"
-#include "SmallItem.hpp"
 #include "AllocatedSmallItem.hpp"
 #include "LargeObject.hpp"
-#include "SmallItemQuantityManager.hpp"
 #include "LargestFitFirstAlgorithm.hpp"
-
+#include "SmallItem.hpp"
+#include "SmallItemQuantityManager.hpp"
+#include "Vector3D.hpp"
 
 using namespace packing;
 

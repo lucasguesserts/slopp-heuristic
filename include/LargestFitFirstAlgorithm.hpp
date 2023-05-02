@@ -3,12 +3,12 @@
 
 #include <vector>
 
-#include "Vector3D.hpp"
+#include "AllocatedSmallItem.hpp"
 #include "BoolCuboid.hpp"
 #include "LargeObject.hpp"
 #include "SmallItem.hpp"
-#include "AllocatedSmallItem.hpp"
 #include "SmallItemQuantityManager.hpp"
+#include "Vector3D.hpp"
 
 namespace packing {
 

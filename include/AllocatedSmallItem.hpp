@@ -1,8 +1,8 @@
 #ifndef ALLOCATED_SMALL_ITEM_HPP
 #define ALLOCATED_SMALL_ITEM_HPP
 
-#include "Vector3D.hpp"
 #include "SmallItem.hpp"
+#include "Vector3D.hpp"
 
 namespace packing {
 

@@ -1,8 +1,8 @@
 #include <catch2/catch_test_macros.hpp>
 
-#include "Vector3D.hpp"
-#include "SmallItem.hpp"
 #include "AllocatedSmallItem.hpp"
+#include "SmallItem.hpp"
+#include "Vector3D.hpp"
 
 using namespace packing;
 
