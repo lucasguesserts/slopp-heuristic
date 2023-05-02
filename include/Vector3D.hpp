@@ -28,9 +28,9 @@ public:
     auto operator==(const Vector3D & other) const -> bool;
 
 private:
-    const CoordinateType _x;
-    const CoordinateType _y;
-    const CoordinateType _z;
+    CoordinateType _x;
+    CoordinateType _y;
+    CoordinateType _z;
 };
 
 } // namespace packing
