@@ -31,9 +31,10 @@ TEST_CASE("case 1", "[LargestFitFirstAlgorithm]") {
         algorithm.add_item(small_item, quantity);
     }
     algorithm.allocate();
+    const auto & small_items_allocated = algorithm.allocated_items();
     // check
-    CHECK(algorithm.allocated_items().size() == expected_allocated_items.size());
-    for (const auto && [item, expected] : iter::zip(algorithm.allocated_items(), expected_allocated_items)) {
+    CHECK(small_items_allocated.size() == expected_allocated_items.size());
+    for (const auto && [item, expected] : iter::zip(small_items_allocated, expected_allocated_items)) {
         CHECK(item == expected);
     }
 }
@@ -63,9 +64,10 @@ TEST_CASE("case 2", "[LargestFitFirstAlgorithm]") {
         algorithm.add_item(small_item, quantity);
     }
     algorithm.allocate();
+    const auto & small_items_allocated = algorithm.allocated_items();
     // check
-    CHECK(algorithm.allocated_items().size() == expected_allocated_items.size());
-    for (const auto && [item, expected] : iter::zip(algorithm.allocated_items(), expected_allocated_items)) {
+    CHECK(small_items_allocated.size() == expected_allocated_items.size());
+    for (const auto && [item, expected] : iter::zip(small_items_allocated, expected_allocated_items)) {
         CHECK(item == expected);
     }
 }
@@ -91,9 +93,10 @@ TEST_CASE("case 3", "[LargestFitFirstAlgorithm]") {
         algorithm.add_item(small_item, quantity);
     }
     algorithm.allocate();
+    const auto & small_items_allocated = algorithm.allocated_items();
     // check
-    CHECK(algorithm.allocated_items().size() == expected_allocated_items.size());
-    for (const auto && [item, expected] : iter::zip(algorithm.allocated_items(), expected_allocated_items)) {
+    CHECK(small_items_allocated.size() == expected_allocated_items.size());
+    for (const auto && [item, expected] : iter::zip(small_items_allocated, expected_allocated_items)) {
         CHECK(item == expected);
     }
 }
@@ -121,9 +124,10 @@ TEST_CASE("case 4", "[LargestFitFirstAlgorithm]") {
         algorithm.add_item(small_item, quantity);
     }
     algorithm.allocate();
+    const auto & small_items_allocated = algorithm.allocated_items();
     // check
-    CHECK(algorithm.allocated_items().size() == expected_allocated_items.size());
-    for (const auto && [item, expected] : iter::zip(algorithm.allocated_items(), expected_allocated_items)) {
+    CHECK(small_items_allocated.size() == expected_allocated_items.size());
+    for (const auto && [item, expected] : iter::zip(small_items_allocated, expected_allocated_items)) {
         CHECK(item == expected);
     }
 }
