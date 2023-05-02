@@ -1,8 +1,6 @@
 #include <catch2/catch_test_macros.hpp>
 
 #include <cppitertools/itertools.hpp>
-#include <cppitertools/product.hpp>
-#include <cppitertools/range.hpp>
 
 #include "BoolCuboid.hpp"
 
