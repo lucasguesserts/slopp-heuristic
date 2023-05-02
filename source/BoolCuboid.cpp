@@ -28,23 +28,23 @@ auto BoolCuboid::occupy(const Vector3D & initial_position, const Vector3D & fina
     return;
 }
 
-auto BoolCuboid::is_occupied(
+auto BoolCuboid::is_any_occupied(
     const Vector3D & initial_position,
     const Vector3D & final_position) const
     -> bool {
     for (const auto && [x, y, z] : BoolCuboid::all_entries(initial_position, final_position)) {
-        if (!this->is_occupied(x, y, z)) {
-            return false;
+        if (this->is_occupied(x, y, z)) {
+            return true;
         }
     }
-    return true;
+    return false;
 }
 
-auto BoolCuboid::is_free(
+auto BoolCuboid::are_all_free(
     const Vector3D & initial_position,
     const Vector3D & final_position) const
     -> bool {
-    return !this->is_occupied(initial_position, final_position);
+    return !this->is_any_occupied(initial_position, final_position);
 }
 
 } // namespace packing

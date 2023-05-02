@@ -22,12 +22,12 @@ public:
     [[nodiscard]] auto is_occupied(const CoordinateType & x, const CoordinateType & y, const CoordinateType & z) const -> bool {
         return this->_data[x][y][z];
     }
-    [[nodiscard]] auto is_occupied(const Vector3D & initial_position, const Vector3D & final_position) const -> bool;
-
     [[nodiscard]] auto is_free(const CoordinateType & x, const CoordinateType & y, const CoordinateType & z) const -> bool {
         return !this->is_occupied(x, y, z);
     }
-    [[nodiscard]] auto is_free(const Vector3D & initial_position, const Vector3D & final_position) const -> bool;
+
+    [[nodiscard]] auto is_any_occupied(const Vector3D & initial_position, const Vector3D & final_position) const -> bool;
+    [[nodiscard]] auto are_all_free(const Vector3D & initial_position, const Vector3D & final_position) const -> bool;
 
     auto occupy(const Vector3D & initial_position, const Vector3D & final_position) -> void;
 

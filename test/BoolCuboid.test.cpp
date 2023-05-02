@@ -40,8 +40,8 @@ TEST_CASE("set position as occupied", "[BoolCuboid]") {
             }
         }
         SECTION("is_occcupied - range") {
-            CHECK(cuboid.is_occupied(initial_position, final_position));
-            CHECK_FALSE(cuboid.is_free(initial_position, final_position));
+            CHECK(cuboid.is_any_occupied(initial_position, final_position));
+            CHECK_FALSE(cuboid.are_all_free(initial_position, final_position));
         }
     }
 }
