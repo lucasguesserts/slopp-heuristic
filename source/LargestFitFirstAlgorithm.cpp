@@ -25,16 +25,6 @@ LargestFitFirstAlgorithm::LargestFitFirstAlgorithm(const LargeObject large_objec
     , space(large_object.size()) {}
 
 auto LargestFitFirstAlgorithm::from_json(const json data) -> LargestFitFirstAlgorithm {
-    const auto type = data["type"].get<string>();
-    const auto expected_type = string{"input"};
-    if (type != expected_type) {
-        throw std::runtime_error("'type' must be '" + expected_type + "', but it is '" + type + "'");
-    }
-    const auto version = data["version"].get<string>();
-    const auto expected_version = string{"0.0.0"};
-    if (version != expected_version) {
-        throw std::runtime_error("'version' must be '" + expected_version + "', but it is '" + version + "'");
-    }
     // large object
     const auto large_object = LargeObject{Vector3D{
         data["large_object"]["length"].get<CoordinateType>(),
