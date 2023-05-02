@@ -25,6 +25,8 @@ public:
         return this->x() * this->y() * this->z();
     }
 
+    auto operator==(const Size & other) const -> bool;
+
 private:
     const SizeType _x;
     const SizeType _y;
