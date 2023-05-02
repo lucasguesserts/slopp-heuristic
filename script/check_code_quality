@@ -4,15 +4,20 @@ list_subproject() {
     SUBPROJECT=$1
     ls \
         include/$SUBPROJECT.hpp \
-        source/$SUBPROJECT/* \
-        test/$SUBPROJECT.test.cpp \
-        benchmark/*$SUBPROJECT.cpp
+        source/$SUBPROJECT.cpp\
+        test/$SUBPROJECT.test.cpp
 }
 
 LOG_FILE="code_quality.log"
 
 SRC_FILES=" \
-$(list_subproject fibonacci)
+$(list_subproject Vector3D)
+$(list_subproject BoolCuboid)
+$(list_subproject SmallItem)
+$(list_subproject AllocatedSmallItem)
+$(list_subproject LargeObject)
+$(list_subproject SmallItemQuantityManager)
+$(list_subproject LargestFitFirstAlgorithm)
 "
 
 echo $SRC_FILES
