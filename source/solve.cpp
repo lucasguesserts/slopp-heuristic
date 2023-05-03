@@ -17,10 +17,13 @@ auto main(int argc, char * argv[]) -> int {
     if (argc != 3) {
         std::cerr
             << "Usage:" << std::endl
-            << "    " << program_name << " INPUT" << " " << "OUTPUT" << std::endl
-            << "    " << "INPUT is a json file specifying the input of the problem" << std::endl
-            << "    " << "OUTPUT is the file to save the output" << std::endl
-        ;
+            << "    " << program_name << " INPUT"
+            << " "
+            << "OUTPUT" << std::endl
+            << "    "
+            << "INPUT is a json file specifying the input of the problem" << std::endl
+            << "    "
+            << "OUTPUT is the file to save the output" << std::endl;
         return 1;
     }
     const auto input_file_path = std::filesystem::path(argv[1]);
