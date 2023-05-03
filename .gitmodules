@@ -1,6 +1,0 @@
-[submodule "dependency/catch2"]
-	path = dependency/catch2
-	url = https://github.com/catchorg/Catch2.git
-[submodule "dependency/cppitertools"]
-	path = dependency/cppitertools
-	url = https://github.com/ryanhaining/cppitertools.git

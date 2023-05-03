@@ -19,7 +19,10 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 set(CMAKE_BUILD_TYPE Debug)
 
-find_package(Catch2 3 REQUIRED)
+include(cmake/CPM.cmake)
+CPMAddPackage("gh:nlohmann/json@3.11.2")
+CPMAddPackage("gh:catchorg/Catch2@3.3.2")
+CPMAddPackage("gh:ryanhaining/cppitertools@2.1")
 
 set(PROJECT_LIBRARY ${PROJECT_NAME})
 set(HEADER_DIR ${CMAKE_SOURCE_DIR}/include)
@@ -37,12 +40,12 @@ set(
 )
 
 add_library(${PROJECT_LIBRARY} SHARED ${PROJECT_SOURCE_FILES})
+target_link_libraries(${PROJECT_LIBRARY} nlohmann_json::nlohmann_json Catch2::Catch2WithMain cppitertools::cppitertools)
 
 add_executable(solve source/solve.cpp)
 target_link_libraries(solve PRIVATE ${PROJECT_LIBRARY})
 
 include_directories(${HEADER_DIR})
-include_directories(${PROJECT_SOURCE_DIR}/dependency/json/)
 
 enable_testing()
 add_subdirectory(test)

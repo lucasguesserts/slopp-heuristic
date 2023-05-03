@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-#include <cppitertools/itertools.hpp>
+#include <itertools.hpp>
 #include <nlohmann/json.hpp>
 
 #include "AllocatedSmallItem.hpp"
