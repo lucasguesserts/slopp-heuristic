@@ -3,7 +3,7 @@
 #include <utility>
 #include <vector>
 
-#include <cppitertools/itertools.hpp>
+#include <itertools.hpp>
 
 namespace packing {
 

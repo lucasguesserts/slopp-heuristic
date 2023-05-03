@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - trunk
-      - initial-implementation
+      - cpm
 jobs:
   test-gcc:
     runs-on: ubuntu-22.04
@@ -18,8 +18,6 @@ jobs:
         run:  |
               sudo apt update
               sudo apt install gcc-11 g++-11 cmake libboost-all-dev
-      - name: install submodule dependencies
-        run: ./script/install_submodule_dependencies
       - name: test
         run: ./script/test
   test-clang:
@@ -35,8 +33,6 @@ jobs:
         run:  |
               sudo apt update
               sudo apt install clang libboost-all-dev
-      - name: install submodule dependencies
-        run: ./script/install_submodule_dependencies
       - name: test
         run: ./script/test
   code-style-check:
@@ -69,7 +65,5 @@ jobs:
         run:  |
               sudo apt update
               sudo apt install clang clang-tidy libboost-all-dev
-      - name: install submodule dependencies
-        run: ./script/install_submodule_dependencies
       - name: check
         run: ./script/check_code_quality

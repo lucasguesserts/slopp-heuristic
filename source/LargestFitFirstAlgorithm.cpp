@@ -9,7 +9,7 @@
 #include "SmallItemQuantityManager.hpp"
 #include "Vector3D.hpp"
 #include "nlohmann/json.hpp"
-#include <cppitertools/itertools.hpp>
+#include <itertools.hpp>
 
 #include "BoolCuboid.hpp"
 #include "LargeObject.hpp"

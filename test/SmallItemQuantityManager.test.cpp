@@ -2,7 +2,7 @@
 
 #include <vector>
 
-#include <cppitertools/itertools.hpp>
+#include <itertools.hpp>
 
 #include "SmallItem.hpp"
 #include "SmallItemQuantityManager.hpp"
