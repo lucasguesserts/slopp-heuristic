@@ -25,6 +25,8 @@ auto main(int argc, char * argv[]) -> int {
     }
     const auto input_file_path = std::filesystem::path(argv[1]);
     const auto output_file_path = std::filesystem::path(argv[2]);
+    const auto output_dir = output_file_path.parent_path();
+    std::filesystem::create_directories(output_dir);
 
     // input data
     std::ifstream input_file(input_file_path);
