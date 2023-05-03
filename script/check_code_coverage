@@ -8,6 +8,7 @@ gcovr \
     --root .. \
     --exclude ../benchmark/ \
     --exclude ../test/ \
+    --exclude ../dependency/ \
     --decisions \
     --gcov-executable "llvm-cov gcov" \
     --print-summary \

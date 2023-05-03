@@ -6,7 +6,14 @@ include_directories(${CMAKE_SOURCE_DIR}/${PROJECT_NAME}/)
 
 set(
     TEST_CASE_SOURCE_LIST
-    fibonacci.test.cpp
+    json.test.cpp
+    Vector3D.test.cpp
+    BoolCuboid.test.cpp
+    SmallItem.test.cpp
+    AllocatedSmallItem.test.cpp
+    LargeObject.test.cpp
+    SmallItemQuantityManager.test.cpp
+    LargestFitFirstAlgorithm.test.cpp
 )
 
 foreach(TEST_CASE_SOURCE IN ITEMS ${TEST_CASE_SOURCE_LIST})

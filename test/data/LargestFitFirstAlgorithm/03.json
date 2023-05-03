@@ -1,0 +1,52 @@
+{
+  "input": {
+    "type": "input",
+    "version": "0.0.0",
+    "large_object": {
+      "length": 10,
+      "width": 10,
+      "height": 10
+    },
+    "small_items": [
+      {
+        "length": 5,
+        "width": 5,
+        "height": 5,
+        "quantity": 1
+      },
+      {
+        "length": 1,
+        "width": 1,
+        "height": 1,
+        "quantity": 1
+      }
+    ]
+  },
+  "output": {
+    "type": "output",
+    "version": "0.1.0",
+    "large_object": {
+      "length": 10,
+      "width": 10,
+      "height": 10
+    },
+    "small_items": [
+      {
+        "length": 5,
+        "width": 5,
+        "height": 5,
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      {
+        "length": 1,
+        "width": 1,
+        "height": 1,
+        "x": 5,
+        "y": 0,
+        "z": 0
+      }
+    ]
+  }
+}

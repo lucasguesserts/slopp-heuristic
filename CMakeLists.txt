@@ -1,7 +1,7 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.26)
 
 project(
-    dynamic-programming
+    slopp-heuristic
     VERSION 0.0.0
     HOMEPAGE_URL "https://github.com/lucasguesserts/slopp-heuristic"
     LANGUAGES CXX
@@ -27,12 +27,22 @@ set(SOURCE_DIR ${CMAKE_SOURCE_DIR}/source)
 
 set(
     PROJECT_SOURCE_FILES
-    ${SOURCE_DIR}/fibonacci/fibonacci.cpp
+    ${SOURCE_DIR}/Vector3D.cpp
+    ${SOURCE_DIR}/BoolCuboid.cpp
+    ${SOURCE_DIR}/SmallItem.cpp
+    ${SOURCE_DIR}/AllocatedSmallItem.cpp
+    ${SOURCE_DIR}/LargeObject.cpp
+    ${SOURCE_DIR}/SmallItemQuantityManager.cpp
+    ${SOURCE_DIR}/LargestFitFirstAlgorithm.cpp
 )
 
 add_library(${PROJECT_LIBRARY} SHARED ${PROJECT_SOURCE_FILES})
 
+add_executable(solve source/solve.cpp)
+target_link_libraries(solve PRIVATE ${PROJECT_LIBRARY})
+
 include_directories(${HEADER_DIR})
+include_directories(${PROJECT_SOURCE_DIR}/dependency/json/)
 
 enable_testing()
 add_subdirectory(test)
