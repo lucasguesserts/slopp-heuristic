@@ -1,0 +1,34 @@
+#!/bin/sh
+
+export TIMEOUT=5
+export NUMBER_OF_PROCESSORS=$(nproc)
+
+export LOG_FILE="parallel.log"
+echo "" > $LOG_FILE
+
+export INPUT_DIR=$(realpath "./foo/input/")
+if [ ! -d "$INPUT_DIR" ]
+then
+    echo "$INPUT_DIR does not exist."
+    exit 1
+fi
+
+OUTPUT_DIR="./foo/output/"
+mkdir -p $OUTPUT_DIR
+export OUTPUT_DIR=$(realpath $OUTPUT_DIR)
+
+export SOLVER=$(realpath ./build/solve)
+solver () {
+    INSTANCE_SET_NUMBER=$1
+    INSTANCE_NUMBER=$2
+    INPUT_FILE_PATH=${INPUT_DIR}/set_${INSTANCE_SET_NUMBER}/${INSTANCE_NUMBER}.json
+    OUTPUT_FILE_PATH=${OUTPUT_DIR}/set_${INSTANCE_SET_NUMBER}/${INSTANCE_NUMBER}.json
+    echo -e "----- set ${INSTANCE_SET_NUMBER} - instance ${INSTANCE_NUMBER} -----"
+    time \
+        timeout -v $TIMEOUT \
+        systemd-run --quiet --user --scope -p MemoryMax=500M -p MemorySwapMax=0 \
+        $SOLVER $INPUT_FILE_PATH $OUTPUT_FILE_PATH
+}
+export -f solver
+
+parallel --jobs $NUMBER_OF_PROCESSORS solver ::: $(seq 1 2) ::: $(seq 1 5) 2>&1 | tee -a $LOG_FILE
