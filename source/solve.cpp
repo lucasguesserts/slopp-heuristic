@@ -1,6 +1,8 @@
+#include <csignal>
 #include <filesystem>
 #include <fstream>
 #include <iostream>
+#include <memory>
 #include <string>
 
 #include <nlohmann/json.hpp>
@@ -10,6 +12,24 @@
 using json = nlohmann::json;
 
 using namespace packing;
+
+#pragma clang diagnostic ignored "-Wunused-parameter"
+
+auto input_file_path = std::filesystem::path();
+auto output_file_path = std::filesystem::path();
+std::unique_ptr<LargestFitFirstAlgorithm> algorithm;
+
+void make_output() {
+    const auto output = LargestFitFirstAlgorithm::to_json(*algorithm);
+    std::ofstream output_file(output_file_path);
+    output_file << output.dump(2);
+    output_file.close();
+}
+
+void handler(int signal) {
+    make_output();
+    exit(signal);
+}
 
 auto main(int argc, char * argv[]) -> int {
     // CLI args
@@ -26,8 +46,8 @@ auto main(int argc, char * argv[]) -> int {
             << "OUTPUT is the file to save the output" << std::endl;
         return 1;
     }
-    const auto input_file_path = std::filesystem::path(argv[1]);
-    const auto output_file_path = std::filesystem::path(argv[2]);
+    input_file_path = std::filesystem::path(argv[1]);
+    output_file_path = std::filesystem::path(argv[2]);
     const auto output_dir = output_file_path.parent_path();
     std::filesystem::create_directories(output_dir);
 
@@ -37,14 +57,13 @@ auto main(int argc, char * argv[]) -> int {
     input_file.close();
 
     // solve
-    auto algorithm = LargestFitFirstAlgorithm::from_json(data);
-    algorithm.allocate();
+    algorithm = std::make_unique<LargestFitFirstAlgorithm>(LargestFitFirstAlgorithm::from_json(data));
+    signal(SIGINT, handler);
+    signal(SIGTERM, handler);
+    algorithm->allocate();
 
     // output
-    const auto output = LargestFitFirstAlgorithm::to_json(algorithm);
-    std::ofstream output_file(output_file_path);
-    output_file << output.dump(2);
-    output_file.close();
+    make_output();
 
-    return 0;
+    exit(0);
 }

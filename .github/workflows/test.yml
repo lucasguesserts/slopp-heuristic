@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - trunk
-      - cpm
 jobs:
   test-gcc:
     runs-on: ubuntu-22.04
