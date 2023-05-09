@@ -1,7 +1,8 @@
 #!/bin/sh
 
-export TIMEOUT=5
+export TIMEOUT=50
 export NUMBER_OF_PROCESSORS=$(nproc)
+export MEMORY_LIMIT_PER_JOB="500M"
 
 export LOG_FILE="parallel.log"
 echo "" > $LOG_FILE
@@ -26,9 +27,9 @@ solver () {
     echo -e "----- set ${INSTANCE_SET_NUMBER} - instance ${INSTANCE_NUMBER} -----"
     time \
         timeout -v $TIMEOUT \
-        systemd-run --quiet --user --scope -p MemoryMax=500M -p MemorySwapMax=0 \
+        systemd-run --quiet --user --scope -p MemoryMax=$MEMORY_LIMIT_PER_JOB -p MemorySwapMax=0 \
         $SOLVER $INPUT_FILE_PATH $OUTPUT_FILE_PATH
 }
 export -f solver
 
-parallel --jobs $NUMBER_OF_PROCESSORS solver ::: $(seq 1 2) ::: $(seq 1 5) 2>&1 | tee -a $LOG_FILE
+parallel --jobs $NUMBER_OF_PROCESSORS solver ::: $(seq 1 10) ::: $(seq 1 100) 2>&1 | tee -a $LOG_FILE
