@@ -13,7 +13,9 @@ using json = nlohmann::json;
 
 using namespace packing;
 
+#if __clang__
 #pragma clang diagnostic ignored "-Wunused-parameter"
+#endif
 
 auto input_file_path = std::filesystem::path();
 auto output_file_path = std::filesystem::path();
