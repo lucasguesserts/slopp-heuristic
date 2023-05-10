@@ -18,7 +18,7 @@
   },
   "output": {
     "type": "output",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "large_object": {
       "length": 11,
       "width": 11,
@@ -89,6 +89,9 @@
         "y": 5,
         "z": 5
       }
-    ]
+    ],
+    "appendix": {
+      "runnning_time": 0.0
+    }
   }
 }
