@@ -52,7 +52,7 @@ auto LargestFitFirstAlgorithm::to_json(const LargestFitFirstAlgorithm & algorith
     auto output = OrderedJson{};
     // metadata
     output["type"] = "output";
-    output["version"] = "0.1.0";
+    output["version"] = "0.2.0";
     // large object
     auto large_object_data = OrderedJson{};
     large_object_data["length"] = algorithm.large_object.size().x();
@@ -72,6 +72,10 @@ auto LargestFitFirstAlgorithm::to_json(const LargestFitFirstAlgorithm & algorith
         small_items_data.emplace_back(std::move(allocated_item_data));
     }
     output["small_items"] = small_items_data;
+    // appendix
+    auto appendix = OrderedJson{};
+    appendix["runnning_time"] = algorithm.allocation_time();
+    output["appendix"] = appendix;
     return output;
 }
 
