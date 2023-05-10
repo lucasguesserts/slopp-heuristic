@@ -4,7 +4,7 @@
 #include <cstdint>
 #include <memory>
 
-class Timer { //NOLINT(cppcoreguidelines-special-member-functions)
+class Timer { // NOLINT(cppcoreguidelines-special-member-functions)
 
 public:
     virtual void start() = 0;
