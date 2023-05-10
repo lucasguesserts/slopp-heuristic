@@ -7,19 +7,21 @@ project(
     LANGUAGES CXX
 )
 
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 string(REPLACE "." ";" VERSION_LIST ${CMAKE_CXX_COMPILER_VERSION})
 list(GET VERSION_LIST 0 CXX_COMPILER_VERSION_MAJOR)
 list(GET VERSION_LIST 1 CXX_COMPILER_VERSION_MINOR)
 list(GET VERSION_LIST 2 CXX_COMPILER_VERSION_PATCH)
 if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+    set(CMAKE_CXX_STANDARD 17)
+    set(CMAKE_CXX_STANDARD_REQUIRED ON)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -Wall -Wextra -pedantic-errors -fmax-errors=1 --coverage -Wno-error=ignored-qualifiers")
 elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
     if(CXX_COMPILER_VERSION_MAJOR STREQUAL "7")
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1z -Werror -Wall -Wextra -pedantic-errors -ferror-limit=1 --coverage")
     else()
+        set(CMAKE_CXX_STANDARD 17)
+        set(CMAKE_CXX_STANDARD_REQUIRED ON)
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -Wall -Wextra -pedantic-errors -ferror-limit=1 --coverage")
     endif()
 endif()
@@ -50,6 +52,10 @@ set(
 
 add_library(${PROJECT_LIBRARY} SHARED ${PROJECT_SOURCE_FILES})
 target_link_libraries(${PROJECT_LIBRARY} nlohmann_json::nlohmann_json Catch2::Catch2WithMain cppitertools::cppitertools)
+if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang" AND CXX_COMPILER_VERSION_MAJOR STREQUAL "7")
+    target_link_libraries(${PROJECT_LIBRARY} stdc++fs)
+endif()
+
 
 add_executable(solve source/solve.cpp)
 target_link_libraries(solve PRIVATE ${PROJECT_LIBRARY})
