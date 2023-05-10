@@ -51,7 +51,7 @@ set(
 )
 
 add_library(${PROJECT_LIBRARY} SHARED ${PROJECT_SOURCE_FILES})
-target_link_libraries(${PROJECT_LIBRARY} nlohmann_json::nlohmann_json Catch2::Catch2WithMain cppitertools::cppitertools)
+target_link_libraries(${PROJECT_LIBRARY} boost_timer boost_chrono nlohmann_json::nlohmann_json Catch2::Catch2WithMain cppitertools::cppitertools)
 if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang" AND CXX_COMPILER_VERSION_MAJOR STREQUAL "7")
     target_link_libraries(${PROJECT_LIBRARY} stdc++fs)
 endif()

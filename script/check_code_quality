@@ -18,6 +18,9 @@ $(list_subproject AllocatedSmallItem)
 $(list_subproject LargeObject)
 $(list_subproject SmallItemQuantityManager)
 $(list_subproject LargestFitFirstAlgorithm)
+include/Timer/Timer.hpp
+include/Timer/UserTimer.hpp
+include/Timer/WallTimer.hpp
 "
 
 echo $SRC_FILES
