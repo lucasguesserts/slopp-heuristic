@@ -1,7 +1,7 @@
 {
   "input": {
-    "type": "output",
-    "version": "0.1.0",
+    "type": "input",
+    "version": "0.0.0",
     "large_object": {
       "length": 10,
       "width": 10,
@@ -30,7 +30,7 @@
   },
   "output": {
     "type": "output",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "large_object": {
       "length": 10,
       "width": 10,
@@ -53,6 +53,9 @@
         "y": 0,
         "z": 0
       }
-    ]
+    ],
+    "appendix": {
+      "runnning_time": 0.0
+    }
   }
 }

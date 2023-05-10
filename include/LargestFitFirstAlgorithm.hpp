@@ -11,6 +11,7 @@
 #include "SmallItem.hpp"
 #include "SmallItemQuantityManager.hpp"
 #include "Vector3D.hpp"
+#include "Timer/Timer.hpp"
 
 namespace packing {
 
@@ -30,6 +31,7 @@ public:
     auto allocated_items() -> const std::vector<AllocatedSmallItem> & {
         return this->allocated_small_items;
     }
+    auto allocation_time() const -> double;
 
 private:
     const LargeObject large_object;
@@ -37,6 +39,7 @@ private:
     std::vector<SmallItem> small_items;
     SmallItemQuantityManager quantity_manager;
     std::vector<AllocatedSmallItem> allocated_small_items;
+    TimerPtr timer;
 
     auto sort_items_descendig_volume() -> void;
     auto all_space();

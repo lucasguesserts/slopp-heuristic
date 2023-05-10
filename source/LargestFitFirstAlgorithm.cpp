@@ -13,6 +13,8 @@
 
 #include "BoolCuboid.hpp"
 #include "LargeObject.hpp"
+#include "Timer/Timer.hpp"
+#include "Timer/UserTimer.hpp"
 
 using nlohmann::json;
 using std::string;
@@ -22,7 +24,8 @@ namespace packing {
 
 LargestFitFirstAlgorithm::LargestFitFirstAlgorithm(const LargeObject large_object)
     : large_object(large_object)
-    , space(large_object.size()) {}
+    , space(large_object.size())
+    , timer(UserTimer::make()) {}
 
 auto LargestFitFirstAlgorithm::from_json(const json data) -> LargestFitFirstAlgorithm {
     // large object
@@ -49,7 +52,7 @@ auto LargestFitFirstAlgorithm::to_json(const LargestFitFirstAlgorithm & algorith
     auto output = OrderedJson{};
     // metadata
     output["type"] = "output";
-    output["version"] = "0.1.0";
+    output["version"] = "0.2.0";
     // large object
     auto large_object_data = OrderedJson{};
     large_object_data["length"] = algorithm.large_object.size().x();
@@ -69,6 +72,10 @@ auto LargestFitFirstAlgorithm::to_json(const LargestFitFirstAlgorithm & algorith
         small_items_data.emplace_back(std::move(allocated_item_data));
     }
     output["small_items"] = small_items_data;
+    // appendix
+    auto appendix = OrderedJson{};
+    appendix["runnning_time"] = algorithm.allocation_time();
+    output["appendix"] = appendix;
     return output;
 }
 
@@ -84,6 +91,7 @@ auto LargestFitFirstAlgorithm::all_space() {
 }
 
 auto LargestFitFirstAlgorithm::allocate() -> void {
+    this->timer->start();
     this->sort_items_descendig_volume();
     for (auto && [z, y, x] : this->all_space()) {
         if (this->space.is_free(x, y, z)) {
@@ -95,6 +103,7 @@ auto LargestFitFirstAlgorithm::allocate() -> void {
             }
         }
     }
+    this->timer->stop();
     return;
 }
 
@@ -129,6 +138,10 @@ auto LargestFitFirstAlgorithm::allocate_small_item(const SmallItem & small_item,
     } else {
         return false;
     }
+}
+
+auto LargestFitFirstAlgorithm::allocation_time() const -> double {
+    return this->timer->getDurationSeconds();
 }
 
 } // namespace packing

@@ -23,7 +23,7 @@ const auto data_dir = std::filesystem::path("test/data/LargestFitFirstAlgorithm/
 
 TEST_CASE("all cases", "[LargestFitFirstAlgorithm]") {
     // data
-    const auto cases = std::vector<std::string>{"01", "02", "03"};
+    const auto cases = std::vector<std::string>{"01", "02", "03", "04"};
     for (const auto & case_name : cases) {
         SECTION("case " + case_name) {
             const auto file_path = data_dir / (case_name + ".json");
