@@ -141,7 +141,12 @@ auto LargestFitFirstAlgorithm::allocate_small_item(const SmallItem & small_item,
 }
 
 auto LargestFitFirstAlgorithm::allocation_time() const -> double {
-    return this->timer->getDurationSeconds();
+    try {
+        return this->timer->getDurationSeconds();
+    } catch (const std::runtime_error & error) {
+        this->timer->stop();
+        return this->timer->getDurationSeconds();
+    }
 }
 
 } // namespace packing

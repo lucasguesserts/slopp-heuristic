@@ -10,8 +10,8 @@
 #include "LargeObject.hpp"
 #include "SmallItem.hpp"
 #include "SmallItemQuantityManager.hpp"
-#include "Vector3D.hpp"
 #include "Timer/Timer.hpp"
+#include "Vector3D.hpp"
 
 namespace packing {
 
