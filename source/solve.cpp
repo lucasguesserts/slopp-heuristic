@@ -22,7 +22,7 @@ auto output_file_path = std::filesystem::path();
 std::unique_ptr<LargestFitFirstAlgorithm> algorithm;
 
 void make_output() {
-    const auto output = LargestFitFirstAlgorithm::to_json(*algorithm);
+    const auto output = algorithm->to_json();
     std::ofstream output_file(output_file_path);
     output_file << output.dump(2);
     output_file.close();
@@ -59,7 +59,7 @@ auto main(int argc, char * argv[]) -> int {
     input_file.close();
 
     // solve
-    algorithm = std::make_unique<LargestFitFirstAlgorithm>(LargestFitFirstAlgorithm::from_json(data));
+    algorithm = std::make_unique<LargestFitFirstAlgorithm>(data);
     signal(SIGINT, handler);
     signal(SIGTERM, handler);
     algorithm->allocate();

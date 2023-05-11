@@ -27,14 +27,12 @@ LargestFitFirstAlgorithm::LargestFitFirstAlgorithm(const LargeObject large_objec
     , space(large_object.size())
     , timer(UserTimer::make()) {}
 
-auto LargestFitFirstAlgorithm::from_json(const json data) -> LargestFitFirstAlgorithm {
-    // large object
-    const auto large_object = LargeObject{Vector3D{
+LargestFitFirstAlgorithm::LargestFitFirstAlgorithm(const json & data)
+    : LargestFitFirstAlgorithm{Vector3D{
         data["large_object"]["length"].get<CoordinateType>(),
         data["large_object"]["width"].get<CoordinateType>(),
-        data["large_object"]["height"].get<CoordinateType>()}};
-    // algorithm
-    auto algorithm = LargestFitFirstAlgorithm{large_object};
+        data["large_object"]["height"].get<CoordinateType>()}}
+    {
     // small items
     const auto small_items_data = data["small_items"];
     for (const auto & small_item_data : data["small_items"]) {
@@ -43,25 +41,25 @@ auto LargestFitFirstAlgorithm::from_json(const json data) -> LargestFitFirstAlgo
             small_item_data["width"].get<CoordinateType>(),
             small_item_data["height"].get<CoordinateType>()}};
         const auto quantity = small_item_data["quantity"].get<Quantity>();
-        algorithm.add_item(small_item, quantity);
+        this->add_item(small_item, quantity);
     }
-    return algorithm;
+    return;
 }
 
-auto LargestFitFirstAlgorithm::to_json(const LargestFitFirstAlgorithm & algorithm) -> json {
+auto LargestFitFirstAlgorithm::to_json() -> json {
     auto output = OrderedJson{};
     // metadata
     output["type"] = "output";
     output["version"] = "0.2.0";
     // large object
     auto large_object_data = OrderedJson{};
-    large_object_data["length"] = algorithm.large_object.size().x();
-    large_object_data["width"] = algorithm.large_object.size().y();
-    large_object_data["height"] = algorithm.large_object.size().z();
+    large_object_data["length"] = this->large_object.size().x();
+    large_object_data["width"] = this->large_object.size().y();
+    large_object_data["height"] = this->large_object.size().z();
     output["large_object"] = large_object_data;
     // small items
     auto small_items_data = json::array();
-    for (const auto & allocated_small_item : algorithm.allocated_small_items) {
+    for (const auto & allocated_small_item : this->allocated_small_items) {
         auto allocated_item_data = OrderedJson{};
         allocated_item_data["length"] = allocated_small_item.size().x();
         allocated_item_data["width"] = allocated_small_item.size().y();
@@ -74,7 +72,7 @@ auto LargestFitFirstAlgorithm::to_json(const LargestFitFirstAlgorithm & algorith
     output["small_items"] = small_items_data;
     // appendix
     auto appendix = OrderedJson{};
-    appendix["runnning_time"] = algorithm.allocation_time();
+    appendix["runnning_time"] = this->allocation_time();
     output["appendix"] = appendix;
     return output;
 }

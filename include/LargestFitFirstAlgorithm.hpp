@@ -22,8 +22,7 @@ auto compareSmallItems(const SmallItem & lhs, const SmallItem & rhs) -> bool {
 class LargestFitFirstAlgorithm {
 public:
     LargestFitFirstAlgorithm(const LargeObject large_object);
-    static auto from_json(const nlohmann::json data) -> LargestFitFirstAlgorithm;
-    static auto to_json(const LargestFitFirstAlgorithm & algorithm) -> nlohmann::json;
+    LargestFitFirstAlgorithm(const nlohmann::json & data);
 
     auto add_item(const SmallItem small_item, const Quantity quantity) -> void;
     auto allocate() -> void;
@@ -32,6 +31,8 @@ public:
         return this->allocated_small_items;
     }
     auto allocation_time() const -> double;
+
+    auto to_json() -> nlohmann::json;
 
 private:
     const LargeObject large_object;
