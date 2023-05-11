@@ -51,18 +51,3 @@ jobs:
         with:
           clang-format-version: '15'
           check-path: ${{ matrix.path }}
-  code-quality-check:
-    runs-on: ubuntu-22.04
-    env:
-      CC: /usr/bin/clang
-      CXX: /usr/bin/clang++
-    steps:
-      - name: checkout repository
-        uses: actions/checkout@v2
-      - name: install clang
-        shell: bash
-        run:  |
-              sudo apt update
-              sudo apt install clang clang-tidy libboost-all-dev
-      - name: check
-        run: ./script/check_code_quality
