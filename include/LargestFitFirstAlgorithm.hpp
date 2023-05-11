@@ -15,10 +15,6 @@
 
 namespace packing {
 
-auto compareSmallItems(const SmallItem & lhs, const SmallItem & rhs) -> bool {
-    return lhs.size().volume() < rhs.size().volume();
-}
-
 class LargestFitFirstAlgorithm {
 public:
     LargestFitFirstAlgorithm(const LargeObject large_object);
@@ -27,12 +23,10 @@ public:
     auto add_item(const SmallItem small_item, const Quantity quantity) -> void;
     auto allocate() -> void;
 
-    auto allocated_items() -> const std::vector<AllocatedSmallItem> & {
-        return this->allocated_small_items;
-    }
+    auto allocated_items() const -> const std::vector<AllocatedSmallItem> &;
     auto allocation_time() const -> double;
 
-    auto to_json() -> nlohmann::json;
+    auto to_json() const -> nlohmann::json;
 
 private:
     const LargeObject large_object;
@@ -43,10 +37,12 @@ private:
     TimerPtr timer;
 
     auto sort_items_descendig_volume() -> void;
-    auto all_space();
-    auto is_small_item_available(const SmallItem & small_item) -> bool;
-    auto is_item_within_large_object(const SmallItem & small_item, const Vector3D & position) -> bool;
+    auto all_space() const;
+    auto is_small_item_available(const SmallItem & small_item) const -> bool;
+    auto is_item_within_large_object(const SmallItem & small_item, const Vector3D & position) const -> bool;
     auto allocate_small_item(const SmallItem & small_item, const Vector3D & position) -> bool;
+
+    static auto compareSmallItems(const SmallItem & lhs, const SmallItem & rhs) -> bool;
 };
 
 } // namespace packing
