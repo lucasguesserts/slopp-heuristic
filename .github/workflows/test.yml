@@ -19,21 +19,6 @@ jobs:
               sudo apt install gcc-11 g++-11 cmake libboost-all-dev
       - name: test
         run: ./script/test
-  test-clang:
-    runs-on: ubuntu-22.04
-    env:
-      CC: /usr/bin/clang
-      CXX: /usr/bin/clang++
-    steps:
-      - name: checkout repository
-        uses: actions/checkout@v2
-      - name: install clang
-        shell: bash
-        run:  |
-              sudo apt update
-              sudo apt install clang libboost-all-dev
-      - name: test
-        run: ./script/test
   code-style-check:
     runs-on: ubuntu-22.04
     strategy:
