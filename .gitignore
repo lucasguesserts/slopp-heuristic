@@ -19,7 +19,8 @@ node_modules/
 *.swo
 
 # vscode
-.vscode/
+.vscode/*
+!.vscode/launch.json
 
 # python
 venv
