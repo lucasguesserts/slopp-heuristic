@@ -38,7 +38,7 @@ set(
 )
 
 add_library(${PROJECT_LIBRARY} SHARED ${PROJECT_SOURCE_FILES})
-target_link_libraries(${PROJECT_LIBRARY} boost_timer boost_chrono nlohmann_json::nlohmann_json Catch2::Catch2WithMain cppitertools::cppitertools)
+target_link_libraries(${PROJECT_LIBRARY} boost_system boost_timer boost_chrono nlohmann_json::nlohmann_json Catch2::Catch2WithMain cppitertools::cppitertools)
 
 add_executable(solve source/solve.cpp)
 target_link_libraries(solve PRIVATE ${PROJECT_LIBRARY})
