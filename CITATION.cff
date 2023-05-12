@@ -1,0 +1,33 @@
+cff-version: 1.2.0
+title: SLOPP Heuristic
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Lucas
+    family-names: Guesser
+    email: lucasguesserts@gmail.com
+    orcid: 'https://orcid.org/0009-0000-6272-4061'
+identifiers:
+  - type: url
+    value: 'https://github.com/lucasguesserts'
+    description: github
+  - type: url
+    value: 'https://www.linkedin.com/in/lucasguesserts/'
+    description: linkedin
+  - type: url
+    value: 'https://lattes.cnpq.br/5397783811561318'
+    description: lattes
+repository-code: 'https://github.com/lucasguesserts/slopp-heuristic'
+abstract: >-
+  A collection of heuristics to solve the
+  Three Dimensional Single Large Object Placement Problem (SLOPP)
+  and the Three Dimensional Single Knapsack Problem (SKP)
+keywords:
+  - combinatorial optimization
+  - packing problem
+  - container loading problem
+  - three dimensional single large object placement problem
+  - three dimensional single knapsack problem
+license: MIT
