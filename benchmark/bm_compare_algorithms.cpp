@@ -14,10 +14,11 @@
 using json = nlohmann::json;
 using packing::LargestFitFirstAlgorithm;
 
-TEST_CASE("Bischoff and Ratcliff - set 1 - instance 1", "[benchmark][Algorithm]") {
+TEST_CASE("case 1", "[benchmark][Algorithm]") {
+    // a reduced version of the instance 1 of the set 1 of Bischoff and Ratcliff
 
     const auto data_dir = std::filesystem::path("benchmark/data/compare_algorithms/");
-    const auto file_path = data_dir / "1.json";
+    const auto file_path = data_dir / "case_1.json";
     std::ifstream file(file_path);
     const json data = json::parse(file);
     file.close();
