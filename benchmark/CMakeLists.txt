@@ -7,6 +7,7 @@ include_directories(${CMAKE_SOURCE_DIR}/${PROJECT_NAME}/)
 set(
     BENCHMARK_CASE_SOURCE_LIST
     bm_BoolCuboid.cpp
+    bm_compare_algorithms.cpp
 )
 
 foreach(BENCKMARK_CASE_SOURCE IN ITEMS ${BENCHMARK_CASE_SOURCE_LIST})

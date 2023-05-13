@@ -27,41 +27,38 @@ LargestFitFirstAlgorithm::LargestFitFirstAlgorithm(const LargeObject large_objec
     , space(large_object.size())
     , timer(UserTimer::make()) {}
 
-auto LargestFitFirstAlgorithm::from_json(const json data) -> LargestFitFirstAlgorithm {
-    // large object
-    const auto large_object = LargeObject{Vector3D{
-        data["large_object"]["length"].get<CoordinateType>(),
-        data["large_object"]["width"].get<CoordinateType>(),
-        data["large_object"]["height"].get<CoordinateType>()}};
-    // algorithm
-    auto algorithm = LargestFitFirstAlgorithm{large_object};
+LargestFitFirstAlgorithm::LargestFitFirstAlgorithm(const json & data)
+    : LargestFitFirstAlgorithm{Vector3D{
+        data.at("large_object").at("length").get<CoordinateType>(),
+        data.at("large_object").at("width").get<CoordinateType>(),
+        data.at("large_object").at("height").get<CoordinateType>()}} {
     // small items
-    const auto small_items_data = data["small_items"];
-    for (const auto & small_item_data : data["small_items"]) {
+    const auto small_items_data = data.at("small_items");
+    for (const auto & small_item_data : data.at("small_items")) {
         const auto small_item = SmallItem{Vector3D{
-            small_item_data["length"].get<CoordinateType>(),
-            small_item_data["width"].get<CoordinateType>(),
-            small_item_data["height"].get<CoordinateType>()}};
-        const auto quantity = small_item_data["quantity"].get<Quantity>();
-        algorithm.add_item(small_item, quantity);
+            small_item_data.at("length").get<CoordinateType>(),
+            small_item_data.at("width").get<CoordinateType>(),
+            small_item_data.at("height").get<CoordinateType>()}};
+        const auto quantity = small_item_data.at("quantity").get<Quantity>();
+        this->add_item(small_item, quantity);
     }
-    return algorithm;
+    return;
 }
 
-auto LargestFitFirstAlgorithm::to_json(const LargestFitFirstAlgorithm & algorithm) -> json {
+auto LargestFitFirstAlgorithm::to_json() const -> json {
     auto output = OrderedJson{};
     // metadata
     output["type"] = "output";
     output["version"] = "0.2.0";
     // large object
     auto large_object_data = OrderedJson{};
-    large_object_data["length"] = algorithm.large_object.size().x();
-    large_object_data["width"] = algorithm.large_object.size().y();
-    large_object_data["height"] = algorithm.large_object.size().z();
+    large_object_data["length"] = this->large_object.size().x();
+    large_object_data["width"] = this->large_object.size().y();
+    large_object_data["height"] = this->large_object.size().z();
     output["large_object"] = large_object_data;
     // small items
     auto small_items_data = json::array();
-    for (const auto & allocated_small_item : algorithm.allocated_small_items) {
+    for (const auto & allocated_small_item : this->allocated_small_items) {
         auto allocated_item_data = OrderedJson{};
         allocated_item_data["length"] = allocated_small_item.size().x();
         allocated_item_data["width"] = allocated_small_item.size().y();
@@ -74,7 +71,7 @@ auto LargestFitFirstAlgorithm::to_json(const LargestFitFirstAlgorithm & algorith
     output["small_items"] = small_items_data;
     // appendix
     auto appendix = OrderedJson{};
-    appendix["runnning_time"] = algorithm.allocation_time();
+    appendix["runnning_time"] = this->allocation_time();
     output["appendix"] = appendix;
     return output;
 }
@@ -85,7 +82,7 @@ auto LargestFitFirstAlgorithm::add_item(const SmallItem small_item, const Quanti
     return;
 }
 
-auto LargestFitFirstAlgorithm::all_space() {
+auto LargestFitFirstAlgorithm::all_space() const {
     return iter::product(
         iter::range(this->space.size().z()), iter::range(this->space.size().y()), iter::range(this->space.size().x()));
 }
@@ -107,8 +104,8 @@ auto LargestFitFirstAlgorithm::allocate() -> void {
     return;
 }
 
-auto LargestFitFirstAlgorithm::is_small_item_available(const SmallItem & small_item) -> bool {
-    return this->quantity_manager[small_item] != 0;
+auto LargestFitFirstAlgorithm::is_small_item_available(const SmallItem & small_item) const -> bool {
+    return this->quantity_manager.at(small_item) != 0;
 }
 
 auto LargestFitFirstAlgorithm::sort_items_descendig_volume() -> void {
@@ -117,8 +114,7 @@ auto LargestFitFirstAlgorithm::sort_items_descendig_volume() -> void {
     return;
 }
 
-auto LargestFitFirstAlgorithm::is_item_within_large_object(const SmallItem & small_item, const Vector3D & position)
-    -> bool {
+auto LargestFitFirstAlgorithm::is_item_within_large_object(const SmallItem & small_item, const Vector3D & position) const -> bool {
     return (small_item.size().x() + position.x() <= this->large_object.size().x())
         && (small_item.size().y() + position.y() <= this->large_object.size().y())
         && (small_item.size().z() + position.z() <= this->large_object.size().z());
@@ -140,6 +136,10 @@ auto LargestFitFirstAlgorithm::allocate_small_item(const SmallItem & small_item,
     }
 }
 
+auto LargestFitFirstAlgorithm::allocated_items() const -> const decltype(this->allocated_small_items) & {
+    return this->allocated_small_items;
+}
+
 auto LargestFitFirstAlgorithm::allocation_time() const -> double {
     try {
         return this->timer->getDurationSeconds();
@@ -147,6 +147,10 @@ auto LargestFitFirstAlgorithm::allocation_time() const -> double {
         this->timer->stop();
         return this->timer->getDurationSeconds();
     }
+}
+
+auto LargestFitFirstAlgorithm::compareSmallItems(const SmallItem & lhs, const SmallItem & rhs) -> bool {
+    return lhs.size().volume() < rhs.size().volume();
 }
 
 } // namespace packing

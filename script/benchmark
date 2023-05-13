@@ -7,5 +7,5 @@ echo "" > $BENCHMARK_LOG_FILE
 ./script/build &&\
 for BENCHMARK in `find ./build/benchmark/ -type f -perm /111`
 do
-    $BENCHMARK --benchmark-no-analysis --rng-seed 1234 | tee -a $BENCHMARK_LOG_FILE
+    $BENCHMARK --benchmark-confidence-interval 0.99 --rng-seed 1234 | tee -a $BENCHMARK_LOG_FILE
 done

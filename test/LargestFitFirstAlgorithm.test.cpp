@@ -31,10 +31,10 @@ TEST_CASE("all cases", "[LargestFitFirstAlgorithm]") {
             const json data = json::parse(file);
             file.close();
             // allocate
-            auto algorithm = LargestFitFirstAlgorithm::from_json(data["input"]);
+            auto algorithm = LargestFitFirstAlgorithm(data["input"]);
             algorithm.allocate();
             // check
-            const auto output = LargestFitFirstAlgorithm::to_json(algorithm);
+            const auto output = algorithm.to_json();
             CHECK(output == data["output"]);
         }
     }
