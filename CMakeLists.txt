@@ -34,6 +34,7 @@ set(
     ${SOURCE_DIR}/AllocatedSmallItem.cpp
     ${SOURCE_DIR}/LargeObject.cpp
     ${SOURCE_DIR}/SmallItemQuantityManager.cpp
+    ${SOURCE_DIR}/PriorityQueueOfVector3D.cpp
     ${SOURCE_DIR}/LargestFitFirstAlgorithm.cpp
 )
 
