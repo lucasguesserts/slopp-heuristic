@@ -15,6 +15,7 @@ set(
     SmallItemQuantityManager.test.cpp
     LargestFitFirstAlgorithm.test.cpp
     Timer.cpp
+    PriorityQueueOfVector3D.test.cpp
 )
 
 foreach(TEST_CASE_SOURCE IN ITEMS ${TEST_CASE_SOURCE_LIST})
