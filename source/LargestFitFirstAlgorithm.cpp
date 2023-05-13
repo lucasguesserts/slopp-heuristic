@@ -29,17 +29,17 @@ LargestFitFirstAlgorithm::LargestFitFirstAlgorithm(const LargeObject large_objec
 
 LargestFitFirstAlgorithm::LargestFitFirstAlgorithm(const json & data)
     : LargestFitFirstAlgorithm{Vector3D{
-        data["large_object"]["length"].get<CoordinateType>(),
-        data["large_object"]["width"].get<CoordinateType>(),
-        data["large_object"]["height"].get<CoordinateType>()}} {
+        data.at("large_object").at("length").get<CoordinateType>(),
+        data.at("large_object").at("width").get<CoordinateType>(),
+        data.at("large_object").at("height").get<CoordinateType>()}} {
     // small items
-    const auto small_items_data = data["small_items"];
-    for (const auto & small_item_data : data["small_items"]) {
+    const auto small_items_data = data.at("small_items");
+    for (const auto & small_item_data : data.at("small_items")) {
         const auto small_item = SmallItem{Vector3D{
-            small_item_data["length"].get<CoordinateType>(),
-            small_item_data["width"].get<CoordinateType>(),
-            small_item_data["height"].get<CoordinateType>()}};
-        const auto quantity = small_item_data["quantity"].get<Quantity>();
+            small_item_data.at("length").get<CoordinateType>(),
+            small_item_data.at("width").get<CoordinateType>(),
+            small_item_data.at("height").get<CoordinateType>()}};
+        const auto quantity = small_item_data.at("quantity").get<Quantity>();
         this->add_item(small_item, quantity);
     }
     return;
