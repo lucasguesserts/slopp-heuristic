@@ -7,28 +7,28 @@
 
 using namespace packing;
 
-TEST_CASE("less", "[PriorityQueueOfVector3D]") {
-    const auto less = LessVector3D();
-    SECTION("true") {
-        CHECK(less({9, 9, 0}, {1, 2, 3}));
-        CHECK(less({0, 9, 3}, {1, 2, 3}));
-        CHECK(less({1, 0, 3}, {1, 2, 3}));
-
-        CHECK(less({0, 2, 3}, {1, 0, 3}));
-        CHECK(less({1, 2, 0}, {0, 0, 1}));
-    }
+TEST_CASE("greater", "[PriorityQueueOfVector3D]") {
+    const auto greater = GreaterVector3D();
     SECTION("false") {
-        CHECK_FALSE(less({1, 2, 3}, {9, 9, 0}));
-        CHECK_FALSE(less({1, 2, 3}, {0, 9, 3}));
-        CHECK_FALSE(less({1, 2, 3}, {1, 0, 3}));
+        CHECK_FALSE(greater({1, 2, 3}, {1, 2, 3}));
+        CHECK_FALSE(greater({9, 9, 0}, {1, 2, 3}));
+        CHECK_FALSE(greater({0, 9, 3}, {1, 2, 3}));
+        CHECK_FALSE(greater({1, 0, 3}, {1, 2, 3}));
 
-        CHECK_FALSE(less({1, 0, 3}, {0, 2, 3}));
-        CHECK_FALSE(less({0, 0, 1}, {1, 2, 0}));
+        CHECK_FALSE(greater({0, 2, 3}, {1, 0, 3}));
+        CHECK_FALSE(greater({1, 2, 0}, {0, 0, 1}));
+    }
+    SECTION("true") {
+        CHECK(greater({1, 2, 3}, {9, 9, 0}));
+        CHECK(greater({1, 2, 3}, {0, 9, 3}));
+        CHECK(greater({1, 2, 3}, {1, 0, 3}));
 
-        CHECK_FALSE(less({1, 2, 3}, {1, 2, 3}));
-        CHECK_FALSE(less({1, 2, 9}, {9, 9, 3}));
-        CHECK_FALSE(less({9, 2, 3}, {1, 9, 3}));
-        CHECK_FALSE(less({1, 9, 3}, {1, 2, 3}));
+        CHECK(greater({1, 0, 3}, {0, 2, 3}));
+        CHECK(greater({0, 0, 1}, {1, 2, 0}));
+
+        CHECK(greater({1, 2, 9}, {9, 9, 3}));
+        CHECK(greater({9, 2, 3}, {1, 9, 3}));
+        CHECK(greater({1, 9, 3}, {1, 2, 3}));
     }
 }
 

@@ -8,7 +8,7 @@
 
 namespace packing {
 
-struct LessVector3D {
+struct GreaterVector3D {
 public:
     auto operator()(const Vector3D & lhs, const Vector3D & rhs) const -> bool;
 
@@ -21,12 +21,8 @@ private:
     auto compare(const CoordinateType & lhs, const CoordinateType & rhs) const -> Comparison;
 };
 
-struct GreaterVector3D : LessVector3D {
-public:
-    auto operator()(const Vector3D & lhs, const Vector3D & rhs) const -> bool;
-};
-
 using PriorityQueueOfVector3D = std::priority_queue<Vector3D, std::vector<Vector3D>, GreaterVector3D>;
+// using Greater make the smallest appear at the top
 
 } // namespace packing
 
