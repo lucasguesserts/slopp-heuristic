@@ -13,6 +13,13 @@ auto Vector3D::operator==(const Vector3D & other) const -> bool {
     return (this->x() == other.x()) && (this->y() == other.y()) && (this->z() == other.z());
 }
 
+auto Vector3D::operator+(const Vector3D & other) const -> Vector3D {
+    return Vector3D{
+        this->x() + other.x(),
+        this->y() + other.y(),
+        this->z() + other.z()};
+}
+
 auto operator<(const Vector3D & lhs, const Vector3D & rhs) -> bool {
     if (lhs.x() < rhs.x()) {
         return true;
