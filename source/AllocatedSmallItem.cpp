@@ -3,6 +3,7 @@
 #include <itertools.hpp>
 #include <utility>
 
+#include "Surface.hpp"
 #include "Vector3D.hpp"
 
 namespace packing {

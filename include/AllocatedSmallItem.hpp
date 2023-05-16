@@ -1,14 +1,11 @@
 #ifndef ALLOCATED_SMALL_ITEM_HPP
 #define ALLOCATED_SMALL_ITEM_HPP
 
-#include <set>
-
 #include "SmallItem.hpp"
+#include "Surface.hpp"
 #include "Vector3D.hpp"
 
 namespace packing {
-
-using Surface = std::set<Vector3D>;
 
 class AllocatedSmallItem : public SmallItem {
 public:
