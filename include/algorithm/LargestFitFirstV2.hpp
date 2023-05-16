@@ -41,7 +41,6 @@ namespace algorithm {
         PriorityQueueOfVector3D corner_points;
         CornerPointIdentifier corner_point_identifier;
 
-
         auto sort_items_descendig_volume() -> void;
         auto all_space() const;
         auto is_small_item_available(const SmallItem & small_item) const -> bool;

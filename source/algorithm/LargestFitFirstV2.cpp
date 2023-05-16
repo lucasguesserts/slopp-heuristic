@@ -94,7 +94,7 @@ namespace algorithm {
         this->timer->start();
         this->sort_items_descendig_volume();
         this->corner_points.emplace(0, 0, 0);
-        while(!this->corner_points.empty()) {
+        while (!this->corner_points.empty()) {
             const auto point_to_allocate = this->corner_points.top();
             const auto x = point_to_allocate.x();
             const auto y = point_to_allocate.y();

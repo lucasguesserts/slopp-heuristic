@@ -10,10 +10,10 @@
 
 #include "AllocatedSmallItem.hpp"
 #include "LargeObject.hpp"
-#include "algorithm/LargestFitFirstV2.hpp"
 #include "SmallItem.hpp"
 #include "SmallItemQuantityManager.hpp"
 #include "Vector3D.hpp"
+#include "algorithm/LargestFitFirstV2.hpp"
 
 using json = nlohmann::json;
 
