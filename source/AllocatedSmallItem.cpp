@@ -1,5 +1,7 @@
 #include "AllocatedSmallItem.hpp"
 
+#include <algorithm>
+#include <iterator>
 #include <itertools.hpp>
 #include <utility>
 
@@ -15,25 +17,15 @@ AllocatedSmallItem::AllocatedSmallItem(
     , _position(std::move(position)) {}
 
 auto AllocatedSmallItem::surface() const -> Surface {
+    const auto small_item_surface = this->SmallItem::surface();
     auto points = Surface{};
-    // bottom
-    for (const auto && x : iter::range(0, this->size().x()))
-    for (const auto && y : iter::range(0, this->size().y())) {
-        points.insert(this->position() + Vector3D{x, y, -1}); // bottom
-        points.insert(this->position() + Vector3D{x, y, this->size().z()}); //top
-    }
-    // sides
-    for (const auto && x : iter::range(0, this->size().x()))
-    for (const auto && z : iter::range(0, this->size().z())) {
-        points.insert(this->position() + Vector3D{x, -1, z}); // right
-        points.insert(this->position() + Vector3D{x, this->size().y(), z}); // left
-    }
-    // front and back
-    for (const auto && y : iter::range(0, this->size().y()))
-    for (const auto && z : iter::range(0, this->size().z())) {
-        points.insert(this->position() + Vector3D{-1, y, z}); // back
-        points.insert(this->position() + Vector3D{this->size().x(), y, z}); // front
-    }
+    std::transform(
+        small_item_surface.cbegin(),
+        small_item_surface.cend(),
+        std::inserter(points, points.end()),
+        [this](const auto & point) {
+            return point + this->position();
+        });
     return points;
 }
 

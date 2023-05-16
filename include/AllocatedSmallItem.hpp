@@ -15,7 +15,7 @@ public:
         return this->_position;
     }
 
-    auto surface() const -> Surface;
+    auto surface() const -> Surface override;
 
     auto operator==(const AllocatedSmallItem & other) const -> bool;
 

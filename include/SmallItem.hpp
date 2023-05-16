@@ -13,7 +13,7 @@ public:
         return this->_size;
     }
 
-    auto surface() const -> Surface;
+    virtual auto surface() const -> Surface;
 
     auto operator==(const SmallItem & other) const -> bool;
 
