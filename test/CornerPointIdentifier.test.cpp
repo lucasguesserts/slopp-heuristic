@@ -4,8 +4,6 @@
 #include "CornerPointIdentifier.hpp"
 #include "Vector3D.hpp"
 
- // TODO: TEST POINTS OUTSIDE THE LARGE OBJECT
-
 using namespace packing;
 
 // All cases in which a point is a Corner Point are verified in this test.

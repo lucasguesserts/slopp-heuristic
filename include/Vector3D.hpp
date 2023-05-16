@@ -29,7 +29,6 @@ public:
 
     auto operator+(const Vector3D & other) const -> Vector3D;
 
-
 private:
     CoordinateType _x;
     CoordinateType _y;
