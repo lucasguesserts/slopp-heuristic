@@ -27,11 +27,14 @@ public:
 
     auto operator==(const Vector3D & other) const -> bool;
 
+
 private:
     CoordinateType _x;
     CoordinateType _y;
     CoordinateType _z;
 };
+
+auto operator<(const Vector3D & lhs, const Vector3D & rhs) -> bool;
 
 } // namespace packing
 
