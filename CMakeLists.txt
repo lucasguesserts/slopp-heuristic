@@ -37,6 +37,7 @@ set(
     ${SOURCE_DIR}/SmallItemQuantityManager.cpp
     ${SOURCE_DIR}/PriorityQueueOfVector3D.cpp
     ${SOURCE_DIR}/algorithm/LargestFitFirst.cpp
+    ${SOURCE_DIR}/algorithm/LargestFitFirstV2.cpp
     ${SOURCE_DIR}/CornerPointIdentifier.cpp
 )
 
