@@ -1,4 +1,4 @@
-#include "algorithm/LargestFitFirstAlgorithm.hpp"
+#include "algorithm/LargestFitFirst.hpp"
 
 #include <algorithm>
 #include <stdexcept>
@@ -24,13 +24,13 @@ namespace packing {
 
 namespace algorithm {
 
-    LargestFitFirstAlgorithm::LargestFitFirstAlgorithm(const LargeObject large_object)
+    LargestFitFirst::LargestFitFirst(const LargeObject large_object)
         : large_object(large_object)
         , space(large_object.size())
         , timer(UserTimer::make()) {}
 
-    LargestFitFirstAlgorithm::LargestFitFirstAlgorithm(const json & data)
-        : LargestFitFirstAlgorithm{Vector3D{
+    LargestFitFirst::LargestFitFirst(const json & data)
+        : LargestFitFirst{Vector3D{
             data.at("large_object").at("length").get<CoordinateType>(),
             data.at("large_object").at("width").get<CoordinateType>(),
             data.at("large_object").at("height").get<CoordinateType>()}} {
@@ -47,7 +47,7 @@ namespace algorithm {
         return;
     }
 
-    auto LargestFitFirstAlgorithm::to_json() const -> json {
+    auto LargestFitFirst::to_json() const -> json {
         auto output = OrderedJson{};
         // metadata
         output["type"] = "output";
@@ -78,18 +78,18 @@ namespace algorithm {
         return output;
     }
 
-    auto LargestFitFirstAlgorithm::add_item(const SmallItem small_item, const Quantity quantity) -> void {
+    auto LargestFitFirst::add_item(const SmallItem small_item, const Quantity quantity) -> void {
         this->quantity_manager[small_item] = quantity;
         this->small_items.push_back(small_item);
         return;
     }
 
-    auto LargestFitFirstAlgorithm::all_space() const {
+    auto LargestFitFirst::all_space() const {
         return iter::product(
             iter::range(this->space.size().z()), iter::range(this->space.size().y()), iter::range(this->space.size().x()));
     }
 
-    auto LargestFitFirstAlgorithm::allocate() -> void {
+    auto LargestFitFirst::allocate() -> void {
         this->timer->start();
         this->sort_items_descendig_volume();
         for (auto && [z, y, x] : this->all_space()) {
@@ -106,23 +106,23 @@ namespace algorithm {
         return;
     }
 
-    auto LargestFitFirstAlgorithm::is_small_item_available(const SmallItem & small_item) const -> bool {
+    auto LargestFitFirst::is_small_item_available(const SmallItem & small_item) const -> bool {
         return this->quantity_manager.at(small_item) != 0;
     }
 
-    auto LargestFitFirstAlgorithm::sort_items_descendig_volume() -> void {
+    auto LargestFitFirst::sort_items_descendig_volume() -> void {
         std::sort(this->small_items.begin(), this->small_items.end(), compareSmallItems);
         std::reverse(this->small_items.begin(), this->small_items.end());
         return;
     }
 
-    auto LargestFitFirstAlgorithm::is_item_within_large_object(const SmallItem & small_item, const Vector3D & position) const -> bool {
+    auto LargestFitFirst::is_item_within_large_object(const SmallItem & small_item, const Vector3D & position) const -> bool {
         return (small_item.size().x() + position.x() <= this->large_object.size().x())
             && (small_item.size().y() + position.y() <= this->large_object.size().y())
             && (small_item.size().z() + position.z() <= this->large_object.size().z());
     }
 
-    auto LargestFitFirstAlgorithm::allocate_small_item(const SmallItem & small_item, const Vector3D & position) -> bool {
+    auto LargestFitFirst::allocate_small_item(const SmallItem & small_item, const Vector3D & position) -> bool {
         const auto final_position = Vector3D{
             position.x() + small_item.size().x(),
             position.y() + small_item.size().y(),
@@ -138,11 +138,11 @@ namespace algorithm {
         }
     }
 
-    auto LargestFitFirstAlgorithm::allocated_items() const -> const decltype(this->allocated_small_items) & {
+    auto LargestFitFirst::allocated_items() const -> const decltype(this->allocated_small_items) & {
         return this->allocated_small_items;
     }
 
-    auto LargestFitFirstAlgorithm::allocation_time() const -> double {
+    auto LargestFitFirst::allocation_time() const -> double {
         try {
             return this->timer->getDurationSeconds();
         } catch (const std::runtime_error & error) {
@@ -151,7 +151,7 @@ namespace algorithm {
         }
     }
 
-    auto LargestFitFirstAlgorithm::compareSmallItems(const SmallItem & lhs, const SmallItem & rhs) -> bool {
+    auto LargestFitFirst::compareSmallItems(const SmallItem & lhs, const SmallItem & rhs) -> bool {
         return lhs.size().volume() < rhs.size().volume();
     }
 

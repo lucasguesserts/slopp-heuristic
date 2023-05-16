@@ -16,10 +16,10 @@
 namespace packing {
 namespace algorithm {
 
-    class LargestFitFirstAlgorithm {
+    class LargestFitFirst {
     public:
-        LargestFitFirstAlgorithm(const LargeObject large_object);
-        LargestFitFirstAlgorithm(const nlohmann::json & data);
+        LargestFitFirst(const LargeObject large_object);
+        LargestFitFirst(const nlohmann::json & data);
 
         auto add_item(const SmallItem small_item, const Quantity quantity) -> void;
         auto allocate() -> void;

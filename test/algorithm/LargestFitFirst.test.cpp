@@ -10,7 +10,7 @@
 
 #include "AllocatedSmallItem.hpp"
 #include "LargeObject.hpp"
-#include "algorithm/LargestFitFirstAlgorithm.hpp"
+#include "algorithm/LargestFitFirst.hpp"
 #include "SmallItem.hpp"
 #include "SmallItemQuantityManager.hpp"
 #include "Vector3D.hpp"
@@ -20,9 +20,9 @@ using json = nlohmann::json;
 using namespace packing;
 using namespace packing::algorithm;
 
-const auto data_dir = std::filesystem::path("test/data/LargestFitFirstAlgorithm/");
+const auto data_dir = std::filesystem::path("test/data/LargestFitFirst/");
 
-TEST_CASE("all cases", "[LargestFitFirstAlgorithm]") {
+TEST_CASE("all cases", "[LargestFitFirst]") {
     // data
     const auto cases = std::vector<std::string>{"01", "02", "03", "04"};
     for (const auto & case_name : cases) {
@@ -32,7 +32,7 @@ TEST_CASE("all cases", "[LargestFitFirstAlgorithm]") {
             const json data = json::parse(file);
             file.close();
             // allocate
-            auto algorithm = LargestFitFirstAlgorithm(data["input"]);
+            auto algorithm = LargestFitFirst(data["input"]);
             algorithm.allocate();
             // check
             const auto output = algorithm.to_json();
