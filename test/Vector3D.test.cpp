@@ -21,21 +21,13 @@ TEST_CASE("equality", "[Vector3D]") {
     const auto y = CoordinateType{3};
     const auto z = CoordinateType{5};
     const auto vector3D = Vector3D{x, y, z};
-    SECTION("equal") {
-        const auto other = Vector3D{x, y, z};
-        CHECK(vector3D == other);
+    SECTION("true") {
+        CHECK(vector3D == Vector3D{x, y, z});
     }
-    SECTION("not equal") {
-        const auto other = Vector3D{x + 1, y, z};
-        CHECK(!(vector3D == other));
-    }
-    SECTION("not equal") {
-        const auto other = Vector3D{x, y + 1, z};
-        CHECK(!(vector3D == other));
-    }
-    SECTION("not equal") {
-        const auto other = Vector3D{x, y, z + 1};
-        CHECK(!(vector3D == other));
+    SECTION("false") {
+        CHECK_FALSE(vector3D == Vector3D{x + 1, y, z});
+        CHECK_FALSE(vector3D == Vector3D{x, y + 1, z});
+        CHECK_FALSE(vector3D == Vector3D{x, y, z + 1});
     }
 }
 
