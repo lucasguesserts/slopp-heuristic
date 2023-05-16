@@ -1,7 +1,7 @@
 #include "Test.hpp"
 #include <catch2/benchmark/catch_benchmark.hpp>
 
-#include "LargestFitFirstAlgorithm.hpp"
+#include "algorithm/LargestFitFirstAlgorithm.hpp"
 
 #include <filesystem>
 #include <fstream>
@@ -12,7 +12,7 @@
 #include <nlohmann/json.hpp>
 
 using json = nlohmann::json;
-using packing::LargestFitFirstAlgorithm;
+using packing::algorithm::LargestFitFirstAlgorithm;
 
 TEST_CASE("case 1", "[benchmark][Algorithm]") {
     // a reduced version of the instance 1 of the set 1 of Bischoff and Ratcliff

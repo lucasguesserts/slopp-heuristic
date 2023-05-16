@@ -13,7 +13,7 @@ set(
     AllocatedSmallItem.test.cpp
     LargeObject.test.cpp
     SmallItemQuantityManager.test.cpp
-    LargestFitFirstAlgorithm.test.cpp
+    algorithm/LargestFitFirstAlgorithm.test.cpp
     Timer.cpp
     PriorityQueueOfVector3D.test.cpp
     CornerPointIdentifier.test.cpp

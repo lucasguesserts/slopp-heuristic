@@ -7,11 +7,11 @@
 
 #include <nlohmann/json.hpp>
 
-#include "LargestFitFirstAlgorithm.hpp"
+#include "algorithm/LargestFitFirstAlgorithm.hpp"
 
 using json = nlohmann::json;
 
-using namespace packing;
+using packing::algorithm::LargestFitFirstAlgorithm;
 
 #if __clang__
 #pragma clang diagnostic ignored "-Wunused-parameter"

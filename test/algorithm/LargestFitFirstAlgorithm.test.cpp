@@ -10,7 +10,7 @@
 
 #include "AllocatedSmallItem.hpp"
 #include "LargeObject.hpp"
-#include "LargestFitFirstAlgorithm.hpp"
+#include "algorithm/LargestFitFirstAlgorithm.hpp"
 #include "SmallItem.hpp"
 #include "SmallItemQuantityManager.hpp"
 #include "Vector3D.hpp"
@@ -18,6 +18,7 @@
 using json = nlohmann::json;
 
 using namespace packing;
+using namespace packing::algorithm;
 
 const auto data_dir = std::filesystem::path("test/data/LargestFitFirstAlgorithm/");
 
