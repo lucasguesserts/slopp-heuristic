@@ -37,6 +37,7 @@ set(
     ${SOURCE_DIR}/SmallItemQuantityManager.cpp
     ${SOURCE_DIR}/PriorityQueueOfVector3D.cpp
     ${SOURCE_DIR}/LargestFitFirstAlgorithm.cpp
+    ${SOURCE_DIR}/CornerPointIdentifier.cpp
 )
 
 add_library(${PROJECT_LIBRARY} SHARED ${PROJECT_SOURCE_FILES})
