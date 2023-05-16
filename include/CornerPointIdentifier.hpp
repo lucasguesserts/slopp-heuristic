@@ -19,7 +19,6 @@ private:
     auto is_occupied_or_inexistent_z(const Vector3D & point) const -> bool;
 };
 
-
 } // namespace packing
 
 #endif

@@ -1,11 +1,11 @@
-#include <catch2/benchmark/catch_benchmark.hpp>
 #include "Test.hpp"
+#include <catch2/benchmark/catch_benchmark.hpp>
 
 #include "LargestFitFirstAlgorithm.hpp"
 
-#include <iostream>
 #include <filesystem>
 #include <fstream>
+#include <iostream>
 #include <string>
 #include <vector>
 

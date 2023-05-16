@@ -1,7 +1,7 @@
 #include "Test.hpp"
 
-#include "Vector3D.hpp"
 #include "PriorityQueueOfVector3D.hpp"
+#include "Vector3D.hpp"
 
 #include <vector>
 
