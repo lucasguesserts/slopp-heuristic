@@ -4,6 +4,8 @@
 #include "CornerPointIdentifier.hpp"
 #include "Vector3D.hpp"
 
+ // TODO: TEST POINTS OUTSIDE THE LARGE OBJECT
+
 using namespace packing;
 
 // All cases in which a point is a Corner Point are verified in this test.
@@ -80,6 +82,13 @@ TEST_CASE("case 1", "[CornerPointIdentifier]") {
         CHECK_FALSE(corner_point_identifier.is_corner_point({1, 0, 0}));
         CHECK_FALSE(corner_point_identifier.is_corner_point({2, 2, 2}));
     }
+    SECTION("points outside the space") {
+        CHECK_FALSE(corner_point_identifier.is_corner_point({-1, -1, -1}));
+        CHECK_FALSE(corner_point_identifier.is_corner_point({-10, -10, -10}));
+        CHECK_FALSE(corner_point_identifier.is_corner_point({3, 4, 5}));
+        CHECK_FALSE(corner_point_identifier.is_corner_point({4, 5, 6}));
+        CHECK_FALSE(corner_point_identifier.is_corner_point({10, 10, 10}));
+    }
 }
 
 TEST_CASE("case 2", "[CornerPointIdentifier]") {
@@ -145,5 +154,12 @@ TEST_CASE("case 2", "[CornerPointIdentifier]") {
         CHECK_FALSE(corner_point_identifier.is_corner_point({1, 0, 0}));
         CHECK_FALSE(corner_point_identifier.is_corner_point({2, 2, 0}));
         CHECK_FALSE(corner_point_identifier.is_corner_point({2, 1, 0}));
+    }
+    SECTION("points outside the space") {
+        CHECK_FALSE(corner_point_identifier.is_corner_point({-1, -1, -1}));
+        CHECK_FALSE(corner_point_identifier.is_corner_point({-10, -10, -10}));
+        CHECK_FALSE(corner_point_identifier.is_corner_point({3, 4, 5}));
+        CHECK_FALSE(corner_point_identifier.is_corner_point({4, 5, 6}));
+        CHECK_FALSE(corner_point_identifier.is_corner_point({10, 10, 10}));
     }
 }

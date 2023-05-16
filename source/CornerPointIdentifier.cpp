@@ -7,7 +7,7 @@ CornerPointIdentifier::CornerPointIdentifier(const BoolCuboid & space)
     : space(space) {}
 
 auto CornerPointIdentifier::is_corner_point(const Vector3D & point) const -> bool {
-    if (space.is_occupied(point.x(), point.y(), point.z())) {
+    if (space.is_outside(point) || space.is_occupied(point.x(), point.y(), point.z())) {
         return false;
     }
     const auto x_condition = is_occupied_or_inexistent_x(Vector3D{point.x(), point.y(), point.z()});
