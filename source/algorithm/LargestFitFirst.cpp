@@ -13,6 +13,7 @@
 
 #include "BoolCuboid.hpp"
 #include "LargeObject.hpp"
+#include "OrderedSmallItems.hpp"
 #include "Timer/Timer.hpp"
 #include "Timer/UserTimer.hpp"
 
@@ -80,7 +81,7 @@ namespace algorithm {
 
     auto LargestFitFirst::add_item(const SmallItem small_item, const Quantity quantity) -> void {
         this->quantity_manager[small_item] = quantity;
-        this->small_items.push_back(small_item);
+        this->small_items.emplace(std::move(small_item));
         return;
     }
 
@@ -91,7 +92,6 @@ namespace algorithm {
 
     auto LargestFitFirst::allocate() -> void {
         this->timer->start();
-        this->sort_items_descendig_volume();
         for (auto && [z, y, x] : this->all_space()) {
             if (this->space.is_free(x, y, z)) {
                 for (const auto & small_item : this->small_items) {
@@ -108,12 +108,6 @@ namespace algorithm {
 
     auto LargestFitFirst::is_small_item_available(const SmallItem & small_item) const -> bool {
         return this->quantity_manager.at(small_item) != 0;
-    }
-
-    auto LargestFitFirst::sort_items_descendig_volume() -> void {
-        std::sort(this->small_items.begin(), this->small_items.end(), compareSmallItems);
-        std::reverse(this->small_items.begin(), this->small_items.end());
-        return;
     }
 
     auto LargestFitFirst::is_item_within_large_object(const SmallItem & small_item, const Vector3D & position) const -> bool {
@@ -149,10 +143,6 @@ namespace algorithm {
             this->timer->stop();
             return this->timer->getDurationSeconds();
         }
-    }
-
-    auto LargestFitFirst::compareSmallItems(const SmallItem & lhs, const SmallItem & rhs) -> bool {
-        return lhs.size().volume() < rhs.size().volume();
     }
 
 } // namespace algorithm

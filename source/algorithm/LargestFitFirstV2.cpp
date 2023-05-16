@@ -81,7 +81,7 @@ namespace algorithm {
 
     auto LargestFitFirstV2::add_item(const SmallItem small_item, const Quantity quantity) -> void {
         this->quantity_manager[small_item] = quantity;
-        this->small_items.push_back(small_item);
+        this->small_items.emplace(std::move(small_item));
         return;
     }
 
@@ -92,7 +92,6 @@ namespace algorithm {
 
     auto LargestFitFirstV2::allocate() -> void {
         this->timer->start();
-        this->sort_items_descendig_volume();
         this->corner_points.emplace(0, 0, 0);
         while (!this->corner_points.empty()) {
             const auto point_to_allocate = this->corner_points.top();
@@ -124,12 +123,6 @@ namespace algorithm {
 
     auto LargestFitFirstV2::is_small_item_available(const SmallItem & small_item) const -> bool {
         return this->quantity_manager.at(small_item) != 0;
-    }
-
-    auto LargestFitFirstV2::sort_items_descendig_volume() -> void {
-        std::sort(this->small_items.begin(), this->small_items.end(), compareSmallItems);
-        std::reverse(this->small_items.begin(), this->small_items.end());
-        return;
     }
 
     auto LargestFitFirstV2::is_item_within_large_object(const SmallItem & small_item, const Vector3D & position) const -> bool {
@@ -165,10 +158,6 @@ namespace algorithm {
             this->timer->stop();
             return this->timer->getDurationSeconds();
         }
-    }
-
-    auto LargestFitFirstV2::compareSmallItems(const SmallItem & lhs, const SmallItem & rhs) -> bool {
-        return lhs.size().volume() < rhs.size().volume();
     }
 
 } // namespace algorithm
