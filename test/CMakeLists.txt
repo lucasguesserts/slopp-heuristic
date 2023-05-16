@@ -18,6 +18,7 @@ set(
     Timer.cpp
     PriorityQueueOfVector3D.test.cpp
     CornerPointIdentifier.test.cpp
+    OrderedSmallItems.test.cpp
 )
 
 foreach(TEST_CASE_SOURCE IN ITEMS ${TEST_CASE_SOURCE_LIST})
