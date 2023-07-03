@@ -40,6 +40,7 @@ set(
     ${SOURCE_DIR}/algorithm/LargestFitFirstV2.cpp
     ${SOURCE_DIR}/CornerPointIdentifier.cpp
     ${SOURCE_DIR}/OrderedSmallItems.cpp
+    ${SOURCE_DIR}/Input.cpp
 )
 
 add_library(${PROJECT_LIBRARY} SHARED ${PROJECT_SOURCE_FILES})
