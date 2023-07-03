@@ -1,6 +1,7 @@
 #ifndef SMALL_ITEM_HPP
 #define SMALL_ITEM_HPP
 
+#include "Surface.hpp"
 #include "Vector3D.hpp"
 
 namespace packing {
@@ -11,6 +12,8 @@ public:
     [[nodiscard]] auto size() const -> Vector3D {
         return this->_size;
     }
+
+    virtual auto surface() const -> Surface;
 
     auto operator==(const SmallItem & other) const -> bool;
 

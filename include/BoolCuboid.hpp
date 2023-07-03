@@ -19,6 +19,8 @@ public:
 
     [[nodiscard]] static auto all_entries(const Vector3D & initial_position, const Vector3D & final_position);
 
+    [[nodiscard]] auto is_outside(const Vector3D & position) const -> bool;
+
     [[nodiscard]] auto is_occupied(const CoordinateType & x, const CoordinateType & y, const CoordinateType & z) const -> bool {
         return this->_data[x][y][z];
     }

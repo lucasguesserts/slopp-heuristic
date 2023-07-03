@@ -1,4 +1,4 @@
-#include <catch2/catch_test_macros.hpp>
+#include "Test.hpp"
 
 #include <vector>
 
@@ -43,5 +43,28 @@ TEST_CASE("set position as occupied", "[BoolCuboid]") {
             CHECK(cuboid.is_any_occupied(initial_position, final_position));
             CHECK_FALSE(cuboid.are_all_free(initial_position, final_position));
         }
+    }
+}
+
+TEST_CASE("is outside", "[BoolCuboid]") {
+    const auto size_x = CoordinateType{5};
+    const auto size_y = CoordinateType{7};
+    const auto size_z = CoordinateType{11};
+    auto cuboid = BoolCuboid{{size_x, size_y, size_z}};
+    SECTION("outside") {
+        CHECK(cuboid.is_outside(Vector3D{-1, 0, 0}));
+        CHECK(cuboid.is_outside(Vector3D{0, -1, 0}));
+        CHECK(cuboid.is_outside(Vector3D{0, 0, -1}));
+        CHECK(cuboid.is_outside(Vector3D{-1, -1, -1}));
+        CHECK(cuboid.is_outside(Vector3D{-10, -10, -10}));
+        CHECK(cuboid.is_outside(Vector3D{size_x, 0, 0}));
+        CHECK(cuboid.is_outside(Vector3D{0, size_y, 0}));
+        CHECK(cuboid.is_outside(Vector3D{0, 0, size_z}));
+        CHECK(cuboid.is_outside(Vector3D{size_x, size_y, size_z}));
+    }
+    SECTION("not outside") {
+        CHECK_FALSE(cuboid.is_outside(Vector3D{0, 0, 0}));
+        CHECK_FALSE(cuboid.is_outside(Vector3D{size_x - 1, size_y - 1, size_z - 1}));
+        CHECK_FALSE(cuboid.is_outside(Vector3D{1, 1, 1}));
     }
 }

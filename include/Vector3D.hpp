@@ -3,7 +3,7 @@
 
 namespace packing {
 
-using CoordinateType = unsigned;
+using CoordinateType = long int;
 
 class Vector3D {
 public:
@@ -27,11 +27,15 @@ public:
 
     auto operator==(const Vector3D & other) const -> bool;
 
+    auto operator+(const Vector3D & other) const -> Vector3D;
+
 private:
     CoordinateType _x;
     CoordinateType _y;
     CoordinateType _z;
 };
+
+auto operator<(const Vector3D & lhs, const Vector3D & rhs) -> bool;
 
 } // namespace packing
 

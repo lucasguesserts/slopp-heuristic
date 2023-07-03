@@ -13,8 +13,12 @@ set(
     AllocatedSmallItem.test.cpp
     LargeObject.test.cpp
     SmallItemQuantityManager.test.cpp
-    LargestFitFirstAlgorithm.test.cpp
+    algorithm/LargestFitFirst.test.cpp
+    algorithm/LargestFitFirstV2.test.cpp
     Timer.cpp
+    PriorityQueueOfVector3D.test.cpp
+    CornerPointIdentifier.test.cpp
+    OrderedSmallItems.test.cpp
 )
 
 foreach(TEST_CASE_SOURCE IN ITEMS ${TEST_CASE_SOURCE_LIST})

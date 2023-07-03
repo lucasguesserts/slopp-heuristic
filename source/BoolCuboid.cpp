@@ -20,6 +20,10 @@ BoolCuboid::BoolCuboid(const Vector3D size)
     : _size{std::move(size)}
     , _data(size.x(), std::vector<std::vector<bool>>(size.y(), std::vector<bool>(size.z(), false))) {}
 
+auto BoolCuboid::is_outside(const Vector3D & position) const -> bool {
+    return position.x() < 0 || position.y() < 0 || position.z() < 0 || position.x() >= this->_size.x() || position.y() >= this->_size.y() || position.z() >= this->_size.z();
+}
+
 auto BoolCuboid::occupy(const Vector3D & initial_position, const Vector3D & final_position) -> void {
     auto all_entries = BoolCuboid::all_entries(initial_position, final_position);
     for (const auto && [x, y, z] : all_entries) {

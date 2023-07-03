@@ -2,6 +2,7 @@
 #define ALLOCATED_SMALL_ITEM_HPP
 
 #include "SmallItem.hpp"
+#include "Surface.hpp"
 #include "Vector3D.hpp"
 
 namespace packing {
@@ -13,6 +14,8 @@ public:
     [[nodiscard]] auto position() const -> Vector3D {
         return this->_position;
     }
+
+    auto surface() const -> Surface override;
 
     auto operator==(const AllocatedSmallItem & other) const -> bool;
 

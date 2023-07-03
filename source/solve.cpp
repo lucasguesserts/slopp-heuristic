@@ -7,11 +7,11 @@
 
 #include <nlohmann/json.hpp>
 
-#include "LargestFitFirstAlgorithm.hpp"
+#include "algorithm/LargestFitFirstV2.hpp"
 
 using json = nlohmann::json;
 
-using namespace packing;
+using packing::algorithm::LargestFitFirstV2;
 
 #if __clang__
 #pragma clang diagnostic ignored "-Wunused-parameter"
@@ -19,7 +19,7 @@ using namespace packing;
 
 auto input_file_path = std::filesystem::path();
 auto output_file_path = std::filesystem::path();
-std::unique_ptr<LargestFitFirstAlgorithm> algorithm;
+std::unique_ptr<LargestFitFirstV2> algorithm;
 
 void make_output() {
     const auto output = algorithm->to_json();
@@ -59,7 +59,7 @@ auto main(int argc, char * argv[]) -> int {
     input_file.close();
 
     // solve
-    algorithm = std::make_unique<LargestFitFirstAlgorithm>(data);
+    algorithm = std::make_unique<LargestFitFirstV2>(data);
     signal(SIGINT, handler);
     signal(SIGTERM, handler);
     algorithm->allocate();

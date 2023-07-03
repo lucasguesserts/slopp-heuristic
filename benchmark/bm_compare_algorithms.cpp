@@ -1,18 +1,20 @@
+#include "Test.hpp"
 #include <catch2/benchmark/catch_benchmark.hpp>
-#include <catch2/catch_test_macros.hpp>
 
-#include "LargestFitFirstAlgorithm.hpp"
+#include "algorithm/LargestFitFirst.hpp"
+#include "algorithm/LargestFitFirstV2.hpp"
 
-#include <iostream>
 #include <filesystem>
 #include <fstream>
+#include <iostream>
 #include <string>
 #include <vector>
 
 #include <nlohmann/json.hpp>
 
 using json = nlohmann::json;
-using packing::LargestFitFirstAlgorithm;
+using packing::algorithm::LargestFitFirst;
+using packing::algorithm::LargestFitFirstV2;
 
 TEST_CASE("case 1", "[benchmark][Algorithm]") {
     // a reduced version of the instance 1 of the set 1 of Bischoff and Ratcliff
@@ -23,8 +25,14 @@ TEST_CASE("case 1", "[benchmark][Algorithm]") {
     const json data = json::parse(file);
     file.close();
 
-    BENCHMARK("LargestFitFirstAlgorithm") {
-        auto algorithm = LargestFitFirstAlgorithm(data);
+    BENCHMARK("LargestFitFirst") {
+        auto algorithm = LargestFitFirst(data);
+        algorithm.allocate();
+        return algorithm.allocated_items();
+    };
+
+    BENCHMARK("LargestFitFirstV2") {
+        auto algorithm = LargestFitFirstV2(data);
         algorithm.allocate();
         return algorithm.allocated_items();
     };
