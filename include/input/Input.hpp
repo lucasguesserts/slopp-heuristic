@@ -31,21 +31,6 @@ protected:
 
 using InputPtr = std::unique_ptr<Input>;
 
-class Input_V_0_3_0 : public Input {
-public:
-    Input_V_0_3_0(const nlohmann::json & data)
-        : Input(data) {}
-    ~Input_V_0_3_0() = default;
-};
-
-class InputFactory {
-public:
-    static auto create(const std::string file_path) -> InputPtr;
-
-private:
-    static auto load_json(const std::string file_path) -> nlohmann::json;
-};
-
 } // namespace packing
 
 #endif

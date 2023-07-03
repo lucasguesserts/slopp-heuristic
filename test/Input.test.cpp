@@ -3,7 +3,7 @@
 #include <catch2/catch_test_macros.hpp>
 #include <filesystem>
 
-#include "Input/Input.hpp"
+#include "input/InputFactory.hpp"
 
 using namespace packing;
 
