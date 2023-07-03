@@ -35,6 +35,9 @@ public:
 
 protected:
     const nlohmann::json data;
+
+    static auto read_small_item(const nlohmann::json & small_item_data) -> SmallItem;
+    static auto read_small_item_quantity(const nlohmann::json & small_item_data) -> Quantity;
 };
 
 using InputPtr = std::unique_ptr<Input>;
