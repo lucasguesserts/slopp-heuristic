@@ -11,11 +11,29 @@
   "small_items": [
     {
       "measurement": {
-        "x": 1,
-        "y": 1,
-        "z": 1
+        "x": 3,
+        "y": 5,
+        "z": 7
       },
       "quantity": 100,
+      "constraint": {
+        "orientation": {
+          "xyz": true,
+          "yxz": false,
+          "zyx": true,
+          "xzy": false,
+          "zxy": false,
+          "yzx": true
+        }
+      }
+    },
+    {
+      "measurement": {
+        "x": 6,
+        "y": 10,
+        "z": 14
+      },
+      "quantity": 200,
       "constraint": {
         "orientation": {
           "xyz": true,
