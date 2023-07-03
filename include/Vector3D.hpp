@@ -3,7 +3,7 @@
 
 namespace packing {
 
-using CoordinateType = int;
+using CoordinateType = long int;
 
 class Vector3D {
 public:
