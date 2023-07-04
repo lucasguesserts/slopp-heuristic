@@ -1,6 +1,8 @@
 #ifndef BASIC_SMALL_ITEM_HPP_
 #define BASIC_SMALL_ITEM_HPP_
 
+#include <memory>
+
 #include "SmallItem/SmallItemType.hpp"
 #include "Geometry/Vector3D.hpp"
 
@@ -17,6 +19,8 @@ public:
     inline auto quantity() const -> Quantity final override {
         return this->_quantity;
     }
+
+    using Ptr = std::shared_ptr<BasicSmallItem>;
 
 private:
     Vector3D _measurement;

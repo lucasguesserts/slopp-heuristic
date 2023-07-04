@@ -1,6 +1,9 @@
 #ifndef SMALL_ITEM_TYPE_HPP_
 #define SMALL_ITEM_TYPE_HPP_
 
+#include <cstddef>
+#include <memory>
+
 #include "Geometry/Vector3D.hpp"
 
 namespace packing {
@@ -16,6 +19,13 @@ public:
     virtual auto quantity() const -> Quantity = 0;
 
     virtual auto operator==(const SmallItemType & other) const -> bool;
+
+    using Ptr = std::shared_ptr<SmallItemType>;
+
+    struct Hash {
+        auto operator()(const Ptr & small_item) const -> std::size_t;
+    };
+
 };
 
 } // namespace packing

@@ -19,6 +19,22 @@ TEST_CASE("constructor", "[BasicSmallItem]") {
     CHECK(item.quantity() == quantity);
 }
 
+TEST_CASE("hash", "[BasicSmallItem]") {
+    const auto small_items = std::vector<BasicSmallItem::Ptr>{
+        std::make_shared<BasicSmallItem>(Vector3D{1, 2, 3}, 1),
+        std::make_shared<BasicSmallItem>(Vector3D{1, 2, 4}, 1),
+        std::make_shared<BasicSmallItem>(Vector3D{1, 3, 3}, 1),
+        std::make_shared<BasicSmallItem>(Vector3D{4, 2, 3}, 1),
+        std::make_shared<BasicSmallItem>(Vector3D{1, 2, 3}, 2),
+        std::make_shared<BasicSmallItem>(Vector3D{1, 2, 3}, 1)};
+    const auto hash = SmallItemType::Hash{};
+    CHECK(hash(small_items[0]) != hash(small_items[1]));
+    CHECK(hash(small_items[0]) != hash(small_items[2]));
+    CHECK(hash(small_items[0]) != hash(small_items[3]));
+    CHECK(hash(small_items[0]) != hash(small_items[4]));
+    CHECK(hash(small_items[0]) == hash(small_items[5]));
+}
+
 TEST_CASE("equality operator", "[BasicSmallItem]") {
     const auto item = BasicSmallItem{{1, 2, 3}, 4};
     SECTION("equal") {
