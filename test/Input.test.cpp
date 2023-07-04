@@ -4,7 +4,7 @@
 #include <catch2/catch_test_macros.hpp>
 #include <filesystem>
 
-#include "input/InputFactory.hpp"
+#include "Input/InputFactory.hpp"
 
 using namespace packing;
 

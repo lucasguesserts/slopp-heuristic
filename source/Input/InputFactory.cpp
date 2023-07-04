@@ -1,4 +1,4 @@
-#include "input/InputFactory.hpp"
+#include "Input/InputFactory.hpp"
 
 #include <fstream>
 #include <stdexcept>
@@ -6,7 +6,7 @@
 
 #include <nlohmann/json.hpp>
 
-#include "input/Input_V_0_3_0.hpp"
+#include "Input/Input_V_0_3_0.hpp"
 
 namespace packing {
 

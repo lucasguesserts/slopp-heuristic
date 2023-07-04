@@ -1,4 +1,4 @@
-#include "input/Input.hpp"
+#include "Input/Input.hpp"
 
 #include <stdexcept>
 #include <string>

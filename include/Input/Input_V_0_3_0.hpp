@@ -1,7 +1,7 @@
 #ifndef INPUT_V_0_3_0_HPP_
 #define INPUT_V_0_3_0_HPP_
 
-#include "input/Input.hpp"
+#include "Input/Input.hpp"
 
 #include <nlohmann/json.hpp>
 

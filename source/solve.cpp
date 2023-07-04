@@ -7,7 +7,7 @@
 
 #include <nlohmann/json.hpp>
 
-#include "algorithm/LargestFitFirstV2.hpp"
+#include "Algorithm/LargestFitFirstV2.hpp"
 
 using json = nlohmann::json;
 

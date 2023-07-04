@@ -12,8 +12,8 @@ set(
     SmallItem.test.cpp
     AllocatedSmallItem.test.cpp
     SmallItemQuantityManager.test.cpp
-    algorithm/LargestFitFirst.test.cpp
-    algorithm/LargestFitFirstV2.test.cpp
+    Algorithm/LargestFitFirst.test.cpp
+    Algorithm/LargestFitFirstV2.test.cpp
     Timer.cpp
     PriorityQueueOfVector3D.test.cpp
     CornerPointIdentifier.test.cpp

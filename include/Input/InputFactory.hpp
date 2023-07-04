@@ -1,7 +1,7 @@
 #ifndef INPUT_FACTORY_HPP_
 #define INPUT_FACTORY_HPP_
 
-#include "input/Input.hpp"
+#include "Input/Input.hpp"
 
 #include <nlohmann/json.hpp>
 

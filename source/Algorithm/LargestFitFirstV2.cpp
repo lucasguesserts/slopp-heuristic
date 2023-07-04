@@ -1,4 +1,4 @@
-#include "algorithm/LargestFitFirst.hpp"
+#include "Algorithm/LargestFitFirstV2.hpp"
 
 #include <algorithm>
 #include <stdexcept>
@@ -13,7 +13,6 @@
 
 #include "BoolCuboid.hpp"
 #include "LargeObject/BasicLargeObject.hpp"
-#include "OrderedSmallItems.hpp"
 #include "Timer/Timer.hpp"
 #include "Timer/UserTimer.hpp"
 
@@ -25,13 +24,14 @@ namespace packing {
 
 namespace algorithm {
 
-    LargestFitFirst::LargestFitFirst(const BasicLargeObject large_object)
+    LargestFitFirstV2::LargestFitFirstV2(const BasicLargeObject large_object)
         : large_object(large_object)
         , space(large_object.measurement())
-        , timer(UserTimer::make()) {}
+        , timer(UserTimer::make())
+        , corner_point_identifier(this->space) {}
 
-    LargestFitFirst::LargestFitFirst(const json & data)
-        : LargestFitFirst{Vector3D{
+    LargestFitFirstV2::LargestFitFirstV2(const json & data)
+        : LargestFitFirstV2{Vector3D{
             data.at("large_object").at("length").get<CoordinateType>(),
             data.at("large_object").at("width").get<CoordinateType>(),
             data.at("large_object").at("height").get<CoordinateType>()}} {
@@ -48,7 +48,7 @@ namespace algorithm {
         return;
     }
 
-    auto LargestFitFirst::to_json() const -> json {
+    auto LargestFitFirstV2::to_json() const -> json {
         auto output = OrderedJson{};
         // metadata
         output["type"] = "output";
@@ -79,26 +79,41 @@ namespace algorithm {
         return output;
     }
 
-    auto LargestFitFirst::add_item(const SmallItem small_item, const Quantity quantity) -> void {
+    auto LargestFitFirstV2::add_item(const SmallItem small_item, const Quantity quantity) -> void {
         this->quantity_manager[small_item] = quantity;
         this->small_items.emplace(std::move(small_item));
         return;
     }
 
-    auto LargestFitFirst::all_space() const {
+    auto LargestFitFirstV2::all_space() const {
         return iter::product(
             iter::range(this->space.size().z()), iter::range(this->space.size().y()), iter::range(this->space.size().x()));
     }
 
-    auto LargestFitFirst::allocate() -> void {
+    auto LargestFitFirstV2::allocate() -> void {
         this->timer->start();
-        for (auto && [z, y, x] : this->all_space()) {
+        this->corner_points.emplace(0, 0, 0);
+        while (!this->corner_points.empty()) {
+            const auto point_to_allocate = this->corner_points.top();
+            const auto x = point_to_allocate.x();
+            const auto y = point_to_allocate.y();
+            const auto z = point_to_allocate.z();
+            this->corner_points.pop();
             if (this->space.is_free(x, y, z)) {
                 for (const auto & small_item : this->small_items) {
                     if (!this->is_item_within_large_object(small_item, {x, y, z})) continue;
                     if (!this->is_small_item_available(small_item)) continue;
                     const auto sucessfully_added = this->allocate_small_item(small_item, {x, y, z});
-                    if (sucessfully_added) break;
+                    if (sucessfully_added) {
+                        // scan the surface of the allocated item for new corner points
+                        const auto & allocated_small_item = this->allocated_small_items.back();
+                        for (const auto & point : allocated_small_item.surface()) {
+                            if (this->corner_point_identifier.is_corner_point(point)) {
+                                this->corner_points.emplace(point);
+                            }
+                        }
+                        break;
+                    }
                 }
             }
         }
@@ -106,17 +121,17 @@ namespace algorithm {
         return;
     }
 
-    auto LargestFitFirst::is_small_item_available(const SmallItem & small_item) const -> bool {
+    auto LargestFitFirstV2::is_small_item_available(const SmallItem & small_item) const -> bool {
         return this->quantity_manager.at(small_item) != 0;
     }
 
-    auto LargestFitFirst::is_item_within_large_object(const SmallItem & small_item, const Vector3D & position) const -> bool {
+    auto LargestFitFirstV2::is_item_within_large_object(const SmallItem & small_item, const Vector3D & position) const -> bool {
         return (small_item.size().x() + position.x() <= this->large_object.measurement().x())
             && (small_item.size().y() + position.y() <= this->large_object.measurement().y())
             && (small_item.size().z() + position.z() <= this->large_object.measurement().z());
     }
 
-    auto LargestFitFirst::allocate_small_item(const SmallItem & small_item, const Vector3D & position) -> bool {
+    auto LargestFitFirstV2::allocate_small_item(const SmallItem & small_item, const Vector3D & position) -> bool {
         const auto final_position = Vector3D{
             position.x() + small_item.size().x(),
             position.y() + small_item.size().y(),
@@ -132,11 +147,11 @@ namespace algorithm {
         }
     }
 
-    auto LargestFitFirst::allocated_items() const -> const decltype(this->allocated_small_items) & {
+    auto LargestFitFirstV2::allocated_items() const -> const decltype(this->allocated_small_items) & {
         return this->allocated_small_items;
     }
 
-    auto LargestFitFirst::allocation_time() const -> double {
+    auto LargestFitFirstV2::allocation_time() const -> double {
         try {
             return this->timer->getDurationSeconds();
         } catch (const std::runtime_error & error) {

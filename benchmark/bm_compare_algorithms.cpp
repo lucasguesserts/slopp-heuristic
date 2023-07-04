@@ -1,8 +1,8 @@
 #include "Test.hpp"
 #include <catch2/benchmark/catch_benchmark.hpp>
 
-#include "algorithm/LargestFitFirst.hpp"
-#include "algorithm/LargestFitFirstV2.hpp"
+#include "Algorithm/LargestFitFirst.hpp"
+#include "Algorithm/LargestFitFirstV2.hpp"
 
 #include <filesystem>
 #include <fstream>

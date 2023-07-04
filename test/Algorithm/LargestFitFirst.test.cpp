@@ -8,7 +8,7 @@
 #include <itertools.hpp>
 #include <nlohmann/json.hpp>
 
-#include "algorithm/LargestFitFirst.hpp"
+#include "Algorithm/LargestFitFirst.hpp"
 
 using json = nlohmann::json;
 
