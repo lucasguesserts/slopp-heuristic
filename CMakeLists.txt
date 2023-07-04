@@ -29,6 +29,8 @@ include_directories(${HEADER_DIR})
 set(
     PROJECT_SOURCE_FILES
     ${SOURCE_DIR}/Test.cpp
+    ${SOURCE_DIR}/SmallItem/SmallItemType.cpp
+    ${SOURCE_DIR}/SmallItem/BasicSmallItem.cpp
     ${SOURCE_DIR}/Vector3D.cpp
     ${SOURCE_DIR}/BoolCuboid.cpp
     ${SOURCE_DIR}/SmallItem.cpp
