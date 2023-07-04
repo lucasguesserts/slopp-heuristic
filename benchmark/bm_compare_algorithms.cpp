@@ -1,4 +1,4 @@
-#include "Test.hpp"
+#include "Test/Test.hpp"
 #include <catch2/benchmark/catch_benchmark.hpp>
 
 #include "Algorithm/LargestFitFirst.hpp"

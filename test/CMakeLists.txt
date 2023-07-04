@@ -6,13 +6,13 @@ include_directories(${CMAKE_SOURCE_DIR}/${PROJECT_NAME}/)
 
 set(
     TEST_CASE_SOURCE_LIST
-    json.test.cpp
+    Dependency/json.test.cpp
+    Timer/Timer.cpp
     Geometry/Vector3D.test.cpp
     SmallItem.test.cpp
     AllocatedSmallItem.test.cpp
     Algorithm/LargestFitFirst.test.cpp
     Algorithm/LargestFitFirstV2.test.cpp
-    Timer.cpp
     Input.test.cpp
     SmallItem/BasicSmallItem.test.cpp
     LargeObject/BasicLargeObject.test.cpp

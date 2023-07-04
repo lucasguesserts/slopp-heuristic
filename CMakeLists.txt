@@ -28,7 +28,7 @@ include_directories(${HEADER_DIR})
 
 set(
     PROJECT_SOURCE_FILES
-    ${SOURCE_DIR}/Test.cpp
+    ${SOURCE_DIR}/Test/Test.cpp
     ${SOURCE_DIR}/SmallItem/SmallItemType.cpp
     ${SOURCE_DIR}/SmallItem/BasicSmallItem.cpp
     ${SOURCE_DIR}/LargeObject/BasicLargeObject.cpp
@@ -51,7 +51,7 @@ add_library(${PROJECT_LIBRARY} SHARED ${PROJECT_SOURCE_FILES})
 target_link_libraries(${PROJECT_LIBRARY} boost_system boost_timer boost_chrono nlohmann_json::nlohmann_json Catch2::Catch2WithMain cppitertools::cppitertools)
 target_link_libraries(${PROJECT_LIBRARY} stdc++fs)
 
-add_executable(solve source/solve.cpp)
+add_executable(solve source/bin/solve.cpp)
 target_link_libraries(solve PRIVATE ${PROJECT_LIBRARY})
 
 enable_testing()

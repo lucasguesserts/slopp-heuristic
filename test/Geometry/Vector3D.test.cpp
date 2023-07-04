@@ -1,4 +1,4 @@
-#include "Test.hpp"
+#include "Test/Test.hpp"
 
 #include "Geometry/Vector3D.hpp"
 #include <catch2/catch_test_macros.hpp>

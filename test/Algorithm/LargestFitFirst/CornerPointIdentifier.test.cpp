@@ -1,4 +1,4 @@
-#include "Test.hpp"
+#include "Test/Test.hpp"
 
 #include "Algorithm/LargestFitFirst/BoolCuboid.hpp"
 #include "Algorithm/LargestFitFirst/CornerPointIdentifier.hpp"
