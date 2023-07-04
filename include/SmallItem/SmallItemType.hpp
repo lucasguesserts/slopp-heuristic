@@ -10,7 +10,7 @@ using Quantity = unsigned;
 class SmallItemType {
 public:
     SmallItemType() {}
-    ~SmallItemType() {}
+    virtual ~SmallItemType() {}
 
     virtual auto measurement() const -> Vector3D = 0;
     virtual auto quantity() const -> Quantity = 0;
