@@ -15,6 +15,7 @@ set(
     Algorithm/LargestFitFirstV2.test.cpp
     Input.test.cpp
     SmallItem/BasicSmallItem.test.cpp
+    SmallItem/Specialization/SmallItemWithSurface.test.cpp
     LargeObject/BasicLargeObject.test.cpp
     Algorithm/LargestFitFirst/BoolCuboid.test.cpp
     Algorithm/LargestFitFirst/CornerPointIdentifier.test.cpp

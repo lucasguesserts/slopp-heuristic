@@ -31,6 +31,7 @@ set(
     ${SOURCE_DIR}/Test/Test.cpp
     ${SOURCE_DIR}/SmallItem/SmallItemType.cpp
     ${SOURCE_DIR}/SmallItem/BasicSmallItem.cpp
+    ${SOURCE_DIR}/SmallItem/Specialization/SmallItemWithSurface.cpp
     ${SOURCE_DIR}/LargeObject/BasicLargeObject.cpp
     ${SOURCE_DIR}/Geometry/Vector3D.cpp
     ${SOURCE_DIR}/SmallItem.cpp
