@@ -17,6 +17,7 @@ set(
     SmallItem/BasicSmallItem.test.cpp
     SmallItem/Specialization/SmallItemWithSurface.test.cpp
     AllocatedSmallItem/BasicAllocatedSmallItem.test.cpp
+    AllocatedSmallItem/Specialization/AllocatedSmallItemWithSurface.test.cpp
     LargeObject/BasicLargeObject.test.cpp
     Algorithm/LargestFitFirst/BoolCuboid.test.cpp
     Algorithm/LargestFitFirst/CornerPointIdentifier.test.cpp
