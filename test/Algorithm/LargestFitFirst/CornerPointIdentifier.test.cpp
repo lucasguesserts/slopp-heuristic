@@ -1,7 +1,7 @@
 #include "Test.hpp"
 
-#include "BoolCuboid.hpp"
-#include "CornerPointIdentifier.hpp"
+#include "Algorithm/LargestFitFirst/BoolCuboid.hpp"
+#include "Algorithm/LargestFitFirst/CornerPointIdentifier.hpp"
 #include "Geometry/Vector3D.hpp"
 
 using namespace packing;

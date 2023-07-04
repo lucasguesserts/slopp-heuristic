@@ -1,6 +1,6 @@
 #include "Test.hpp"
 
-#include "PriorityQueueOfVector3D.hpp"
+#include "Algorithm/LargestFitFirst/PriorityQueueOfVector3D.hpp"
 #include "Geometry/Vector3D.hpp"
 
 #include <vector>

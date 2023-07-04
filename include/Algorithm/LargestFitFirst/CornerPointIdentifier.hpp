@@ -1,7 +1,7 @@
 #ifndef CORNER_POINT_IDENTIFIER_HPP_
 #define CORNER_POINT_IDENTIFIER_HPP_
 
-#include "BoolCuboid.hpp"
+#include "Algorithm/LargestFitFirst/BoolCuboid.hpp"
 #include "Geometry/Vector3D.hpp"
 
 namespace packing {

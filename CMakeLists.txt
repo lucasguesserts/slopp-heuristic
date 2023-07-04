@@ -33,18 +33,18 @@ set(
     ${SOURCE_DIR}/SmallItem/BasicSmallItem.cpp
     ${SOURCE_DIR}/LargeObject/BasicLargeObject.cpp
     ${SOURCE_DIR}/Geometry/Vector3D.cpp
-    ${SOURCE_DIR}/BoolCuboid.cpp
     ${SOURCE_DIR}/SmallItem.cpp
     ${SOURCE_DIR}/AllocatedSmallItem.cpp
-    ${SOURCE_DIR}/SmallItemQuantityManager.cpp
-    ${SOURCE_DIR}/PriorityQueueOfVector3D.cpp
     ${SOURCE_DIR}/Algorithm/LargestFitFirst.cpp
     ${SOURCE_DIR}/Algorithm/LargestFitFirstV2.cpp
-    ${SOURCE_DIR}/CornerPointIdentifier.cpp
-    ${SOURCE_DIR}/OrderedSmallItems.cpp
     ${SOURCE_DIR}/Input/Input.cpp
     ${SOURCE_DIR}/Input/InputFactory.cpp
     ${SOURCE_DIR}/Input/Input_V_0_3_0.cpp
+    ${SOURCE_DIR}/Algorithm/LargestFitFirst/BoolCuboid.cpp
+    ${SOURCE_DIR}/Algorithm/LargestFitFirst/CornerPointIdentifier.cpp
+    ${SOURCE_DIR}/Algorithm/LargestFitFirst/PriorityQueueOfVector3D.cpp
+    ${SOURCE_DIR}/Algorithm/LargestFitFirst/SmallItemQuantityManager.cpp
+    ${SOURCE_DIR}/Algorithm/LargestFitFirst/OrderedSmallItems.cpp
 )
 
 add_library(${PROJECT_LIBRARY} SHARED ${PROJECT_SOURCE_FILES})

@@ -5,7 +5,7 @@
 #include <itertools.hpp>
 
 #include "SmallItem.hpp"
-#include "SmallItemQuantityManager.hpp"
+#include "Algorithm/LargestFitFirst/SmallItemQuantityManager.hpp"
 
 using namespace packing;
 

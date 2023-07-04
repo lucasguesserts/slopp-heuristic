@@ -6,14 +6,14 @@
 #include <utility>
 
 #include "SmallItem.hpp"
-#include "SmallItemQuantityManager.hpp"
+#include "Algorithm/LargestFitFirst/SmallItemQuantityManager.hpp"
 #include "Geometry/Vector3D.hpp"
 #include "nlohmann/json.hpp"
 #include <itertools.hpp>
 
-#include "BoolCuboid.hpp"
+#include "Algorithm/LargestFitFirst/BoolCuboid.hpp"
 #include "LargeObject/BasicLargeObject.hpp"
-#include "OrderedSmallItems.hpp"
+#include "Algorithm/LargestFitFirst/OrderedSmallItems.hpp"
 #include "Timer/Timer.hpp"
 #include "Timer/UserTimer.hpp"
 

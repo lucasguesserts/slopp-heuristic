@@ -6,11 +6,11 @@
 #include "nlohmann/json.hpp"
 
 #include "AllocatedSmallItem.hpp"
-#include "BoolCuboid.hpp"
+#include "Algorithm/LargestFitFirst/BoolCuboid.hpp"
 #include "LargeObject/BasicLargeObject.hpp"
-#include "OrderedSmallItems.hpp"
+#include "Algorithm/LargestFitFirst/OrderedSmallItems.hpp"
 #include "SmallItem.hpp"
-#include "SmallItemQuantityManager.hpp"
+#include "Algorithm/LargestFitFirst/SmallItemQuantityManager.hpp"
 #include "Timer/Timer.hpp"
 #include "Geometry/Vector3D.hpp"
 

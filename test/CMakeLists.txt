@@ -8,19 +8,19 @@ set(
     TEST_CASE_SOURCE_LIST
     json.test.cpp
     Geometry/Vector3D.test.cpp
-    BoolCuboid.test.cpp
     SmallItem.test.cpp
     AllocatedSmallItem.test.cpp
-    SmallItemQuantityManager.test.cpp
     Algorithm/LargestFitFirst.test.cpp
     Algorithm/LargestFitFirstV2.test.cpp
     Timer.cpp
-    PriorityQueueOfVector3D.test.cpp
-    CornerPointIdentifier.test.cpp
-    OrderedSmallItems.test.cpp
     Input.test.cpp
     SmallItem/BasicSmallItem.test.cpp
     LargeObject/BasicLargeObject.test.cpp
+    Algorithm/LargestFitFirst/BoolCuboid.test.cpp
+    Algorithm/LargestFitFirst/CornerPointIdentifier.test.cpp
+    Algorithm/LargestFitFirst/PriorityQueueOfVector3D.test.cpp
+    Algorithm/LargestFitFirst/SmallItemQuantityManager.test.cpp
+    Algorithm/LargestFitFirst/OrderedSmallItems.test.cpp
 )
 
 foreach(TEST_CASE_SOURCE IN ITEMS ${TEST_CASE_SOURCE_LIST})
