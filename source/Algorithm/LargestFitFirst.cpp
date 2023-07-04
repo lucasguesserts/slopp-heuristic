@@ -7,7 +7,7 @@
 
 #include "SmallItem.hpp"
 #include "SmallItemQuantityManager.hpp"
-#include "Vector3D.hpp"
+#include "Geometry/Vector3D.hpp"
 #include "nlohmann/json.hpp"
 #include <itertools.hpp>
 

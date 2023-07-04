@@ -1,7 +1,7 @@
 #ifndef SMALL_ITEM_TYPE_HPP_
 #define SMALL_ITEM_TYPE_HPP_
 
-#include "Vector3D.hpp"
+#include "Geometry/Vector3D.hpp"
 
 namespace packing {
 

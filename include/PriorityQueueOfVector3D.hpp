@@ -4,7 +4,7 @@
 #include <queue>
 #include <vector>
 
-#include "Vector3D.hpp"
+#include "Geometry/Vector3D.hpp"
 
 namespace packing {
 

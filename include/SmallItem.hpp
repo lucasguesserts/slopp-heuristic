@@ -1,8 +1,8 @@
 #ifndef SMALL_ITEM_HPP
 #define SMALL_ITEM_HPP
 
-#include "Surface.hpp"
-#include "Vector3D.hpp"
+#include "Geometry/Surface.hpp"
+#include "Geometry/Vector3D.hpp"
 
 namespace packing {
 

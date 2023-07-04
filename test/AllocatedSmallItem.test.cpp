@@ -2,8 +2,8 @@
 
 #include "AllocatedSmallItem.hpp"
 #include "SmallItem.hpp"
-#include "Surface.hpp"
-#include "Vector3D.hpp"
+#include "Geometry/Surface.hpp"
+#include "Geometry/Vector3D.hpp"
 
 using namespace packing;
 

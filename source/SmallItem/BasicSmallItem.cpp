@@ -3,7 +3,7 @@
 #include <utility>
 
 #include "SmallItem/SmallItemType.hpp"
-#include "Vector3D.hpp"
+#include "Geometry/Vector3D.hpp"
 
 namespace packing {
 

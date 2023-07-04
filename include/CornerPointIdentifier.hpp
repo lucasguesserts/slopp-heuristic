@@ -2,7 +2,7 @@
 #define CORNER_POINT_IDENTIFIER_HPP_
 
 #include "BoolCuboid.hpp"
-#include "Vector3D.hpp"
+#include "Geometry/Vector3D.hpp"
 
 namespace packing {
 

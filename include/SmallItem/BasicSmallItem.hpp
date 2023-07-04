@@ -2,7 +2,7 @@
 #define BASIC_SMALL_ITEM_HPP_
 
 #include "SmallItem/SmallItemType.hpp"
-#include "Vector3D.hpp"
+#include "Geometry/Vector3D.hpp"
 
 namespace packing {
 

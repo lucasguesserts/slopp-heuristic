@@ -1,7 +1,7 @@
 #ifndef LARGE_OBJECT_TYPE_HPP_
 #define LARGE_OBJECT_TYPE_HPP_
 
-#include "Vector3D.hpp"
+#include "Geometry/Vector3D.hpp"
 
 namespace packing {
 

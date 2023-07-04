@@ -6,7 +6,7 @@
 
 #include "OrderedSmallItems.hpp"
 #include "SmallItem.hpp"
-#include "Vector3D.hpp"
+#include "Geometry/Vector3D.hpp"
 
 using namespace packing;
 

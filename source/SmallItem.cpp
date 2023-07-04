@@ -3,7 +3,7 @@
 #include <itertools.hpp>
 #include <utility>
 
-#include "Vector3D.hpp"
+#include "Geometry/Vector3D.hpp"
 
 namespace packing {
 
