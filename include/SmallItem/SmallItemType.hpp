@@ -5,10 +5,9 @@
 #include <memory>
 
 #include "Geometry/Vector3D.hpp"
+#include "Type/Quantity.hpp"
 
 namespace packing {
-
-using Quantity = unsigned;
 
 class SmallItemType {
 public:
