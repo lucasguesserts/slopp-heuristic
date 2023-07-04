@@ -8,7 +8,7 @@
 #include "AllocatedSmallItem.hpp"
 #include "BoolCuboid.hpp"
 #include "CornerPointIdentifier.hpp"
-#include "LargeObject.hpp"
+#include "LargeObject/BasicLargeObject.hpp"
 #include "OrderedSmallItems.hpp"
 #include "PriorityQueueOfVector3D.hpp"
 #include "SmallItem.hpp"
@@ -21,7 +21,7 @@ namespace algorithm {
 
     class LargestFitFirstV2 {
     public:
-        LargestFitFirstV2(const LargeObject large_object);
+        LargestFitFirstV2(const BasicLargeObject large_object);
         LargestFitFirstV2(const nlohmann::json & data);
 
         auto add_item(const SmallItem small_item, const Quantity quantity) -> void;
@@ -33,7 +33,7 @@ namespace algorithm {
         auto to_json() const -> nlohmann::json;
 
     private:
-        const LargeObject large_object;
+        const BasicLargeObject large_object;
         BoolCuboid space;
         OrderedSmallItems small_items;
         SmallItemQuantityManager quantity_manager;

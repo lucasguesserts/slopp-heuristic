@@ -7,7 +7,7 @@
 
 #include <nlohmann/json.hpp>
 
-#include "LargeObject.hpp"
+#include "LargeObject/BasicLargeObject.hpp"
 #include "SmallItem.hpp"
 #include "SmallItemQuantityManager.hpp"
 
@@ -29,7 +29,7 @@ public:
 
     auto type() const -> InputType;
     auto version() const -> InputVersion;
-    virtual auto large_object() const -> LargeObject = 0;
+    virtual auto large_object() const -> BasicLargeObject = 0;
     virtual auto small_items() const -> std::vector<SmallItem> = 0;
     virtual auto small_items_quantity() const -> std::vector<Quantity> = 0;
 

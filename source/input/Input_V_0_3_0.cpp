@@ -4,7 +4,7 @@
 #include <iterator>
 #include <vector>
 
-#include "LargeObject.hpp"
+#include "LargeObject/BasicLargeObject.hpp"
 #include "SmallItem.hpp"
 #include "SmallItemQuantityManager.hpp"
 
@@ -13,13 +13,13 @@ namespace packing {
 Input_V_0_3_0::Input_V_0_3_0(const nlohmann::json & data)
     : Input(data) {}
 
-auto Input_V_0_3_0::large_object() const -> LargeObject {
+auto Input_V_0_3_0::large_object() const -> BasicLargeObject {
     const auto large_object_data = this->data.at("large_object");
     const auto large_object_measurements = Vector3D{
         large_object_data.at("measurement").at("x"),
         large_object_data.at("measurement").at("y"),
         large_object_data.at("measurement").at("z")};
-    const auto large_object = LargeObject{large_object_measurements};
+    const auto large_object = BasicLargeObject{large_object_measurements};
     return large_object;
 }
 

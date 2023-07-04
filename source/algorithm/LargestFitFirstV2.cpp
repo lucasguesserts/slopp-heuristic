@@ -12,7 +12,7 @@
 #include <itertools.hpp>
 
 #include "BoolCuboid.hpp"
-#include "LargeObject.hpp"
+#include "LargeObject/BasicLargeObject.hpp"
 #include "Timer/Timer.hpp"
 #include "Timer/UserTimer.hpp"
 
@@ -24,9 +24,9 @@ namespace packing {
 
 namespace algorithm {
 
-    LargestFitFirstV2::LargestFitFirstV2(const LargeObject large_object)
+    LargestFitFirstV2::LargestFitFirstV2(const BasicLargeObject large_object)
         : large_object(large_object)
-        , space(large_object.size())
+        , space(large_object.measurement())
         , timer(UserTimer::make())
         , corner_point_identifier(this->space) {}
 
@@ -55,9 +55,9 @@ namespace algorithm {
         output["version"] = "0.2.0";
         // large object
         auto large_object_data = OrderedJson{};
-        large_object_data["length"] = this->large_object.size().x();
-        large_object_data["width"] = this->large_object.size().y();
-        large_object_data["height"] = this->large_object.size().z();
+        large_object_data["length"] = this->large_object.measurement().x();
+        large_object_data["width"] = this->large_object.measurement().y();
+        large_object_data["height"] = this->large_object.measurement().z();
         output["large_object"] = large_object_data;
         // small items
         auto small_items_data = json::array();
@@ -126,9 +126,9 @@ namespace algorithm {
     }
 
     auto LargestFitFirstV2::is_item_within_large_object(const SmallItem & small_item, const Vector3D & position) const -> bool {
-        return (small_item.size().x() + position.x() <= this->large_object.size().x())
-            && (small_item.size().y() + position.y() <= this->large_object.size().y())
-            && (small_item.size().z() + position.z() <= this->large_object.size().z());
+        return (small_item.size().x() + position.x() <= this->large_object.measurement().x())
+            && (small_item.size().y() + position.y() <= this->large_object.measurement().y())
+            && (small_item.size().z() + position.z() <= this->large_object.measurement().z());
     }
 
     auto LargestFitFirstV2::allocate_small_item(const SmallItem & small_item, const Vector3D & position) -> bool {

@@ -11,7 +11,6 @@ set(
     BoolCuboid.test.cpp
     SmallItem.test.cpp
     AllocatedSmallItem.test.cpp
-    LargeObject.test.cpp
     SmallItemQuantityManager.test.cpp
     algorithm/LargestFitFirst.test.cpp
     algorithm/LargestFitFirstV2.test.cpp

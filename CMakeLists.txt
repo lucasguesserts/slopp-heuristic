@@ -36,7 +36,6 @@ set(
     ${SOURCE_DIR}/BoolCuboid.cpp
     ${SOURCE_DIR}/SmallItem.cpp
     ${SOURCE_DIR}/AllocatedSmallItem.cpp
-    ${SOURCE_DIR}/LargeObject.cpp
     ${SOURCE_DIR}/SmallItemQuantityManager.cpp
     ${SOURCE_DIR}/PriorityQueueOfVector3D.cpp
     ${SOURCE_DIR}/algorithm/LargestFitFirst.cpp
