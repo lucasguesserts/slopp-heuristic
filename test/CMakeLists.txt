@@ -20,6 +20,7 @@ set(
     CornerPointIdentifier.test.cpp
     OrderedSmallItems.test.cpp
     Input.test.cpp
+    SmallItem/BasicSmallItem.test.cpp
 )
 
 foreach(TEST_CASE_SOURCE IN ITEMS ${TEST_CASE_SOURCE_LIST})
