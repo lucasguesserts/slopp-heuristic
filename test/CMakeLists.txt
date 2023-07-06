@@ -17,6 +17,7 @@ set(
     SmallItem/BasicSmallItem.test.cpp
     SmallItem/Specialization/SmallItemWithSurface.test.cpp
     SmallItem/Container/QuantityManager.test.cpp
+    SmallItem/Container/OrderedSmallItemsByVolume.test.cpp
     AllocatedSmallItem/BasicAllocatedSmallItem.test.cpp
     AllocatedSmallItem/Specialization/AllocatedSmallItemWithSurface.test.cpp
     LargeObject/BasicLargeObject.test.cpp
