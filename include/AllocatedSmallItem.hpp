@@ -1,9 +1,9 @@
 #ifndef ALLOCATED_SMALL_ITEM_HPP
 #define ALLOCATED_SMALL_ITEM_HPP
 
-#include "SmallItem.hpp"
 #include "Geometry/Surface.hpp"
 #include "Geometry/Vector3D.hpp"
+#include "SmallItem.hpp"
 
 namespace packing {
 

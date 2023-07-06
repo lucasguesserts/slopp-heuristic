@@ -3,8 +3,8 @@
 #include <itertools.hpp>
 #include <utility>
 
-#include "Geometry/Vector3D.hpp"
 #include "Geometry/Surface.hpp"
+#include "Geometry/Vector3D.hpp"
 #include "SmallItem/BasicSmallItem.hpp"
 
 namespace packing {

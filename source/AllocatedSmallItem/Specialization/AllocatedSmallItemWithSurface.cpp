@@ -24,4 +24,4 @@ auto AllocatedSmallItemWithSurface::surface() const -> Surface {
     return points;
 }
 
-}
+} // namespace packing

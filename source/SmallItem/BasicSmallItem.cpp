@@ -2,8 +2,8 @@
 
 #include <utility>
 
-#include "SmallItem/SmallItemType.hpp"
 #include "Geometry/Vector3D.hpp"
+#include "SmallItem/SmallItemType.hpp"
 
 namespace packing {
 

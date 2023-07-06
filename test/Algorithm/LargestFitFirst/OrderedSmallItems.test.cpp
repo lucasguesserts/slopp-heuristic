@@ -5,8 +5,8 @@
 #include <vector>
 
 #include "Algorithm/LargestFitFirst/OrderedSmallItems.hpp"
-#include "SmallItem.hpp"
 #include "Geometry/Vector3D.hpp"
+#include "SmallItem.hpp"
 
 using namespace packing;
 

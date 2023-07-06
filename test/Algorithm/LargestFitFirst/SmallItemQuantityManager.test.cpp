@@ -4,8 +4,8 @@
 
 #include <itertools.hpp>
 
-#include "SmallItem.hpp"
 #include "Algorithm/LargestFitFirst/SmallItemQuantityManager.hpp"
+#include "SmallItem.hpp"
 
 using namespace packing;
 

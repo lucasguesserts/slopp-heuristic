@@ -5,15 +5,15 @@
 #include <string>
 #include <utility>
 
-#include "SmallItem.hpp"
 #include "Algorithm/LargestFitFirst/SmallItemQuantityManager.hpp"
 #include "Geometry/Vector3D.hpp"
+#include "SmallItem.hpp"
 #include "nlohmann/json.hpp"
 #include <itertools.hpp>
 
 #include "Algorithm/LargestFitFirst/BoolCuboid.hpp"
-#include "LargeObject/BasicLargeObject.hpp"
 #include "Algorithm/LargestFitFirst/OrderedSmallItems.hpp"
+#include "LargeObject/BasicLargeObject.hpp"
 #include "Timer/Timer.hpp"
 #include "Timer/UserTimer.hpp"
 

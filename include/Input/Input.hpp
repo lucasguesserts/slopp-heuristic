@@ -7,9 +7,9 @@
 
 #include <nlohmann/json.hpp>
 
+#include "Algorithm/LargestFitFirst/SmallItemQuantityManager.hpp"
 #include "LargeObject/BasicLargeObject.hpp"
 #include "SmallItem.hpp"
-#include "Algorithm/LargestFitFirst/SmallItemQuantityManager.hpp"
 
 namespace packing {
 

@@ -1,12 +1,12 @@
 #ifndef BASIC_LARGE_OBJECT_HPP_
 #define BASIC_LARGE_OBJECT_HPP_
 
-#include "LargeObject/LargeObjectType.hpp"
 #include "Geometry/Vector3D.hpp"
+#include "LargeObject/LargeObjectType.hpp"
 
 namespace packing {
 
-class BasicLargeObject: public LargeObjectType {
+class BasicLargeObject : public LargeObjectType {
 public:
     BasicLargeObject(const Vector3D measurement);
 

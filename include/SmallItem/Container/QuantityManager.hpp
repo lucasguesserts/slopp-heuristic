@@ -36,6 +36,7 @@ public:
         }
         return;
     }
+
     auto quantity(const ItemTypePtr & small_item) -> Quantity {
         if (this->find(small_item) == this->end()) {
             return 0;

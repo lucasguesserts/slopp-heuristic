@@ -5,14 +5,14 @@
 
 #include "nlohmann/json.hpp"
 
-#include "AllocatedSmallItem.hpp"
 #include "Algorithm/LargestFitFirst/BoolCuboid.hpp"
-#include "LargeObject/BasicLargeObject.hpp"
 #include "Algorithm/LargestFitFirst/OrderedSmallItems.hpp"
-#include "SmallItem.hpp"
 #include "Algorithm/LargestFitFirst/SmallItemQuantityManager.hpp"
-#include "Timer/Timer.hpp"
+#include "AllocatedSmallItem.hpp"
 #include "Geometry/Vector3D.hpp"
+#include "LargeObject/BasicLargeObject.hpp"
+#include "SmallItem.hpp"
+#include "Timer/Timer.hpp"
 
 namespace packing {
 namespace algorithm {

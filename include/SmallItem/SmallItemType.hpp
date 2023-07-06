@@ -24,7 +24,6 @@ public:
     struct Hash {
         auto operator()(const Ptr & small_item) const -> std::size_t;
     };
-
 };
 
 } // namespace packing

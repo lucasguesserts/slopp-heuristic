@@ -1,8 +1,8 @@
 #include "Test/Test.hpp"
 
-#include "SmallItem.hpp"
 #include "Geometry/Surface.hpp"
 #include "Geometry/Vector3D.hpp"
+#include "SmallItem.hpp"
 
 using namespace packing;
 

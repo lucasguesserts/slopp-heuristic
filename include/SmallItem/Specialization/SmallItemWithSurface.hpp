@@ -7,7 +7,7 @@
 
 namespace packing {
 
-class SmallItemWithSurface: public BasicSmallItem {
+class SmallItemWithSurface : public BasicSmallItem {
 public:
     SmallItemWithSurface(const Vector3D measurement, const Quantity quantity);
 

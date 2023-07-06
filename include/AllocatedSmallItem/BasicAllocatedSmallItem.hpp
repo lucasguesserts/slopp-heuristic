@@ -4,13 +4,13 @@
 #include <memory>
 #include <utility>
 
-#include "Geometry/Vector3D.hpp"
 #include "AllocatedSmallItem/AllocatedSmallItem.hpp"
+#include "Geometry/Vector3D.hpp"
 
 namespace packing {
 
 template <typename ItemType>
-class BasicAllocatedSmallItem: public AllocatedSmallItem<ItemType> {
+class BasicAllocatedSmallItem : public AllocatedSmallItem<ItemType> {
 public:
     BasicAllocatedSmallItem(const std::shared_ptr<ItemType> type, const Vector3D position)
         : _type{std::move(type)}
