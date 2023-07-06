@@ -17,7 +17,7 @@ TEST_CASE("small item quantity", "[SmallItemQuantityManager]") {
         std::make_shared<BasicSmallItem>(Vector3D{1, 3, 3}, 8),
         std::make_shared<BasicSmallItem>(Vector3D{4, 2, 3}, 1),
     };
-    auto quantity_manager = SmallItemQuantityManager<SmallItemType::Ptr, SmallItemType::Hash>();
+    auto quantity_manager = QuantityManager<SmallItemType::Ptr, SmallItemType::Hash>();
     for (auto & small_item : small_items) {
         quantity_manager.add_item(small_item);
     }

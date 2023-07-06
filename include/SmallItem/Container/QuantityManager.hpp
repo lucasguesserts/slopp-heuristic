@@ -12,7 +12,7 @@
 namespace packing {
 
 template <typename ItemTypePtr, typename ItemTypeHash>
-class SmallItemQuantityManager : private std::unordered_map<ItemTypePtr, Quantity, ItemTypeHash> {
+class QuantityManager : private std::unordered_map<ItemTypePtr, Quantity, ItemTypeHash> {
 public:
     auto add_item(const ItemTypePtr & small_item) -> void {
         if (small_item->quantity() == 0) {
