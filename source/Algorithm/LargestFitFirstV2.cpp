@@ -5,14 +5,14 @@
 #include <string>
 #include <utility>
 
-#include "Geometry/Vector3D.hpp"
-#include "SmallItem/Specialization/SmallItemWithSurface.hpp"
 #include "nlohmann/json.hpp"
 #include <itertools.hpp>
 
 #include "Algorithm/LargestFitFirst/BoolCuboid.hpp"
 #include "AllocatedSmallItem/Specialization/BasicAllocatedSmallItem.hpp"
+#include "Geometry/Vector3D.hpp"
 #include "LargeObject/Specialization/BasicLargeObject.hpp"
+#include "SmallItem/Specialization/SmallItemWithSurface.hpp"
 #include "Timer/Timer.hpp"
 #include "Timer/UserTimer.hpp"
 
@@ -30,20 +30,10 @@ namespace algorithm {
         , timer(UserTimer::make())
         , corner_point_identifier(this->space) {}
 
-    LargestFitFirstV2::LargestFitFirstV2(const json & data)
-        : LargestFitFirstV2{Vector3D{
-            data.at("large_object").at("length").get<CoordinateType>(),
-            data.at("large_object").at("width").get<CoordinateType>(),
-            data.at("large_object").at("height").get<CoordinateType>()}} {
+    LargestFitFirstV2::LargestFitFirstV2(BasicInput<SmallItemWithSurface> & data)
+        : LargestFitFirstV2{data.large_object()} {
         // small items
-        const auto small_items_data = data.at("small_items");
-        for (const auto & small_item_data : data.at("small_items")) {
-            const auto small_item = std::make_shared<SmallItemWithSurface>(
-                Vector3D{
-                    small_item_data.at("length").get<CoordinateType>(),
-                    small_item_data.at("width").get<CoordinateType>(),
-                    small_item_data.at("height").get<CoordinateType>()},
-                small_item_data.at("quantity").get<Quantity>());
+        for (const auto & small_item : data.small_items()) {
             this->add_item(small_item);
         }
         return;

@@ -1,3 +1,4 @@
+#include "SmallItem/Specialization/BasicSmallItem.hpp"
 #include "Test/Test.hpp"
 
 #include <filesystem>
@@ -27,7 +28,7 @@ TEST_CASE("all cases", "[LargestFitFirst]") {
             std::ifstream file(file_path);
             const json data = json::parse(file);
             file.close();
-            auto input = BasicInput{data.at("input").get<nlohmann::json>()};
+            auto input = BasicInput<BasicSmallItem>{data.at("input").get<nlohmann::json>()};
             const auto expected = data.at("output").get<nlohmann::json>();
             // allocate
             auto algorithm = LargestFitFirst(input);

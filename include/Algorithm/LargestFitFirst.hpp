@@ -18,7 +18,7 @@ namespace algorithm {
 
     class LargestFitFirst {
     public:
-        LargestFitFirst(BasicInput & data);
+        LargestFitFirst(BasicInput<BasicSmallItem> & data);
 
         auto add_item(const BasicSmallItem::Ptr small_item) -> void;
         auto allocate() -> void;

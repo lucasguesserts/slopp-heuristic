@@ -8,22 +8,21 @@
 #include "Algorithm/LargestFitFirst/BoolCuboid.hpp"
 #include "Algorithm/LargestFitFirst/CornerPointIdentifier.hpp"
 #include "Algorithm/LargestFitFirst/PriorityQueueOfVector3D.hpp"
-#include "Geometry/Vector3D.hpp"
-#include "LargeObject/Specialization/BasicLargeObject.hpp"
-#include "Timer/Timer.hpp"
-
 #include "AllocatedSmallItem/Specialization/AllocatedSmallItemWithSurface.hpp"
+#include "Geometry/Vector3D.hpp"
+#include "Input/Specialization/BasicInput.hpp"
+#include "LargeObject/Specialization/BasicLargeObject.hpp"
 #include "SmallItem/Container/OrderedSmallItemsByVolume.hpp"
 #include "SmallItem/Container/QuantityManager.hpp"
 #include "SmallItem/Specialization/SmallItemWithSurface.hpp"
+#include "Timer/Timer.hpp"
 
 namespace packing {
 namespace algorithm {
 
     class LargestFitFirstV2 {
     public:
-        LargestFitFirstV2(const BasicLargeObject large_object);
-        LargestFitFirstV2(const nlohmann::json & data);
+        LargestFitFirstV2(BasicInput<SmallItemWithSurface> & data);
 
         auto add_item(const SmallItemWithSurface::Ptr small_item) -> void;
         auto allocate() -> void;
@@ -42,6 +41,8 @@ namespace algorithm {
         TimerPtr timer;
         PriorityQueueOfVector3D corner_points;
         CornerPointIdentifier corner_point_identifier;
+
+        LargestFitFirstV2(const BasicLargeObject large_object);
 
         auto all_space() const;
         auto is_small_item_available(const SmallItemWithSurface::Ptr & small_item) const -> bool;

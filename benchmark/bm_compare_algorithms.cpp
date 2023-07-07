@@ -1,3 +1,5 @@
+#include "SmallItem/Specialization/BasicSmallItem.hpp"
+#include "SmallItem/Specialization/SmallItemWithSurface.hpp"
 #include "Test/Test.hpp"
 #include <catch2/benchmark/catch_benchmark.hpp>
 
@@ -24,17 +26,18 @@ TEST_CASE("case 1", "[benchmark][Algorithm]") {
     const auto file_path = data_dir / "case_1.json";
     std::ifstream file(file_path);
     const json data = json::parse(file);
-    auto input = packing::BasicInput{data["input"]};
+    auto input_v1 = packing::BasicInput<packing::BasicSmallItem>{data};
+    auto input_v2 = packing::BasicInput<packing::SmallItemWithSurface>{data};
     file.close();
 
     BENCHMARK("LargestFitFirst") {
-        auto algorithm = LargestFitFirst(input);
+        auto algorithm = LargestFitFirst(input_v1);
         algorithm.allocate();
         return algorithm.allocated_items();
     };
 
     BENCHMARK("LargestFitFirstV2") {
-        auto algorithm = LargestFitFirstV2(data);
+        auto algorithm = LargestFitFirstV2(input_v2);
         algorithm.allocate();
         return algorithm.allocated_items();
     };

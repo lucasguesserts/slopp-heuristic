@@ -57,9 +57,10 @@ auto main(int argc, char * argv[]) -> int {
     std::ifstream input_file(input_file_path);
     const json data = json::parse(input_file);
     input_file.close();
+    auto input = packing::BasicInput<packing::SmallItemWithSurface>{data};
 
     // solve
-    algorithm = std::make_unique<LargestFitFirstV2>(data);
+    algorithm = std::make_unique<LargestFitFirstV2>(input);
     signal(SIGINT, handler);
     signal(SIGTERM, handler);
     algorithm->allocate();
