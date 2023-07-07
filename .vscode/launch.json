@@ -5,7 +5,7 @@
         "name": "Debug Current File",
         "type": "cppdbg",
         "request": "launch",
-        "program": "${workspaceFolder}/build/${relativeFileDirname}/${fileBasenameNoExtension}",
+        "program": "${workspaceFolder}/build/test/${fileBasenameNoExtension}",
         "args": [],
         "stopAtEntry": false,
         "cwd": "${workspaceFolder}",
