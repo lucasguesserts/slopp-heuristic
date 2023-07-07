@@ -46,7 +46,6 @@ set(
     ${SOURCE_DIR}/Algorithm/LargestFitFirst/CornerPointIdentifier.cpp
     ${SOURCE_DIR}/Algorithm/LargestFitFirst/PriorityQueueOfVector3D.cpp
     ${SOURCE_DIR}/Algorithm/LargestFitFirst/SmallItemQuantityManager.cpp
-    ${SOURCE_DIR}/Algorithm/LargestFitFirst/OrderedSmallItems.cpp
 )
 
 add_library(${PROJECT_LIBRARY} SHARED ${PROJECT_SOURCE_FILES})
