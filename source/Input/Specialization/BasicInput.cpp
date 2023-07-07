@@ -11,7 +11,10 @@
 namespace packing {
 
 BasicInput::BasicInput(const std::string file_path)
-    : Input(file_path)
+    : BasicInput(Input::load_json(file_path)) {}
+
+BasicInput::BasicInput(const nlohmann::json data)
+    : Input(data)
     , _large_object(this->read_large_object(data.at("large_object"))) {
     if (this->version() != InputVersion::V_0_3_0) {
         throw std::runtime_error{"input version not supported: " + data.at("version").get<std::string>()};

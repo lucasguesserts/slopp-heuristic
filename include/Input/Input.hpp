@@ -21,7 +21,10 @@ template <typename ItemTypePtr, typename LargeObjectType>
 class Input {
 public:
     Input(const std::string file_path)
-        : data(load_json(file_path)) {
+        : Input(Input::load_json(file_path)){};
+
+    Input(const nlohmann::json data)
+        : data(data) {
         if (data.at("type").get<std::string>() != "input") {
             throw std::runtime_error{"Invalid input type: " + data.at("type").get<std::string>()};
         }
@@ -38,7 +41,7 @@ public:
 protected:
     const nlohmann::json data;
 
-    auto load_json(const std::string file_path) -> nlohmann::json {
+    static auto load_json(const std::string file_path) -> nlohmann::json {
         std::ifstream file(file_path);
         const nlohmann::json data = nlohmann::json::parse(file);
         file.close();

@@ -17,7 +17,7 @@ const auto data_dir = std::filesystem::path("test/data/Input/");
 
 TEST_CASE("all cases", "[LargestFitFirst]") {
     const auto file_path = data_dir / "01.json";
-    const auto input = BasicInput(file_path);
+    const auto input = BasicInput(file_path.string());
     SECTION("basic properties") {
         CHECK(input.version() == InputVersion::V_0_3_0);
     }

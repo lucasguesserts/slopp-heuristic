@@ -12,6 +12,7 @@ namespace packing {
 class BasicInput : public Input<BasicSmallItem::Ptr, BasicLargeObject> {
 public:
     BasicInput(const std::string file_path);
+    BasicInput(const nlohmann::json data);
 
     virtual auto version() const -> InputVersion override;
 
