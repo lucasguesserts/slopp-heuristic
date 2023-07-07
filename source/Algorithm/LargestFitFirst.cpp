@@ -29,7 +29,7 @@ namespace algorithm {
         , space(large_object.measurement())
         , timer(UserTimer::make()) {}
 
-    LargestFitFirst::LargestFitFirst(const BasicInput & data)
+    LargestFitFirst::LargestFitFirst(BasicInput & data)
         : LargestFitFirst{data.large_object()} {
         for (const auto & small_item : data.small_items()) {
             this->add_item(small_item);

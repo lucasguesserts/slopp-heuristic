@@ -9,22 +9,16 @@
 
 namespace packing {
 
-class BasicInput : public Input<BasicSmallItem::Ptr, BasicLargeObject> {
+class BasicInput : public Input<BasicSmallItem, BasicLargeObject> {
 public:
     BasicInput(const std::string file_path);
     BasicInput(const nlohmann::json data);
 
     virtual auto version() const -> InputVersion override;
 
-    auto large_object() const -> BasicLargeObject final override;
-    auto small_items() const -> std::vector<BasicSmallItem::Ptr> final override;
-
-private:
-    std::vector<BasicSmallItem::Ptr> _small_items;
-    BasicLargeObject _large_object;
-
-    virtual auto read_small_item(const nlohmann::json & small_item_data) const -> BasicSmallItem::Ptr;
-    virtual auto read_large_object(const nlohmann::json & large_object_data) const -> BasicLargeObject;
+protected:
+    virtual auto read_small_item(const nlohmann::json & small_item_data) const -> BasicSmallItem::Ptr override;
+    virtual auto read_large_object(const nlohmann::json & large_object_data) const -> std::shared_ptr<BasicLargeObject> override;
 };
 
 } // namespace packing
