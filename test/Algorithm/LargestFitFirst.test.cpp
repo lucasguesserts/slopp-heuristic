@@ -1,4 +1,3 @@
-#include "SmallItem/Specialization/BasicSmallItem.hpp"
 #include "Test/Test.hpp"
 
 #include <filesystem>
@@ -10,7 +9,9 @@
 #include <nlohmann/json.hpp>
 
 #include "Algorithm/LargestFitFirst.hpp"
+#include "AllocatedSmallItem/Specialization/BasicAllocatedSmallItem.hpp"
 #include "Input/Specialization/BasicInput.hpp"
+#include "SmallItem/Specialization/BasicSmallItem.hpp"
 
 using json = nlohmann::json;
 
@@ -31,7 +32,7 @@ TEST_CASE("all cases", "[LargestFitFirst]") {
             auto input = BasicInput<BasicSmallItem>{data.at("input").get<nlohmann::json>()};
             const auto expected = data.at("output").get<nlohmann::json>();
             // allocate
-            auto algorithm = LargestFitFirst(input);
+            auto algorithm = LargestFitFirst<BasicSmallItem, BasicSmallItem::Hash, BasicAllocatedSmallItem<BasicSmallItem>>(input);
             algorithm.allocate();
             // check
             const auto output = algorithm.to_json();

@@ -5,7 +5,9 @@
 
 #include "Algorithm/LargestFitFirst.hpp"
 #include "Algorithm/LargestFitFirstV2.hpp"
+#include "AllocatedSmallItem/Specialization/BasicAllocatedSmallItem.hpp"
 #include "Input/Specialization/BasicInput.hpp"
+#include "SmallItem/Specialization/BasicSmallItem.hpp"
 
 #include <filesystem>
 #include <fstream>
@@ -16,6 +18,8 @@
 #include <nlohmann/json.hpp>
 
 using json = nlohmann::json;
+using packing::BasicAllocatedSmallItem;
+using packing::BasicSmallItem;
 using packing::algorithm::LargestFitFirst;
 using packing::algorithm::LargestFitFirstV2;
 
@@ -31,7 +35,7 @@ TEST_CASE("case 1", "[benchmark][Algorithm]") {
     file.close();
 
     BENCHMARK("LargestFitFirst") {
-        auto algorithm = LargestFitFirst(input_v1);
+        auto algorithm = LargestFitFirst<BasicSmallItem, BasicSmallItem::Hash, BasicAllocatedSmallItem<BasicSmallItem>>(input_v1);
         algorithm.allocate();
         return algorithm.allocated_items();
     };

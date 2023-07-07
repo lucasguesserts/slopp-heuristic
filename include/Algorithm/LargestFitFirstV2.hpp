@@ -12,6 +12,7 @@
 #include "Geometry/Vector3D.hpp"
 #include "Input/Specialization/BasicInput.hpp"
 #include "LargeObject/Specialization/BasicLargeObject.hpp"
+#include "LargestFitFirst.hpp"
 #include "SmallItem/Container/OrderedSmallItemsByVolume.hpp"
 #include "SmallItem/Container/QuantityManager.hpp"
 #include "SmallItem/Specialization/SmallItemWithSurface.hpp"
@@ -20,34 +21,17 @@
 namespace packing {
 namespace algorithm {
 
-    class LargestFitFirstV2 {
+    class LargestFitFirstV2 : public LargestFitFirst<SmallItemWithSurface, SmallItemWithSurface::Hash, AllocatedSmallItemWithSurface> {
     public:
         LargestFitFirstV2(BasicInput<SmallItemWithSurface> & data);
 
-        auto add_item(const SmallItemWithSurface::Ptr small_item) -> void;
-        auto allocate() -> void;
+        auto allocate() -> void override;
 
-        auto allocated_items() const -> const std::vector<AllocatedSmallItemWithSurface> &;
-        auto allocation_time() const -> double;
-
-        auto to_json() const -> nlohmann::json;
-
-    private:
-        const BasicLargeObject large_object;
-        BoolCuboid space;
-        OrderedSmallItemsByVolume<SmallItemWithSurface::Ptr> small_items;
-        QuantityManager<SmallItemWithSurface::Ptr, SmallItemWithSurface::Hash> quantity_manager;
-        std::vector<AllocatedSmallItemWithSurface> allocated_small_items;
-        TimerPtr timer;
+    protected:
         PriorityQueueOfVector3D corner_points;
         CornerPointIdentifier corner_point_identifier;
 
         LargestFitFirstV2(const BasicLargeObject large_object);
-
-        auto all_space() const;
-        auto is_small_item_available(const SmallItemWithSurface::Ptr & small_item) const -> bool;
-        auto is_item_within_large_object(const SmallItemWithSurface::Ptr & small_item, const Vector3D & position) const -> bool;
-        auto allocate_small_item(const SmallItemWithSurface::Ptr & small_item, const Vector3D & position) -> bool;
     };
 
 } // namespace algorithm
