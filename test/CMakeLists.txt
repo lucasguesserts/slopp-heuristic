@@ -6,19 +6,22 @@ include_directories(${CMAKE_SOURCE_DIR}/${PROJECT_NAME}/)
 
 set(
     TEST_CASE_SOURCE_LIST
-    json.test.cpp
-    Vector3D.test.cpp
-    BoolCuboid.test.cpp
-    SmallItem.test.cpp
-    AllocatedSmallItem.test.cpp
-    LargeObject.test.cpp
-    SmallItemQuantityManager.test.cpp
-    algorithm/LargestFitFirst.test.cpp
-    algorithm/LargestFitFirstV2.test.cpp
-    Timer.cpp
-    PriorityQueueOfVector3D.test.cpp
-    CornerPointIdentifier.test.cpp
-    OrderedSmallItems.test.cpp
+    Dependency/json.test.cpp
+    Timer/Timer.cpp
+    Geometry/Vector3D.test.cpp
+    Algorithm/LargestFitFirst.test.cpp
+    Algorithm/LargestFitFirstV2.test.cpp
+    SmallItem/BasicSmallItem.test.cpp
+    SmallItem/Specialization/SmallItemWithSurface.test.cpp
+    SmallItem/Container/QuantityManager.test.cpp
+    SmallItem/Container/OrderedSmallItemsByVolume.test.cpp
+    AllocatedSmallItem/BasicAllocatedSmallItem.test.cpp
+    AllocatedSmallItem/Specialization/AllocatedSmallItemWithSurface.test.cpp
+    LargeObject/BasicLargeObject.test.cpp
+    Input/Specialization/BasicInput.test.cpp
+    Algorithm/LargestFitFirst/BoolCuboid.test.cpp
+    Algorithm/LargestFitFirst/CornerPointIdentifier.test.cpp
+    Algorithm/LargestFitFirst/PriorityQueueOfVector3D.test.cpp
 )
 
 foreach(TEST_CASE_SOURCE IN ITEMS ${TEST_CASE_SOURCE_LIST})

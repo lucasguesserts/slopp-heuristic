@@ -1,23 +1,29 @@
 {
   "input": {
     "type": "input",
-    "version": "0.0.0",
+    "version": "0.3.0",
     "large_object": {
-      "length": 10,
-      "width": 10,
-      "height": 10
+      "measurement": {
+        "x": 10,
+        "y": 10,
+        "z": 10
+      }
     },
     "small_items": [
       {
-        "length": 5,
-        "width": 5,
-        "height": 5,
+        "measurement": {
+          "x": 5,
+          "y": 5,
+          "z": 5
+        },
         "quantity": 1
       },
       {
-        "length": 1,
-        "width": 1,
-        "height": 1,
+        "measurement": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        },
         "quantity": 1
       }
     ]

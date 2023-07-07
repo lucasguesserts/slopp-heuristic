@@ -5,8 +5,8 @@
 #include <itertools.hpp>
 #include <utility>
 
-#include "Surface.hpp"
-#include "Vector3D.hpp"
+#include "Geometry/Surface.hpp"
+#include "Geometry/Vector3D.hpp"
 
 namespace packing {
 

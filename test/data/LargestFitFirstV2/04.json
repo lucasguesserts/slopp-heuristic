@@ -3,27 +3,35 @@
     "type": "input",
     "version": "0.0.0",
     "large_object": {
-      "length": 10,
-      "width": 10,
-      "height": 10
+      "measurement": {
+        "x": 10,
+        "y": 10,
+        "z": 10
+      }
     },
     "small_items": [
       {
-        "length": 6,
-        "width": 7,
-        "height": 10,
+        "measurement": {
+          "x": 6,
+          "y": 7,
+          "z": 10
+        },
         "quantity": 1
       },
       {
-        "length": 4,
-        "width": 10,
-        "height": 10,
+        "measurement": {
+          "x": 4,
+          "y": 10,
+          "z": 10
+        },
         "quantity": 1
       },
       {
-        "length": 10,
-        "width": 3,
-        "height": 10,
+        "measurement": {
+          "x": 10,
+          "y": 3,
+          "z": 10
+        },
         "quantity": 1
       }
     ]

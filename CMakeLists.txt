@@ -28,25 +28,25 @@ include_directories(${HEADER_DIR})
 
 set(
     PROJECT_SOURCE_FILES
-    ${SOURCE_DIR}/Test.cpp
-    ${SOURCE_DIR}/Vector3D.cpp
-    ${SOURCE_DIR}/BoolCuboid.cpp
-    ${SOURCE_DIR}/SmallItem.cpp
-    ${SOURCE_DIR}/AllocatedSmallItem.cpp
-    ${SOURCE_DIR}/LargeObject.cpp
-    ${SOURCE_DIR}/SmallItemQuantityManager.cpp
-    ${SOURCE_DIR}/PriorityQueueOfVector3D.cpp
-    ${SOURCE_DIR}/algorithm/LargestFitFirst.cpp
-    ${SOURCE_DIR}/algorithm/LargestFitFirstV2.cpp
-    ${SOURCE_DIR}/CornerPointIdentifier.cpp
-    ${SOURCE_DIR}/OrderedSmallItems.cpp
+    ${SOURCE_DIR}/Test/Test.cpp
+    ${SOURCE_DIR}/SmallItem/SmallItemType.cpp
+    ${SOURCE_DIR}/SmallItem/Specialization/BasicSmallItem.cpp
+    ${SOURCE_DIR}/SmallItem/Specialization/SmallItemWithSurface.cpp
+    ${SOURCE_DIR}/AllocatedSmallItem/Specialization/AllocatedSmallItemWithSurface.cpp
+    ${SOURCE_DIR}/LargeObject/LargeObjectType.cpp
+    ${SOURCE_DIR}/LargeObject/Specialization/BasicLargeObject.cpp
+    ${SOURCE_DIR}/Geometry/Vector3D.cpp
+    ${SOURCE_DIR}/Algorithm/LargestFitFirstV2.cpp
+    ${SOURCE_DIR}/Algorithm/LargestFitFirst/BoolCuboid.cpp
+    ${SOURCE_DIR}/Algorithm/LargestFitFirst/CornerPointIdentifier.cpp
+    ${SOURCE_DIR}/Algorithm/LargestFitFirst/PriorityQueueOfVector3D.cpp
 )
 
 add_library(${PROJECT_LIBRARY} SHARED ${PROJECT_SOURCE_FILES})
 target_link_libraries(${PROJECT_LIBRARY} boost_system boost_timer boost_chrono nlohmann_json::nlohmann_json Catch2::Catch2WithMain cppitertools::cppitertools)
 target_link_libraries(${PROJECT_LIBRARY} stdc++fs)
 
-add_executable(solve source/solve.cpp)
+add_executable(solve source/bin/solve.cpp)
 target_link_libraries(solve PRIVATE ${PROJECT_LIBRARY})
 
 enable_testing()
