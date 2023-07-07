@@ -12,10 +12,10 @@
 #include "LargeObject/Specialization/BasicLargeObject.hpp"
 #include "Timer/Timer.hpp"
 
-#include "SmallItem/Specialization/SmallItemWithSurface.hpp"
 #include "AllocatedSmallItem/Specialization/AllocatedSmallItemWithSurface.hpp"
-#include "SmallItem/Container/QuantityManager.hpp"
 #include "SmallItem/Container/OrderedSmallItemsByVolume.hpp"
+#include "SmallItem/Container/QuantityManager.hpp"
+#include "SmallItem/Specialization/SmallItemWithSurface.hpp"
 
 namespace packing {
 namespace algorithm {

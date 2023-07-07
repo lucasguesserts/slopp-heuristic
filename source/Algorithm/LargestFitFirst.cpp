@@ -5,9 +5,9 @@
 #include <string>
 #include <utility>
 
+#include "AllocatedSmallItem/Specialization/BasicAllocatedSmallItem.hpp"
 #include "Geometry/Vector3D.hpp"
 #include "SmallItem/Specialization/BasicSmallItem.hpp"
-#include "AllocatedSmallItem/Specialization/BasicAllocatedSmallItem.hpp"
 #include "nlohmann/json.hpp"
 #include <itertools.hpp>
 
@@ -38,9 +38,9 @@ namespace algorithm {
         const auto small_items_data = data.at("small_items");
         for (const auto & small_item_data : data.at("small_items")) {
             const auto small_item = std::make_shared<BasicSmallItem>(Vector3D{
-                small_item_data.at("length").get<CoordinateType>(),
-                small_item_data.at("width").get<CoordinateType>(),
-                small_item_data.at("height").get<CoordinateType>()},
+                                                                         small_item_data.at("length").get<CoordinateType>(),
+                                                                         small_item_data.at("width").get<CoordinateType>(),
+                                                                         small_item_data.at("height").get<CoordinateType>()},
                 small_item_data.at("quantity").get<Quantity>());
             this->add_item(small_item);
         }

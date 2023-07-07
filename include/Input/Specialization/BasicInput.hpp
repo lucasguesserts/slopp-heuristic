@@ -4,15 +4,14 @@
 #include <nlohmann/json.hpp>
 
 #include "Input/Input.hpp"
-#include "SmallItem/Specialization/BasicSmallItem.hpp"
 #include "LargeObject/Specialization/BasicLargeObject.hpp"
+#include "SmallItem/Specialization/BasicSmallItem.hpp"
 
 namespace packing {
 
 class BasicInput : public Input<BasicSmallItem::Ptr, BasicLargeObject> {
 public:
     BasicInput(const std::string file_path);
-
 
     virtual auto version() const -> InputVersion override;
 

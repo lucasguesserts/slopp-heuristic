@@ -2,8 +2,8 @@
 
 #include <vector>
 
-#include "SmallItem/Specialization/BasicSmallItem.hpp"
 #include "SmallItem/Container/QuantityManager.hpp"
+#include "SmallItem/Specialization/BasicSmallItem.hpp"
 
 using namespace packing;
 

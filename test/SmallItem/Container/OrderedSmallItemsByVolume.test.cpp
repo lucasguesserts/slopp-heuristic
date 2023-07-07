@@ -5,8 +5,8 @@
 #include <vector>
 
 #include "Geometry/Vector3D.hpp"
-#include "SmallItem/Specialization/BasicSmallItem.hpp"
 #include "SmallItem/Container/OrderedSmallItemsByVolume.hpp"
+#include "SmallItem/Specialization/BasicSmallItem.hpp"
 
 using namespace packing;
 
