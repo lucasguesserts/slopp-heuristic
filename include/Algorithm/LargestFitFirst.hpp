@@ -7,7 +7,7 @@
 
 #include "Algorithm/LargestFitFirst/BoolCuboid.hpp"
 #include "Geometry/Vector3D.hpp"
-#include "LargeObject/BasicLargeObject.hpp"
+#include "LargeObject/Specialization/BasicLargeObject.hpp"
 #include "Timer/Timer.hpp"
 
 #include "SmallItem/Specialization/BasicSmallItem.hpp"

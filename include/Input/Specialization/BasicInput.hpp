@@ -5,7 +5,7 @@
 
 #include "Input/Input.hpp"
 #include "SmallItem/Specialization/BasicSmallItem.hpp"
-#include "LargeObject/BasicLargeObject.hpp"
+#include "LargeObject/Specialization/BasicLargeObject.hpp"
 
 namespace packing {
 

@@ -12,7 +12,7 @@
 
 #include "Algorithm/LargestFitFirst/BoolCuboid.hpp"
 #include "AllocatedSmallItem/Specialization/BasicAllocatedSmallItem.hpp"
-#include "LargeObject/BasicLargeObject.hpp"
+#include "LargeObject/Specialization/BasicLargeObject.hpp"
 #include "Timer/Timer.hpp"
 #include "Timer/UserTimer.hpp"
 

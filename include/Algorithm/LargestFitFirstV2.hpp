@@ -9,7 +9,7 @@
 #include "Algorithm/LargestFitFirst/CornerPointIdentifier.hpp"
 #include "Algorithm/LargestFitFirst/PriorityQueueOfVector3D.hpp"
 #include "Geometry/Vector3D.hpp"
-#include "LargeObject/BasicLargeObject.hpp"
+#include "LargeObject/Specialization/BasicLargeObject.hpp"
 #include "Timer/Timer.hpp"
 
 #include "SmallItem/Specialization/SmallItemWithSurface.hpp"

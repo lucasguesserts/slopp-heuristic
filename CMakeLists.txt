@@ -34,7 +34,7 @@ set(
     ${SOURCE_DIR}/SmallItem/Specialization/SmallItemWithSurface.cpp
     ${SOURCE_DIR}/AllocatedSmallItem/Specialization/AllocatedSmallItemWithSurface.cpp
     ${SOURCE_DIR}/LargeObject/LargeObjectType.cpp
-    ${SOURCE_DIR}/LargeObject/BasicLargeObject.cpp
+    ${SOURCE_DIR}/LargeObject/Specialization/BasicLargeObject.cpp
     ${SOURCE_DIR}/Geometry/Vector3D.cpp
     ${SOURCE_DIR}/Algorithm/LargestFitFirst.cpp
     ${SOURCE_DIR}/Algorithm/LargestFitFirstV2.cpp

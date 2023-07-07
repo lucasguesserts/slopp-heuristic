@@ -1,7 +1,7 @@
 #include "Test/Test.hpp"
 
 #include "Geometry/Vector3D.hpp"
-#include "LargeObject/BasicLargeObject.hpp"
+#include "LargeObject/Specialization/BasicLargeObject.hpp"
 
 using namespace packing;
 
