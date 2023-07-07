@@ -5,16 +5,16 @@
 #include <string>
 #include <utility>
 
-#include "AllocatedSmallItem/Specialization/BasicAllocatedSmallItem.hpp"
-#include "Geometry/Vector3D.hpp"
-#include "SmallItem/Specialization/BasicSmallItem.hpp"
-#include "nlohmann/json.hpp"
 #include <itertools.hpp>
 
 #include "Algorithm/LargestFitFirst/BoolCuboid.hpp"
+#include "AllocatedSmallItem/Specialization/BasicAllocatedSmallItem.hpp"
+#include "Geometry/Vector3D.hpp"
 #include "LargeObject/Specialization/BasicLargeObject.hpp"
+#include "SmallItem/Specialization/BasicSmallItem.hpp"
 #include "Timer/Timer.hpp"
 #include "Timer/UserTimer.hpp"
+#include "nlohmann/json.hpp"
 
 using nlohmann::json;
 using std::string;

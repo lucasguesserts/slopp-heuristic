@@ -16,6 +16,7 @@ class BasicInput : public Input<ItemType, BasicLargeObject> {
 public:
     BasicInput(const std::string file_path)
         : BasicInput(Input<ItemType, BasicLargeObject>::load_json(file_path)) {}
+
     BasicInput(const nlohmann::json data)
         : Input<ItemType, BasicLargeObject>(data) {}
 
