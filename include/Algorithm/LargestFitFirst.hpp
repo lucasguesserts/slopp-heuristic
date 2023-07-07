@@ -3,25 +3,22 @@
 
 #include <vector>
 
-#include "nlohmann/json.hpp"
-
 #include "Algorithm/LargestFitFirst/BoolCuboid.hpp"
-#include "Geometry/Vector3D.hpp"
-#include "LargeObject/Specialization/BasicLargeObject.hpp"
-#include "Timer/Timer.hpp"
-
 #include "AllocatedSmallItem/Specialization/BasicAllocatedSmallItem.hpp"
+#include "Geometry/Vector3D.hpp"
+#include "Input/Specialization/BasicInput.hpp"
+#include "LargeObject/Specialization/BasicLargeObject.hpp"
 #include "SmallItem/Container/OrderedSmallItemsByVolume.hpp"
 #include "SmallItem/Container/QuantityManager.hpp"
 #include "SmallItem/Specialization/BasicSmallItem.hpp"
+#include "Timer/Timer.hpp"
 
 namespace packing {
 namespace algorithm {
 
     class LargestFitFirst {
     public:
-        LargestFitFirst(const BasicLargeObject large_object);
-        LargestFitFirst(const nlohmann::json & data);
+        LargestFitFirst(const BasicInput & data);
 
         auto add_item(const BasicSmallItem::Ptr small_item) -> void;
         auto allocate() -> void;
@@ -38,6 +35,8 @@ namespace algorithm {
         QuantityManager<BasicSmallItem::Ptr, BasicSmallItem::Hash> quantity_manager;
         std::vector<BasicAllocatedSmallItem<BasicSmallItem>> allocated_small_items;
         TimerPtr timer;
+
+        LargestFitFirst(const BasicLargeObject large_object);
 
         auto all_space() const;
         auto is_small_item_available(const BasicSmallItem::Ptr & small_item) const -> bool;

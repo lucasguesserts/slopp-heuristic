@@ -8,6 +8,7 @@
 #include <itertools.hpp>
 #include <nlohmann/json.hpp>
 
+#include "Input/Specialization/BasicInput.hpp"
 #include "Algorithm/LargestFitFirst.hpp"
 
 using json = nlohmann::json;
@@ -26,12 +27,14 @@ TEST_CASE("all cases", "[LargestFitFirst]") {
             std::ifstream file(file_path);
             const json data = json::parse(file);
             file.close();
+            const auto input = BasicInput{data.at("input").get<nlohmann::json>()};
+            const auto expected = data.at("output").get<nlohmann::json>();
             // allocate
-            auto algorithm = LargestFitFirst(data["input"]);
+            auto algorithm = LargestFitFirst(input);
             algorithm.allocate();
             // check
             const auto output = algorithm.to_json();
-            CHECK(output == data["output"]);
+            CHECK(output == expected);
         }
     }
 }

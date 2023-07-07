@@ -1,6 +1,7 @@
 #include "Test/Test.hpp"
 #include <catch2/benchmark/catch_benchmark.hpp>
 
+#include "Input/Specialization/BasicInput.hpp"
 #include "Algorithm/LargestFitFirst.hpp"
 #include "Algorithm/LargestFitFirstV2.hpp"
 
@@ -23,10 +24,11 @@ TEST_CASE("case 1", "[benchmark][Algorithm]") {
     const auto file_path = data_dir / "case_1.json";
     std::ifstream file(file_path);
     const json data = json::parse(file);
+    const auto input = packing::BasicInput{data["input"]};
     file.close();
 
     BENCHMARK("LargestFitFirst") {
-        auto algorithm = LargestFitFirst(data);
+        auto algorithm = LargestFitFirst(input);
         algorithm.allocate();
         return algorithm.allocated_items();
     };
