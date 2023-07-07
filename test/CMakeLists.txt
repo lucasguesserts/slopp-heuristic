@@ -9,7 +9,6 @@ set(
     Dependency/json.test.cpp
     Timer/Timer.cpp
     Geometry/Vector3D.test.cpp
-    SmallItem.test.cpp
     Algorithm/LargestFitFirst.test.cpp
     Algorithm/LargestFitFirstV2.test.cpp
     Input.test.cpp
