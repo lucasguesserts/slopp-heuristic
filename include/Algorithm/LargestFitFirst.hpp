@@ -11,7 +11,7 @@
 #include "Timer/Timer.hpp"
 
 #include "SmallItem/BasicSmallItem.hpp"
-#include "AllocatedSmallItem/BasicAllocatedSmallItem.hpp"
+#include "AllocatedSmallItem/Specialization/BasicAllocatedSmallItem.hpp"
 #include "SmallItem/Container/QuantityManager.hpp"
 #include "SmallItem/Container/OrderedSmallItemsByVolume.hpp"
 

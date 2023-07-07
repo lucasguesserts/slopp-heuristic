@@ -1,7 +1,7 @@
 #ifndef ALLOCATED_SMALL_ITEM_WITH_SURFACE_HPP_
 #define ALLOCATED_SMALL_ITEM_WITH_SURFACE_HPP_
 
-#include "AllocatedSmallItem/BasicAllocatedSmallItem.hpp"
+#include "AllocatedSmallItem/Specialization/BasicAllocatedSmallItem.hpp"
 #include "SmallItem/Specialization/SmallItemWithSurface.hpp"
 
 namespace packing {

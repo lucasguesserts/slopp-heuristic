@@ -11,7 +11,7 @@
 #include <itertools.hpp>
 
 #include "Algorithm/LargestFitFirst/BoolCuboid.hpp"
-#include "AllocatedSmallItem/BasicAllocatedSmallItem.hpp"
+#include "AllocatedSmallItem/Specialization/BasicAllocatedSmallItem.hpp"
 #include "LargeObject/BasicLargeObject.hpp"
 #include "Timer/Timer.hpp"
 #include "Timer/UserTimer.hpp"

@@ -1,6 +1,6 @@
 #include "Test/Test.hpp"
 
-#include "AllocatedSmallItem/BasicAllocatedSmallItem.hpp"
+#include "AllocatedSmallItem/Specialization/BasicAllocatedSmallItem.hpp"
 
 #include "Geometry/Vector3D.hpp"
 #include "SmallItem/BasicSmallItem.hpp"
