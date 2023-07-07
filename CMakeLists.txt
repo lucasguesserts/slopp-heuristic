@@ -38,7 +38,6 @@ set(
     ${SOURCE_DIR}/Geometry/Vector3D.cpp
     ${SOURCE_DIR}/Algorithm/LargestFitFirst.cpp
     ${SOURCE_DIR}/Algorithm/LargestFitFirstV2.cpp
-    ${SOURCE_DIR}/Input/Specialization/BasicInput.cpp
     ${SOURCE_DIR}/Algorithm/LargestFitFirst/BoolCuboid.cpp
     ${SOURCE_DIR}/Algorithm/LargestFitFirst/CornerPointIdentifier.cpp
     ${SOURCE_DIR}/Algorithm/LargestFitFirst/PriorityQueueOfVector3D.cpp
