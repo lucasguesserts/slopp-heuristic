@@ -2,7 +2,7 @@
 
 #include <vector>
 
-#include "SmallItem/BasicSmallItem.hpp"
+#include "SmallItem/Specialization/BasicSmallItem.hpp"
 #include "SmallItem/Container/QuantityManager.hpp"
 
 using namespace packing;

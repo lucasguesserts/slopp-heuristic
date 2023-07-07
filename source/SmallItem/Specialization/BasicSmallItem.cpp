@@ -1,4 +1,4 @@
-#include "SmallItem/BasicSmallItem.hpp"
+#include "SmallItem/Specialization/BasicSmallItem.hpp"
 
 #include <utility>
 

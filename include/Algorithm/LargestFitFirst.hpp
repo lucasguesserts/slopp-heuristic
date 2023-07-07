@@ -10,7 +10,7 @@
 #include "LargeObject/BasicLargeObject.hpp"
 #include "Timer/Timer.hpp"
 
-#include "SmallItem/BasicSmallItem.hpp"
+#include "SmallItem/Specialization/BasicSmallItem.hpp"
 #include "AllocatedSmallItem/Specialization/BasicAllocatedSmallItem.hpp"
 #include "SmallItem/Container/QuantityManager.hpp"
 #include "SmallItem/Container/OrderedSmallItemsByVolume.hpp"

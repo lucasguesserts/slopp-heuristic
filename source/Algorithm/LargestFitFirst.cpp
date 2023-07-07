@@ -6,7 +6,7 @@
 #include <utility>
 
 #include "Geometry/Vector3D.hpp"
-#include "SmallItem/BasicSmallItem.hpp"
+#include "SmallItem/Specialization/BasicSmallItem.hpp"
 #include "AllocatedSmallItem/Specialization/BasicAllocatedSmallItem.hpp"
 #include "nlohmann/json.hpp"
 #include <itertools.hpp>

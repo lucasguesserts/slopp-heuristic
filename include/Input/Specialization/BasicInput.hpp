@@ -4,7 +4,7 @@
 #include <nlohmann/json.hpp>
 
 #include "Input/Input.hpp"
-#include "SmallItem/BasicSmallItem.hpp"
+#include "SmallItem/Specialization/BasicSmallItem.hpp"
 #include "LargeObject/BasicLargeObject.hpp"
 
 namespace packing {

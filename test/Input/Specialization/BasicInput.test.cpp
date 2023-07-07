@@ -1,5 +1,5 @@
 #include "LargeObject/BasicLargeObject.hpp"
-#include "SmallItem/BasicSmallItem.hpp"
+#include "SmallItem/Specialization/BasicSmallItem.hpp"
 #include "Test/Test.hpp"
 
 #include <filesystem>
@@ -9,7 +9,7 @@
 
 #include "Input/Specialization/BasicInput.hpp"
 
-#include "SmallItem/BasicSmallItem.hpp"
+#include "SmallItem/Specialization/BasicSmallItem.hpp"
 
 using namespace packing;
 

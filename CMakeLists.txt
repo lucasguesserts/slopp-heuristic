@@ -30,7 +30,7 @@ set(
     PROJECT_SOURCE_FILES
     ${SOURCE_DIR}/Test/Test.cpp
     ${SOURCE_DIR}/SmallItem/SmallItemType.cpp
-    ${SOURCE_DIR}/SmallItem/BasicSmallItem.cpp
+    ${SOURCE_DIR}/SmallItem/Specialization/BasicSmallItem.cpp
     ${SOURCE_DIR}/SmallItem/Specialization/SmallItemWithSurface.cpp
     ${SOURCE_DIR}/AllocatedSmallItem/Specialization/AllocatedSmallItemWithSurface.cpp
     ${SOURCE_DIR}/LargeObject/LargeObjectType.cpp
