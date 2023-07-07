@@ -11,7 +11,6 @@ set(
     Geometry/Vector3D.test.cpp
     Algorithm/LargestFitFirst.test.cpp
     Algorithm/LargestFitFirstV2.test.cpp
-    Input.test.cpp
     SmallItem/BasicSmallItem.test.cpp
     SmallItem/Specialization/SmallItemWithSurface.test.cpp
     SmallItem/Container/QuantityManager.test.cpp
@@ -19,6 +18,7 @@ set(
     AllocatedSmallItem/BasicAllocatedSmallItem.test.cpp
     AllocatedSmallItem/Specialization/AllocatedSmallItemWithSurface.test.cpp
     LargeObject/BasicLargeObject.test.cpp
+    Input/Specialization/BasicInput.test.cpp
     Algorithm/LargestFitFirst/BoolCuboid.test.cpp
     Algorithm/LargestFitFirst/CornerPointIdentifier.test.cpp
     Algorithm/LargestFitFirst/PriorityQueueOfVector3D.test.cpp

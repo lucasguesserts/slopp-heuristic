@@ -1,46 +1,50 @@
 #ifndef INPUT_HPP_
 #define INPUT_HPP_
 
+#include <fstream>
 #include <memory>
+#include <stdexcept>
 #include <string>
 #include <vector>
 
 #include <nlohmann/json.hpp>
 
 #include "Type/Quantity.hpp"
-#include "LargeObject/BasicLargeObject.hpp"
-#include "SmallItem.hpp"
 
 namespace packing {
-
-enum class InputType {
-    INPUT,
-    OUTPUT
-};
 
 enum class InputVersion {
     V_0_3_0
 };
 
+template <typename ItemTypePtr, typename LargeObjectType>
 class Input {
 public:
-    Input(const nlohmann::json & data);
-    ~Input() = default;
+    Input(const std::string file_path)
+        : data(load_json(file_path)) {
+        if (data.at("type").get<std::string>() != "input") {
+            throw std::runtime_error{"Invalid input type: " + data.at("type").get<std::string>()};
+        }
+        return;
+    };
 
-    auto type() const -> InputType;
-    auto version() const -> InputVersion;
-    virtual auto large_object() const -> BasicLargeObject = 0;
-    virtual auto small_items() const -> std::vector<SmallItem> = 0;
-    virtual auto small_items_quantity() const -> std::vector<Quantity> = 0;
+    virtual ~Input() = default;
+
+    virtual auto version() const -> InputVersion = 0;
+
+    virtual auto large_object() const -> LargeObjectType = 0;
+    virtual auto small_items() const -> std::vector<ItemTypePtr> = 0;
 
 protected:
     const nlohmann::json data;
 
-    static auto read_small_item(const nlohmann::json & small_item_data) -> SmallItem;
-    static auto read_small_item_quantity(const nlohmann::json & small_item_data) -> Quantity;
+    auto load_json(const std::string file_path) -> nlohmann::json {
+        std::ifstream file(file_path);
+        const nlohmann::json data = nlohmann::json::parse(file);
+        file.close();
+        return data;
+    }
 };
-
-using InputPtr = std::unique_ptr<Input>;
 
 } // namespace packing
 
