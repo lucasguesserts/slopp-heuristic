@@ -8,7 +8,6 @@
 #include "Algorithm/LargestFitFirst/BoolCuboid.hpp"
 #include "Algorithm/LargestFitFirst/CornerPointIdentifier.hpp"
 #include "Algorithm/LargestFitFirst/PriorityQueueOfVector3D.hpp"
-#include "Algorithm/LargestFitFirst/SmallItemQuantityManager.hpp"
 #include "Geometry/Vector3D.hpp"
 #include "LargeObject/BasicLargeObject.hpp"
 #include "Timer/Timer.hpp"

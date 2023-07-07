@@ -24,7 +24,6 @@ set(
     Algorithm/LargestFitFirst/BoolCuboid.test.cpp
     Algorithm/LargestFitFirst/CornerPointIdentifier.test.cpp
     Algorithm/LargestFitFirst/PriorityQueueOfVector3D.test.cpp
-    Algorithm/LargestFitFirst/SmallItemQuantityManager.test.cpp
 )
 
 foreach(TEST_CASE_SOURCE IN ITEMS ${TEST_CASE_SOURCE_LIST})

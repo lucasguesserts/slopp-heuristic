@@ -7,7 +7,7 @@
 
 #include <nlohmann/json.hpp>
 
-#include "Algorithm/LargestFitFirst/SmallItemQuantityManager.hpp"
+#include "Type/Quantity.hpp"
 #include "LargeObject/BasicLargeObject.hpp"
 #include "SmallItem.hpp"
 
