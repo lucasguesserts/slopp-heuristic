@@ -11,6 +11,8 @@ public:
     virtual ~LargeObjectType(){};
 
     virtual auto measurement() const -> Vector3D = 0;
+
+    virtual auto operator==(const LargeObjectType & other) const -> bool;
 };
 
 } // namespace packing
