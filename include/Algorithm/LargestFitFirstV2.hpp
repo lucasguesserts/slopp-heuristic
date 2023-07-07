@@ -7,14 +7,16 @@
 
 #include "Algorithm/LargestFitFirst/BoolCuboid.hpp"
 #include "Algorithm/LargestFitFirst/CornerPointIdentifier.hpp"
-#include "Algorithm/LargestFitFirst/OrderedSmallItems.hpp"
 #include "Algorithm/LargestFitFirst/PriorityQueueOfVector3D.hpp"
 #include "Algorithm/LargestFitFirst/SmallItemQuantityManager.hpp"
-#include "AllocatedSmallItem.hpp"
 #include "Geometry/Vector3D.hpp"
 #include "LargeObject/BasicLargeObject.hpp"
-#include "SmallItem.hpp"
 #include "Timer/Timer.hpp"
+
+#include "SmallItem/Specialization/SmallItemWithSurface.hpp"
+#include "AllocatedSmallItem/Specialization/AllocatedSmallItemWithSurface.hpp"
+#include "SmallItem/Container/QuantityManager.hpp"
+#include "SmallItem/Container/OrderedSmallItemsByVolume.hpp"
 
 namespace packing {
 namespace algorithm {
@@ -24,10 +26,10 @@ namespace algorithm {
         LargestFitFirstV2(const BasicLargeObject large_object);
         LargestFitFirstV2(const nlohmann::json & data);
 
-        auto add_item(const SmallItem small_item, const Quantity quantity) -> void;
+        auto add_item(const SmallItemWithSurface::Ptr small_item) -> void;
         auto allocate() -> void;
 
-        auto allocated_items() const -> const std::vector<AllocatedSmallItem> &;
+        auto allocated_items() const -> const std::vector<AllocatedSmallItemWithSurface> &;
         auto allocation_time() const -> double;
 
         auto to_json() const -> nlohmann::json;
@@ -35,17 +37,17 @@ namespace algorithm {
     private:
         const BasicLargeObject large_object;
         BoolCuboid space;
-        OrderedSmallItems small_items;
-        SmallItemQuantityManager quantity_manager;
-        std::vector<AllocatedSmallItem> allocated_small_items;
+        OrderedSmallItemsByVolume<SmallItemWithSurface::Ptr> small_items;
+        QuantityManager<SmallItemWithSurface::Ptr, SmallItemWithSurface::Hash> quantity_manager;
+        std::vector<AllocatedSmallItemWithSurface> allocated_small_items;
         TimerPtr timer;
         PriorityQueueOfVector3D corner_points;
         CornerPointIdentifier corner_point_identifier;
 
         auto all_space() const;
-        auto is_small_item_available(const SmallItem & small_item) const -> bool;
-        auto is_item_within_large_object(const SmallItem & small_item, const Vector3D & position) const -> bool;
-        auto allocate_small_item(const SmallItem & small_item, const Vector3D & position) -> bool;
+        auto is_small_item_available(const SmallItemWithSurface::Ptr & small_item) const -> bool;
+        auto is_item_within_large_object(const SmallItemWithSurface::Ptr & small_item, const Vector3D & position) const -> bool;
+        auto allocate_small_item(const SmallItemWithSurface::Ptr & small_item, const Vector3D & position) -> bool;
     };
 
 } // namespace algorithm

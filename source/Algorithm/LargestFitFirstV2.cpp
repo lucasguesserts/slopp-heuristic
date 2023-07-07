@@ -5,13 +5,13 @@
 #include <string>
 #include <utility>
 
-#include "Algorithm/LargestFitFirst/SmallItemQuantityManager.hpp"
 #include "Geometry/Vector3D.hpp"
-#include "SmallItem.hpp"
+#include "SmallItem/Specialization/SmallItemWithSurface.hpp"
 #include "nlohmann/json.hpp"
 #include <itertools.hpp>
 
 #include "Algorithm/LargestFitFirst/BoolCuboid.hpp"
+#include "AllocatedSmallItem/BasicAllocatedSmallItem.hpp"
 #include "LargeObject/BasicLargeObject.hpp"
 #include "Timer/Timer.hpp"
 #include "Timer/UserTimer.hpp"
@@ -38,12 +38,13 @@ namespace algorithm {
         // small items
         const auto small_items_data = data.at("small_items");
         for (const auto & small_item_data : data.at("small_items")) {
-            const auto small_item = SmallItem{Vector3D{
-                small_item_data.at("length").get<CoordinateType>(),
-                small_item_data.at("width").get<CoordinateType>(),
-                small_item_data.at("height").get<CoordinateType>()}};
-            const auto quantity = small_item_data.at("quantity").get<Quantity>();
-            this->add_item(small_item, quantity);
+            const auto small_item = std::make_shared<SmallItemWithSurface>(
+                Vector3D{
+                    small_item_data.at("length").get<CoordinateType>(),
+                    small_item_data.at("width").get<CoordinateType>(),
+                    small_item_data.at("height").get<CoordinateType>()},
+                small_item_data.at("quantity").get<Quantity>());
+            this->add_item(small_item);
         }
         return;
     }
@@ -63,9 +64,9 @@ namespace algorithm {
         auto small_items_data = json::array();
         for (const auto & allocated_small_item : this->allocated_small_items) {
             auto allocated_item_data = OrderedJson{};
-            allocated_item_data["length"] = allocated_small_item.size().x();
-            allocated_item_data["width"] = allocated_small_item.size().y();
-            allocated_item_data["height"] = allocated_small_item.size().z();
+            allocated_item_data["length"] = allocated_small_item.type().measurement().x();
+            allocated_item_data["width"] = allocated_small_item.type().measurement().y();
+            allocated_item_data["height"] = allocated_small_item.type().measurement().z();
             allocated_item_data["x"] = allocated_small_item.position().x();
             allocated_item_data["y"] = allocated_small_item.position().y();
             allocated_item_data["z"] = allocated_small_item.position().z();
@@ -79,8 +80,8 @@ namespace algorithm {
         return output;
     }
 
-    auto LargestFitFirstV2::add_item(const SmallItem small_item, const Quantity quantity) -> void {
-        this->quantity_manager[small_item] = quantity;
+    auto LargestFitFirstV2::add_item(const SmallItemWithSurface::Ptr small_item) -> void {
+        this->quantity_manager.add_item(small_item);
         this->small_items.emplace(std::move(small_item));
         return;
     }
@@ -121,25 +122,25 @@ namespace algorithm {
         return;
     }
 
-    auto LargestFitFirstV2::is_small_item_available(const SmallItem & small_item) const -> bool {
-        return this->quantity_manager.at(small_item) != 0;
+    auto LargestFitFirstV2::is_small_item_available(const SmallItemWithSurface::Ptr & small_item) const -> bool {
+        return this->quantity_manager.quantity(small_item) != 0;
     }
 
-    auto LargestFitFirstV2::is_item_within_large_object(const SmallItem & small_item, const Vector3D & position) const -> bool {
-        return (small_item.size().x() + position.x() <= this->large_object.measurement().x())
-            && (small_item.size().y() + position.y() <= this->large_object.measurement().y())
-            && (small_item.size().z() + position.z() <= this->large_object.measurement().z());
+    auto LargestFitFirstV2::is_item_within_large_object(const SmallItemWithSurface::Ptr & small_item, const Vector3D & position) const -> bool {
+        return (small_item->measurement().x() + position.x() <= this->large_object.measurement().x())
+            && (small_item->measurement().y() + position.y() <= this->large_object.measurement().y())
+            && (small_item->measurement().z() + position.z() <= this->large_object.measurement().z());
     }
 
-    auto LargestFitFirstV2::allocate_small_item(const SmallItem & small_item, const Vector3D & position) -> bool {
+    auto LargestFitFirstV2::allocate_small_item(const SmallItemWithSurface::Ptr & small_item, const Vector3D & position) -> bool {
         const auto final_position = Vector3D{
-            position.x() + small_item.size().x(),
-            position.y() + small_item.size().y(),
-            position.z() + small_item.size().z()};
+            position.x() + small_item->measurement().x(),
+            position.y() + small_item->measurement().y(),
+            position.z() + small_item->measurement().z()};
         bool all_space_is_free = this->space.are_all_free(position, final_position);
         if (all_space_is_free) {
             this->allocated_small_items.emplace_back(small_item, position);
-            this->quantity_manager[small_item] -= 1;
+            this->quantity_manager.remove_one_item(small_item);
             this->space.occupy(position, final_position);
             return true;
         } else {

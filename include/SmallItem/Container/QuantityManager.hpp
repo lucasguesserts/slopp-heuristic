@@ -37,11 +37,11 @@ public:
         return;
     }
 
-    auto quantity(const ItemTypePtr & small_item) -> Quantity {
+    auto quantity(const ItemTypePtr & small_item) const -> Quantity {
         if (this->find(small_item) == this->end()) {
             return 0;
         }
-        return (*this)[small_item];
+        return this->at(small_item);
     }
 };
 

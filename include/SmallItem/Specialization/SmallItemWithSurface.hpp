@@ -9,6 +9,9 @@ namespace packing {
 
 class SmallItemWithSurface : public BasicSmallItem {
 public:
+
+    using Ptr = std::shared_ptr<SmallItemWithSurface>;
+
     SmallItemWithSurface(const Vector3D measurement, const Quantity quantity);
 
     virtual auto surface() const -> Surface;
