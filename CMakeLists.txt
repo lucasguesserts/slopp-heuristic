@@ -36,6 +36,7 @@ set(
     ${SOURCE_DIR}/LargeObject/LargeObjectType.cpp
     ${SOURCE_DIR}/LargeObject/Specialization/BasicLargeObject.cpp
     ${SOURCE_DIR}/Geometry/Vector3D.cpp
+    ${SOURCE_DIR}/EmptySpace/MaximalEmptySpace/Specialization/BasicEmptySpace.cpp
     ${SOURCE_DIR}/Algorithm/LargestFitFirstV2.cpp
     ${SOURCE_DIR}/Algorithm/LargestFitFirst/BoolCuboid.cpp
     ${SOURCE_DIR}/Algorithm/LargestFitFirst/CornerPointIdentifier.cpp

@@ -2,6 +2,7 @@
 
 #include "Geometry/Vector3D.hpp"
 #include "EmptySpace/MaximalEmptySpace/EmptySpace.hpp"
+#include "EmptySpace/MaximalEmptySpace/Specialization/BasicEmptySpace.hpp"
 
 using namespace packing;
 using namespace packing::maximal_empty_space;
