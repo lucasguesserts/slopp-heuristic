@@ -13,7 +13,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -Wall -Wextra -pedantic-errors -fmax-errors=1 -Wno-error=ignored-qualifiers")
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-set(CMAKE_BUILD_TYPE Debug)
+set(CMAKE_BUILD_TYPE RelWithDebInfo)
 
 include(cmake/CPM.cmake)
 CPMAddPackage("gh:nlohmann/json@3.11.2")
@@ -39,6 +39,7 @@ set(
     ${SOURCE_DIR}/EmptySpace/MaximalEmptySpace/EmptySpace.cpp
     ${SOURCE_DIR}/EmptySpace/MaximalEmptySpace/Specialization/BasicEmptySpace.cpp
     ${SOURCE_DIR}/Algorithm/LargestFitFirstV2.cpp
+    ${SOURCE_DIR}/Algorithm/LargestFitFirstV3.cpp
     ${SOURCE_DIR}/Algorithm/LargestFitFirst/BoolCuboid.cpp
     ${SOURCE_DIR}/Algorithm/LargestFitFirst/CornerPointIdentifier.cpp
     ${SOURCE_DIR}/Algorithm/LargestFitFirst/PriorityQueueOfVector3D.cpp

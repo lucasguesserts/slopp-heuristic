@@ -11,6 +11,7 @@ set(
     Geometry/Vector3D.test.cpp
     Algorithm/LargestFitFirst.test.cpp
     Algorithm/LargestFitFirstV2.test.cpp
+    Algorithm/LargestFitFirstV3.test.cpp
     SmallItem/BasicSmallItem.test.cpp
     SmallItem/Specialization/SmallItemWithSurface.test.cpp
     SmallItem/Container/QuantityManager.test.cpp
