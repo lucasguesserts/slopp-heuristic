@@ -1,16 +1,16 @@
 #include "Test/Test.hpp"
 
+#include "AllocatedSmallItem/Specialization/BasicAllocatedSmallItem.hpp"
+#include "EmptySpace/MaximalEmptySpace/EmptySpaceOperator.hpp"
+#include "EmptySpace/MaximalEmptySpace/Specialization/BasicEmptySpace.hpp"
 #include "Geometry/Vector3D.hpp"
 #include "SmallItem/Specialization/BasicSmallItem.hpp"
-#include "AllocatedSmallItem/Specialization/BasicAllocatedSmallItem.hpp"
-#include "EmptySpace/MaximalEmptySpace/Specialization/BasicEmptySpace.hpp"
-#include "EmptySpace/MaximalEmptySpace/EmptySpaceOperator.hpp"
 
 using namespace packing;
 using namespace packing::maximal_empty_space;
 using Catch::Matchers::UnorderedEquals;
 
-TEST_CASE("EmptySpaceOperator", "[EmptySpace]") {
+TEST_CASE("EmptySpaceOperator", "[EmptySpaceOperator]") {
     const auto position = Vector3D{10, 20, 30};
     const auto measurement = Vector3D{20, 30, 40};
     const auto empty_space = BasicEmptySpace{position, measurement};
@@ -29,9 +29,21 @@ TEST_CASE("EmptySpaceOperator", "[EmptySpace]") {
         const auto actual = empty_space_operator.cut_empty_space(empty_space, allocated_item);
         CHECK_THAT(actual, UnorderedEquals(expected));
     }
+    SECTION("case 2 - the AllocatedItem intersects one entire edge of the EmptySpace") {
+        const auto position = Vector3D{10, 20, 65};
+        const auto measurement = Vector3D{10, 30, 5};
+        const auto quantity = Quantity{1};
+        const auto small_item = std::make_shared<BasicSmallItem>(measurement, quantity);
+        const auto allocated_item = BasicAllocatedSmallItem<BasicSmallItem>{small_item, position};
+        const auto expected = std::vector<BasicEmptySpace>{
+            BasicEmptySpace{{20, 20, 30}, {10, 30, 40}},
+            BasicEmptySpace{{10, 20, 30}, {20, 30, 35}},
+        };
+        const auto actual = empty_space_operator.cut_empty_space(empty_space, allocated_item);
+        CHECK_THAT(actual, UnorderedEquals(expected));
+    }
 }
 
-// "case 2 - the AllocatedItem intersects one entire edge of the EmptySpace"
 // "case 3 - the AllocatedItem intersects part of one edge of the EmptySpace"
 // "case 4 - the AllocatedItem gets into the EmptySpace from one plane without touching any corner point"
 // "case 5 - the AllocatedItem cuts away an entire plane of the EmptySpace"
