@@ -1,0 +1,73 @@
+{
+  "type": "output",
+  "version": "0.3.0",
+  "large_object": {
+    "measurement": {
+      "x": 20,
+      "y": 30,
+      "z": 40
+    }
+  },
+  "small_items": [
+    {
+      "measurement": {
+        "x": 25,
+        "y": 10,
+        "z": 5
+      },
+      "position": {
+        "x": 10,
+        "y": 9,
+        "z": 0
+      }
+    },
+    {
+      "measurement": {
+        "x": 20,
+        "y": 9,
+        "z": 40
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "measurement": {
+        "x": 20,
+        "y": 11,
+        "z": 40
+      },
+      "position": {
+        "x": 0,
+        "y": 19,
+        "z": 0
+      }
+    },
+    {
+      "measurement": {
+        "x": 10,
+        "y": 30,
+        "z": 40
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "measurement": {
+        "x": 20,
+        "y": 30,
+        "z": 35
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 5
+      }
+    }
+  ]
+}

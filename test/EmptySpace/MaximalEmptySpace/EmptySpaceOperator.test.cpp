@@ -42,6 +42,21 @@ TEST_CASE("EmptySpaceOperator", "[EmptySpaceOperator]") {
         const auto actual = empty_space_operator.cut_empty_space(empty_space, allocated_item);
         CHECK_THAT(actual, UnorderedEquals(expected));
     }
+    SECTION("case 3 - the AllocatedItem intersects part of one edge of the EmptySpace") {
+        const auto position = Vector3D{20, 29, 30};
+        const auto measurement = Vector3D{25, 10, 5};
+        const auto quantity = Quantity{1};
+        const auto small_item = std::make_shared<BasicSmallItem>(measurement, quantity);
+        const auto allocated_item = BasicAllocatedSmallItem<BasicSmallItem>{small_item, position};
+        const auto expected = std::vector<BasicEmptySpace>{
+            BasicEmptySpace{{10, 20, 30}, {20, 9, 40}},
+            BasicEmptySpace{{10, 39, 30}, {20, 11, 40}},
+            BasicEmptySpace{{10, 20, 30}, {10, 30, 40}},
+            BasicEmptySpace{{10, 20, 35}, {20, 30, 35}},
+        };
+        const auto actual = empty_space_operator.cut_empty_space(empty_space, allocated_item);
+        CHECK_THAT(actual, UnorderedEquals(expected));
+    }
 }
 
 // "case 3 - the AllocatedItem intersects part of one edge of the EmptySpace"
