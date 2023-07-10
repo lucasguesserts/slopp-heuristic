@@ -57,6 +57,16 @@ TEST_CASE("EmptySpaceOperator", "[EmptySpaceOperator]") {
         const auto actual = empty_space_operator.cut_empty_space(empty_space, allocated_item);
         CHECK_THAT(actual, UnorderedEquals(expected));
     }
+    SECTION("case 10 - the AllocatedItem covers the whole EmptySpace") {
+        const auto position = Vector3D{0, 0, 0};
+        const auto measurement = Vector3D{100, 100, 100};
+        const auto quantity = Quantity{1};
+        const auto small_item = std::make_shared<BasicSmallItem>(measurement, quantity);
+        const auto allocated_item = BasicAllocatedSmallItem<BasicSmallItem>{small_item, position};
+        const auto expected = std::vector<BasicEmptySpace>{};
+        const auto actual = empty_space_operator.cut_empty_space(empty_space, allocated_item);
+        CHECK_THAT(actual, UnorderedEquals(expected));
+    }
 }
 
 // "case 3 - the AllocatedItem intersects part of one edge of the EmptySpace"
@@ -66,4 +76,3 @@ TEST_CASE("EmptySpaceOperator", "[EmptySpaceOperator]") {
 // "case 7 - the AllocatedItem passes through one pair of parallel planes of the EmptySpace without any corner point of the EmptySpace"
 // "case 8 - the AllocatedItem cuts the EmptySpace into two new empty spaces"
 // "case 9 - the whole AllocatedItem resides in the EmptySpace"
-// "case 10 - the AllocatedItem covers the whole EmptySpace"

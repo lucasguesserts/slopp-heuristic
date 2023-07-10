@@ -1,0 +1,25 @@
+{
+  "type": "output",
+  "version": "0.3.0",
+  "large_object": {
+    "measurement": {
+      "x": 20,
+      "y": 30,
+      "z": 40
+    }
+  },
+  "small_items": [
+    {
+      "measurement": {
+        "x": 100,
+        "y": 100,
+        "z": 100
+      },
+      "position": {
+        "x": -10,
+        "y": -20,
+        "z": -30
+      }
+    }
+  ]
+}
