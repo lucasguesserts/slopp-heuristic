@@ -52,6 +52,29 @@ namespace maximal_empty_space {
             return result;
         }
 
+        auto add_to_collection(
+            const BasicEmptySpace & empty_space,
+            std::vector<BasicEmptySpace> & empty_space_collection)
+            const -> void {
+            // case 'empty_space' is inside one of the empty spaces in 'empty_space_collection'
+            for (const auto & other_empty_space : empty_space_collection) {
+                if (empty_space.is_inside(other_empty_space)) {
+                    return;
+                }
+            }
+            // case 'empty_space' is NOT inside one of the empty spaces in 'empty_space_collection'
+            // and 'empty_space' contains zero or more one of the empty spaces in 'empty_space_collection'
+            for (auto it = empty_space_collection.begin(); it != empty_space_collection.end();) {
+                if (it->is_inside(empty_space)) {
+                    it = empty_space_collection.erase(it);
+                } else {
+                    ++it;
+                }
+            }
+            empty_space_collection.push_back(empty_space);
+            return;
+        }
+
     private:
         auto cut_space_back(
             const BasicEmptySpace & empty_space,

@@ -10,7 +10,7 @@ using namespace packing;
 using namespace packing::maximal_empty_space;
 using Catch::Matchers::UnorderedEquals;
 
-TEST_CASE("EmptySpaceOperator", "[EmptySpaceOperator]") {
+TEST_CASE("cut_empty_space", "[EmptySpaceOperator]") {
     const auto empty_space_position = Vector3D{10, 20, 30};
     const auto empty_space_measurement = Vector3D{20, 30, 40};
     const auto empty_space = BasicEmptySpace{empty_space_position, empty_space_measurement};
@@ -96,10 +96,83 @@ TEST_CASE("EmptySpaceOperator", "[EmptySpaceOperator]") {
         const auto actual = empty_space_operator.cut_empty_space(empty_space, allocated_item);
         CHECK_THAT(actual, UnorderedEquals(expected));
     }
+    // TODO: cases not tested:
+    // "case 4 - the AllocatedItem gets into the EmptySpace from one plane without touching any corner point"
+    // "case 6 - the AllocatedItem crosses one pair of parallel edges of the EmptySpace without touching any corner of the EmptySpace"
+    // "case 7 - the AllocatedItem passes through one pair of parallel planes of the EmptySpace without any corner point of the EmptySpace"
+    // "case 8 - the AllocatedItem cuts the EmptySpace into two new empty spaces"
 }
 
-// TODO: cases not tested:
-// "case 4 - the AllocatedItem gets into the EmptySpace from one plane without touching any corner point"
-// "case 6 - the AllocatedItem crosses one pair of parallel edges of the EmptySpace without touching any corner of the EmptySpace"
-// "case 7 - the AllocatedItem passes through one pair of parallel planes of the EmptySpace without any corner point of the EmptySpace"
-// "case 8 - the AllocatedItem cuts the EmptySpace into two new empty spaces"
+TEST_CASE("add_to_collection", "[EmptySpaceOperator]") {
+    const auto empty_space_collection = std::vector<BasicEmptySpace>{
+        BasicEmptySpace{{2, 3, 4}, {3, 5, 7}},
+        BasicEmptySpace{{4, 4, 5}, {4, 6, 8}},
+        BasicEmptySpace{{1, 9, 9}, {5, 7, 9}},
+        BasicEmptySpace{{9, 14, 19}, {10, 15, 20}},
+    };
+    const auto empty_space_operator = EmptySpaceOperator<BasicSmallItem>{};
+    SECTION("e is not inside any Empty Space of S") {
+        const auto empty_space = BasicEmptySpace({10, 1, 0}, {1, 2, 3});
+        auto actual = empty_space_collection;
+        empty_space_operator.add_to_collection(empty_space, actual);
+        const auto expected = std::vector<BasicEmptySpace>{
+            empty_space_collection[0],
+            empty_space_collection[1],
+            empty_space_collection[2],
+            empty_space_collection[3],
+            empty_space,
+        };
+        CHECK_THAT(actual, UnorderedEquals(expected));
+    }
+    SECTION("e is inside one Empty Space of S") {
+        const auto empty_space = BasicEmptySpace({3, 4, 5}, {1, 2, 3});
+        auto actual = empty_space_collection;
+        empty_space_operator.add_to_collection(empty_space, actual);
+        const auto expected = empty_space_collection;
+        CHECK_THAT(actual, UnorderedEquals(expected));
+    }
+    SECTION("e is inside the union of two Empty Spaces e1, e2 in S, but it is not inside any of them") {
+        const auto empty_space = BasicEmptySpace({3, 4, 6}, {3, 2, 2});
+        auto actual = empty_space_collection;
+        empty_space_operator.add_to_collection(empty_space, actual);
+        const auto expected = std::vector<BasicEmptySpace>{
+            empty_space_collection[0],
+            empty_space_collection[1],
+            empty_space_collection[2],
+            empty_space_collection[3],
+            empty_space,
+        };
+        CHECK_THAT(actual, UnorderedEquals(expected));
+    }
+    SECTION("one Empty Space e' in S is inside e") {
+        const auto empty_space = BasicEmptySpace({8, 13, 18}, {12, 17, 22});
+        auto actual = empty_space_collection;
+        empty_space_operator.add_to_collection(empty_space, actual);
+        const auto expected = std::vector<BasicEmptySpace>{
+            empty_space_collection[0],
+            empty_space_collection[1],
+            empty_space_collection[2],
+            empty_space,
+        };
+        CHECK_THAT(actual, UnorderedEquals(expected));
+    }
+    SECTION("three Empty Space e' in S are inside e, but one other e'' in S is not") {
+        const auto empty_space = BasicEmptySpace({0, 0, 0}, {10, 17, 20});
+        auto actual = empty_space_collection;
+        empty_space_operator.add_to_collection(empty_space, actual);
+        const auto expected = std::vector<BasicEmptySpace>{
+            empty_space_collection[3],
+            empty_space,
+        };
+        CHECK_THAT(actual, UnorderedEquals(expected));
+    }
+    SECTION("all Empty Spaces e' in S are inside e") {
+        const auto empty_space = BasicEmptySpace({1, 3, 4}, {18, 26, 35});
+        auto actual = empty_space_collection;
+        empty_space_operator.add_to_collection(empty_space, actual);
+        const auto expected = std::vector<BasicEmptySpace>{
+            empty_space,
+        };
+        CHECK_THAT(actual, UnorderedEquals(expected));
+    }
+}
