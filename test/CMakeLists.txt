@@ -19,6 +19,7 @@ set(
     AllocatedSmallItem/Specialization/AllocatedSmallItemWithSurface.test.cpp
     LargeObject/BasicLargeObject.test.cpp
     EmptySpace/MaximalEmptySpace/Specialization/BasicEmptySpace.test.cpp
+    EmptySpace/MaximalEmptySpace/EmptySpaceOperator.test.cpp
     Input/Specialization/BasicInput.test.cpp
     Algorithm/LargestFitFirst/BoolCuboid.test.cpp
     Algorithm/LargestFitFirst/CornerPointIdentifier.test.cpp
