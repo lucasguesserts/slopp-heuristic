@@ -34,4 +34,8 @@ auto operator<(const Vector3D & lhs, const Vector3D & rhs) -> bool {
     }
 }
 
+auto operator<=(const Vector3D & lhs, const Vector3D & rhs) -> bool {
+    return (lhs.x() <= rhs.x()) && (lhs.y() <= rhs.y()) && (lhs.z() <= rhs.z());
+}
+
 } // namespace packing

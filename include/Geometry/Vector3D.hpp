@@ -26,7 +26,6 @@ public:
     }
 
     auto operator==(const Vector3D & other) const -> bool;
-
     auto operator+(const Vector3D & other) const -> Vector3D;
 
 private:
@@ -36,6 +35,7 @@ private:
 };
 
 auto operator<(const Vector3D & lhs, const Vector3D & rhs) -> bool;
+auto operator<=(const Vector3D & lhs, const Vector3D & rhs) -> bool;
 
 } // namespace packing
 
