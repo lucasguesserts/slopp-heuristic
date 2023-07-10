@@ -176,3 +176,50 @@ TEST_CASE("add_to_collection", "[EmptySpaceOperator]") {
         CHECK_THAT(actual, UnorderedEquals(expected));
     }
 }
+
+TEST_CASE("extend_collection", "[EmptySpaceOperator]") {
+    const auto empty_space_collection = std::vector<BasicEmptySpace>{
+        BasicEmptySpace{{2, 3, 4}, {3, 5, 7}},
+        BasicEmptySpace{{4, 4, 5}, {4, 6, 8}},
+        BasicEmptySpace{{1, 9, 9}, {5, 7, 9}},
+        BasicEmptySpace{{9, 14, 19}, {10, 15, 20}},
+    };
+    const auto empty_space_operator = EmptySpaceOperator<BasicSmallItem>{};
+    SECTION("equal collections") {
+        auto actual = empty_space_collection;
+        const auto extension = empty_space_collection;
+        const auto expected = empty_space_collection;
+        empty_space_operator.extend_collection(actual, extension);
+        CHECK_THAT(actual, UnorderedEquals(expected));
+    }
+    SECTION("disjoint collections") {
+        auto actual = std::vector<BasicEmptySpace>{
+            empty_space_collection[0],
+            empty_space_collection[1],
+        };
+        const auto extension = std::vector<BasicEmptySpace>{
+            empty_space_collection[2],
+            empty_space_collection[3],
+        };
+        const auto expected = empty_space_collection;
+        empty_space_operator.extend_collection(actual, extension);
+        CHECK_THAT(actual, UnorderedEquals(expected));
+    }
+    SECTION("two Empty Space of the extension are within collection and two are not") {
+        auto actual = std::vector<BasicEmptySpace>{
+            empty_space_collection[0],
+            empty_space_collection[3],
+        };
+        const auto extension = std::vector<BasicEmptySpace>{
+            // inside actual
+            empty_space_collection[0],
+            BasicEmptySpace{{9 + 1, 14 + 1, 19 + 1}, {10 - 2, 15 - 2, 20 - 2}},
+            // outside actual
+            empty_space_collection[1],
+            empty_space_collection[2],
+        };
+        const auto expected = empty_space_collection;
+        empty_space_operator.extend_collection(actual, extension);
+        CHECK_THAT(actual, UnorderedEquals(expected));
+    }
+}

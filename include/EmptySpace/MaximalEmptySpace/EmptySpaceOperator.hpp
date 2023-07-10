@@ -75,6 +75,16 @@ namespace maximal_empty_space {
             return;
         }
 
+        auto extend_collection(
+            std::vector<BasicEmptySpace> & to_extend,
+            const std::vector<BasicEmptySpace> & extension)
+            const -> void {
+            for (const auto & empty_space : extension) {
+                this->add_to_collection(empty_space, to_extend);
+            }
+            return;
+        }
+
     private:
         auto cut_space_back(
             const BasicEmptySpace & empty_space,
