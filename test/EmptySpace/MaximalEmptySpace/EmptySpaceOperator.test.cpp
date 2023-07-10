@@ -21,7 +21,7 @@ TEST_CASE("cut_empty_space", "[EmptySpaceOperator]") {
         const auto quantity = Quantity{1};
         const auto small_item = std::make_shared<BasicSmallItem>(measurement, quantity);
         const auto allocated_item = BasicAllocatedSmallItem<BasicSmallItem>{small_item, position};
-        const auto expected = std::vector<BasicEmptySpace>{};
+        const auto expected = std::vector<BasicEmptySpace>{empty_space};
         const auto actual = empty_space_operator.cut_empty_space(empty_space, allocated_item);
         CHECK_THAT(actual, UnorderedEquals(expected));
     }

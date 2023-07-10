@@ -33,9 +33,19 @@ namespace maximal_empty_space {
             const BasicEmptySpace & empty_space,
             const AllocatedSmallItem<ItemType> & allocated_small_item)
             const -> std::vector<BasicEmptySpace> {
+            // This method returns all the Empty Space remaining
+            // after the allocation of the Allocated Small Item.
             if (!this->has_overlap(empty_space, allocated_small_item)) {
-                return {};
+                return {empty_space};
             }
+            /* TODO: the 'if' above is not really necessary if one
+             * implements a collection of empty spaces that can
+             * handle Empty Spaces which are inside one another.
+             * In the case of the 'if' above, three Empty Spaces
+             * would be created, and they would all be equal to
+             * the original Empty Space, so that the final result
+             * would be a collection with only one Empty Space.
+             */
             auto result = std::vector<BasicEmptySpace>{};
             // x
             //// back
