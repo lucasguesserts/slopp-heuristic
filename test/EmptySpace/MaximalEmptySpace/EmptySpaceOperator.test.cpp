@@ -22,7 +22,7 @@ TEST_CASE("cut_empty_space", "[EmptySpaceOperator]") {
         const auto small_item = std::make_shared<BasicSmallItem>(measurement, quantity);
         const auto allocated_item = BasicAllocatedSmallItem<BasicSmallItem>{small_item, position};
         const auto expected = std::vector<BasicEmptySpace>{empty_space};
-        const auto actual = empty_space_operator.cut_empty_space(empty_space, allocated_item);
+        const auto actual = empty_space_operator.remaining_empty_space(empty_space, allocated_item);
         CHECK_THAT(actual, UnorderedEquals(expected));
     }
     SECTION("case 1 - the AllocatedItem intersects one corner of the EmptySpace") {
@@ -36,7 +36,7 @@ TEST_CASE("cut_empty_space", "[EmptySpaceOperator]") {
             BasicEmptySpace{{10, 26, 30}, {20, 24, 40}},
             BasicEmptySpace{{10, 20, 40}, {20, 30, 30}},
         };
-        const auto actual = empty_space_operator.cut_empty_space(empty_space, allocated_item);
+        const auto actual = empty_space_operator.remaining_empty_space(empty_space, allocated_item);
         CHECK_THAT(actual, UnorderedEquals(expected));
     }
     SECTION("case 2 - the AllocatedItem intersects one entire edge of the EmptySpace") {
@@ -49,7 +49,7 @@ TEST_CASE("cut_empty_space", "[EmptySpaceOperator]") {
             BasicEmptySpace{{20, 20, 30}, {10, 30, 40}},
             BasicEmptySpace{{10, 20, 30}, {20, 30, 35}},
         };
-        const auto actual = empty_space_operator.cut_empty_space(empty_space, allocated_item);
+        const auto actual = empty_space_operator.remaining_empty_space(empty_space, allocated_item);
         CHECK_THAT(actual, UnorderedEquals(expected));
     }
     SECTION("case 3 - the AllocatedItem intersects part of one edge of the EmptySpace") {
@@ -64,7 +64,7 @@ TEST_CASE("cut_empty_space", "[EmptySpaceOperator]") {
             BasicEmptySpace{{10, 20, 30}, {10, 30, 40}},
             BasicEmptySpace{{10, 20, 35}, {20, 30, 35}},
         };
-        const auto actual = empty_space_operator.cut_empty_space(empty_space, allocated_item);
+        const auto actual = empty_space_operator.remaining_empty_space(empty_space, allocated_item);
         CHECK_THAT(actual, UnorderedEquals(expected));
     }
     SECTION("case 5 - the AllocatedItem cuts away an entire plane of the EmptySpace") {
@@ -76,7 +76,7 @@ TEST_CASE("cut_empty_space", "[EmptySpaceOperator]") {
         const auto expected = std::vector<BasicEmptySpace>{
             BasicEmptySpace{{15, 20, 30}, {15, 30, 40}},
         };
-        const auto actual = empty_space_operator.cut_empty_space(empty_space, allocated_item);
+        const auto actual = empty_space_operator.remaining_empty_space(empty_space, allocated_item);
         CHECK_THAT(actual, UnorderedEquals(expected));
     }
     SECTION("case 9 - the whole AllocatedItem resides in the EmptySpace") {
@@ -93,7 +93,7 @@ TEST_CASE("cut_empty_space", "[EmptySpaceOperator]") {
             BasicEmptySpace{{10, 42, 30}, {20, 8, 40}},
             BasicEmptySpace{{10, 20, 60}, {20, 30, 10}},
         };
-        const auto actual = empty_space_operator.cut_empty_space(empty_space, allocated_item);
+        const auto actual = empty_space_operator.remaining_empty_space(empty_space, allocated_item);
         CHECK_THAT(actual, UnorderedEquals(expected));
     }
     SECTION("case 10 - the AllocatedItem covers the whole EmptySpace") {
@@ -103,7 +103,7 @@ TEST_CASE("cut_empty_space", "[EmptySpaceOperator]") {
         const auto small_item = std::make_shared<BasicSmallItem>(measurement, quantity);
         const auto allocated_item = BasicAllocatedSmallItem<BasicSmallItem>{small_item, position};
         const auto expected = std::vector<BasicEmptySpace>{};
-        const auto actual = empty_space_operator.cut_empty_space(empty_space, allocated_item);
+        const auto actual = empty_space_operator.remaining_empty_space(empty_space, allocated_item);
         CHECK_THAT(actual, UnorderedEquals(expected));
     }
     // TODO: cases not tested:

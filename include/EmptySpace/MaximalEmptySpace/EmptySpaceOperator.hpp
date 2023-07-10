@@ -29,12 +29,10 @@ namespace maximal_empty_space {
                         (empty_space.final_position().z() > allocated_small_item.position().z()));
             }
 
-        auto cut_empty_space(
+        auto remaining_empty_space(
             const BasicEmptySpace & empty_space,
             const AllocatedSmallItem<ItemType> & allocated_small_item)
             const -> std::vector<BasicEmptySpace> {
-            // This method returns all the Empty Space remaining
-            // after the allocation of the Allocated Small Item.
             if (!this->has_overlap(empty_space, allocated_small_item)) {
                 return {empty_space};
             }
