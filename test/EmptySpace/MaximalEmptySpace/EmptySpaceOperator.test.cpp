@@ -233,3 +233,54 @@ TEST_CASE("extend_collection", "[EmptySpaceOperator]") {
         CHECK_THAT(actual, UnorderedEquals(expected));
     }
 }
+
+TEST_CASE("cut_collection", "[EmptySpaceOperator]") {
+    const auto empty_space_collection = std::vector<BasicEmptySpace>{
+        BasicEmptySpace{{2, 3, 4}, {3, 5, 7}},
+        BasicEmptySpace{{4, 4, 5}, {4, 6, 8}},
+        BasicEmptySpace{{1, 9, 9}, {5, 7, 9}},
+        BasicEmptySpace{{9, 14, 19}, {10, 15, 20}},
+    };
+    const auto empty_space_operator = EmptySpaceOperator<BasicSmallItem>{};
+    SECTION("the Allocated Item does not intersect any Empty Space") {
+        const auto small_item = std::make_shared<BasicSmallItem>(Vector3D{10, 29, 15}, Quantity{1});
+        const auto allocated_small_item = BasicAllocatedSmallItem<BasicSmallItem>{small_item, Vector3D{10, 1, 0}};
+        const auto actual = empty_space_operator.cut_collection(empty_space_collection, allocated_small_item);
+        const auto expected = empty_space_collection;
+        CHECK_THAT(actual, UnorderedEquals(expected));
+    }
+    SECTION("all Empty Spaces are inside the Allocated Item") {
+        const auto small_item = std::make_shared<BasicSmallItem>(Vector3D{20, 30, 40}, Quantity{1});
+        const auto allocated_small_item = BasicAllocatedSmallItem<BasicSmallItem>{small_item, Vector3D{0, 0, 0}};
+        const auto actual = empty_space_operator.cut_collection(empty_space_collection, allocated_small_item);
+        const auto expected = std::vector<BasicEmptySpace>{};
+        CHECK_THAT(actual, UnorderedEquals(expected));
+    }
+    SECTION("the Allocated Item intersect partially one Empty Space") {
+        const auto small_item = std::make_shared<BasicSmallItem>(Vector3D{10, 15, 20}, Quantity{1});
+        const auto allocated_small_item = BasicAllocatedSmallItem<BasicSmallItem>{small_item, Vector3D{9, 10, 19}};
+        const auto actual = empty_space_operator.cut_collection(empty_space_collection, allocated_small_item);
+        const auto expected = std::vector<BasicEmptySpace>{
+            empty_space_collection[0],
+            empty_space_collection[1],
+            empty_space_collection[2],
+            BasicEmptySpace{{9, 25, 19}, {10, 4, 20}},
+        };
+        CHECK_THAT(actual, UnorderedEquals(expected));
+    }
+    SECTION("the Allocated Item intersect partially two Empty Spaces") {
+        const auto small_item = std::make_shared<BasicSmallItem>(Vector3D{3, 5, 18}, Quantity{1});
+        const auto allocated_small_item = BasicAllocatedSmallItem<BasicSmallItem>{small_item, Vector3D{4, 3, 0}};
+        const auto actual = empty_space_operator.cut_collection(empty_space_collection, allocated_small_item);
+        const auto expected = std::vector<BasicEmptySpace>{
+            // empty_space_collection[0], // intersected by the allocated small item
+            // empty_space_collection[1], // intersected by the allocated small item
+            empty_space_collection[2],
+            empty_space_collection[3],
+            BasicEmptySpace{{2, 3, 4}, {2, 5, 7}}, // back of empty_space_collection[0]
+            BasicEmptySpace{{7, 4, 5}, {1, 6, 8}}, // front empty_space_collection[1]
+            BasicEmptySpace{{4, 8, 5}, {4, 2, 8}}, // left empty_space_collection[1]
+        };
+        CHECK_THAT(actual, UnorderedEquals(expected));
+    }
+}

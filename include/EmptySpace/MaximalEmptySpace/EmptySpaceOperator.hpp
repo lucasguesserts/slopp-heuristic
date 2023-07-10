@@ -108,6 +108,18 @@ namespace maximal_empty_space {
             return;
         }
 
+        auto cut_collection(
+            const std::vector<BasicEmptySpace> & empty_space_collection,
+            const AllocatedSmallItem<ItemType> & allocated_small_item)
+            const -> std::vector<BasicEmptySpace> {
+            auto result = std::vector<BasicEmptySpace>{};
+            for (const auto & empty_space : empty_space_collection) {
+                const auto remaining_empty_spaces = this->remaining_empty_space(empty_space, allocated_small_item);
+                this->extend_collection(result, remaining_empty_spaces);
+            }
+            return result;
+        }
+
     private:
         auto cut_space_back(
             const BasicEmptySpace & empty_space,
