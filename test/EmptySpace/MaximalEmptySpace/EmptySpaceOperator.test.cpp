@@ -11,9 +11,9 @@ using namespace packing::maximal_empty_space;
 using Catch::Matchers::UnorderedEquals;
 
 TEST_CASE("EmptySpaceOperator", "[EmptySpaceOperator]") {
-    const auto position = Vector3D{10, 20, 30};
-    const auto measurement = Vector3D{20, 30, 40};
-    const auto empty_space = BasicEmptySpace{position, measurement};
+    const auto empty_space_position = Vector3D{10, 20, 30};
+    const auto empty_space_measurement = Vector3D{20, 30, 40};
+    const auto empty_space = BasicEmptySpace{empty_space_position, empty_space_measurement};
     const auto empty_space_operator = EmptySpaceOperator<BasicSmallItem>{};
     SECTION("case 1 - the AllocatedItem intersects one corner of the EmptySpace") {
         const auto position = Vector3D{9, 19, 29};
@@ -98,7 +98,7 @@ TEST_CASE("EmptySpaceOperator", "[EmptySpaceOperator]") {
     }
 }
 
-// "case 3 - the AllocatedItem intersects part of one edge of the EmptySpace"
+// TODO: cases not tested:
 // "case 4 - the AllocatedItem gets into the EmptySpace from one plane without touching any corner point"
 // "case 6 - the AllocatedItem crosses one pair of parallel edges of the EmptySpace without touching any corner of the EmptySpace"
 // "case 7 - the AllocatedItem passes through one pair of parallel planes of the EmptySpace without any corner point of the EmptySpace"
