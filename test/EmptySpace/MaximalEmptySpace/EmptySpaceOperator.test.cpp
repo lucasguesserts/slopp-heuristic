@@ -15,6 +15,16 @@ TEST_CASE("cut_empty_space", "[EmptySpaceOperator]") {
     const auto empty_space_measurement = Vector3D{20, 30, 40};
     const auto empty_space = BasicEmptySpace{empty_space_position, empty_space_measurement};
     const auto empty_space_operator = EmptySpaceOperator<BasicSmallItem>{};
+    SECTION("case 0 - the AllocatedItem and the EmptySpace have no overlap") {
+        const auto position = Vector3D{100, 200, 300};
+        const auto measurement = Vector3D{200, 300, 400};
+        const auto quantity = Quantity{1};
+        const auto small_item = std::make_shared<BasicSmallItem>(measurement, quantity);
+        const auto allocated_item = BasicAllocatedSmallItem<BasicSmallItem>{small_item, position};
+        const auto expected = std::vector<BasicEmptySpace>{};
+        const auto actual = empty_space_operator.cut_empty_space(empty_space, allocated_item);
+        CHECK_THAT(actual, UnorderedEquals(expected));
+    }
     SECTION("case 1 - the AllocatedItem intersects one corner of the EmptySpace") {
         const auto position = Vector3D{9, 19, 29};
         const auto measurement = Vector3D{5, 7, 11};

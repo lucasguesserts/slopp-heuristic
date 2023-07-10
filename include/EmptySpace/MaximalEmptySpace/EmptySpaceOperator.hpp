@@ -17,10 +17,25 @@ namespace maximal_empty_space {
         EmptySpaceOperator() = default;
         ~EmptySpaceOperator() = default;
 
+        auto has_overlap(
+            const BasicEmptySpace & empty_space,
+            const AllocatedSmallItem<ItemType> & allocated_small_item)
+            const -> bool {
+                return ((empty_space.position().x() < allocated_small_item.final_position().x()) &&
+                        (empty_space.final_position().x() > allocated_small_item.position().x()) &&
+                        (empty_space.position().y() < allocated_small_item.final_position().y()) &&
+                        (empty_space.final_position().y() > allocated_small_item.position().y()) &&
+                        (empty_space.position().z() < allocated_small_item.final_position().z()) &&
+                        (empty_space.final_position().z() > allocated_small_item.position().z()));
+            }
+
         auto cut_empty_space(
             const BasicEmptySpace & empty_space,
             const AllocatedSmallItem<ItemType> & allocated_small_item)
             const -> std::vector<BasicEmptySpace> {
+            if (!this->has_overlap(empty_space, allocated_small_item)) {
+                return {};
+            }
             auto result = std::vector<BasicEmptySpace>{};
             // x
             //// back
