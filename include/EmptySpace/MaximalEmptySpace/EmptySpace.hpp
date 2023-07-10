@@ -18,6 +18,8 @@ namespace maximal_empty_space {
         virtual auto measurement() const -> Vector3D = 0;
         virtual auto final_position() const -> Vector3D = 0;
 
+        auto is_inside(const EmptySpace & other) const -> bool;
+
         virtual auto operator==(const EmptySpace & rhs) const -> bool;
 
         using Ptr = std::shared_ptr<EmptySpace>;
