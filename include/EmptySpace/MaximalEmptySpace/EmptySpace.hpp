@@ -1,8 +1,8 @@
 #ifndef MAXIMAL_EMPTY_SPACE_EMPTY_SPACE_HPP_
 #define MAXIMAL_EMPTY_SPACE_EMPTY_SPACE_HPP_
 
-#include <utility>
 #include <memory>
+#include <utility>
 
 #include "Geometry/Vector3D.hpp"
 
