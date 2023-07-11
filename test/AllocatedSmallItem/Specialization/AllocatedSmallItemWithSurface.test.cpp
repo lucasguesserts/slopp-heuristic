@@ -11,12 +11,14 @@ TEST_CASE("constructor", "[AllocatedSmallItem]") {
     const auto measurement = Vector3D{1, 2, 3};
     const auto quantity = Quantity{4};
     const auto position = Vector3D{5, 6, 7};
+    const auto final_position = Vector3D{6, 8, 10};
     const auto small_item = std::make_shared<SmallItemWithSurface>(measurement, quantity);
     const auto allocated_small_item = AllocatedSmallItemWithSurface{small_item, position};
     // check
     CHECK(allocated_small_item.type().measurement() == measurement);
     CHECK(allocated_small_item.type().quantity() == quantity);
     CHECK(allocated_small_item.position() == position);
+    CHECK(allocated_small_item.final_position() == final_position);
 }
 
 TEST_CASE("surface", "[AllocatedSmallItem]") {

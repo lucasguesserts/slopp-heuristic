@@ -1,0 +1,61 @@
+{
+  "input": {
+    "type": "input",
+    "version": "0.0.0",
+    "large_object": {
+      "measurement": {
+        "x": 10,
+        "y": 10,
+        "z": 10
+      }
+    },
+    "small_items": [
+      {
+        "measurement": {
+          "x": 5,
+          "y": 5,
+          "z": 5
+        },
+        "quantity": 1
+      },
+      {
+        "measurement": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        },
+        "quantity": 1
+      }
+    ]
+  },
+  "output": {
+    "appendix": {
+      "runnning_time": 0.0
+    },
+    "large_object": {
+      "height": 10,
+      "length": 10,
+      "width": 10
+    },
+    "small_items": [
+      {
+        "height": 5,
+        "length": 5,
+        "width": 5,
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      {
+        "height": 1,
+        "length": 1,
+        "width": 1,
+        "x": 0,
+        "y": 0,
+        "z": 5
+      }
+    ],
+    "type": "output",
+    "version": "0.2.0"
+  }
+}

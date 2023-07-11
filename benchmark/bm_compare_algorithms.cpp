@@ -5,6 +5,7 @@
 
 #include "Algorithm/LargestFitFirst.hpp"
 #include "Algorithm/LargestFitFirstV2.hpp"
+#include "Algorithm/LargestFitFirstV3.hpp"
 #include "AllocatedSmallItem/Specialization/BasicAllocatedSmallItem.hpp"
 #include "Input/Specialization/BasicInput.hpp"
 #include "SmallItem/Specialization/BasicSmallItem.hpp"
@@ -22,6 +23,7 @@ using packing::BasicAllocatedSmallItem;
 using packing::BasicSmallItem;
 using packing::algorithm::LargestFitFirst;
 using packing::algorithm::LargestFitFirstV2;
+using packing::algorithm::LargestFitFirstV3;
 
 TEST_CASE("case 1", "[benchmark][Algorithm]") {
     // a reduced version of the instance 1 of the set 1 of Bischoff and Ratcliff
@@ -32,6 +34,7 @@ TEST_CASE("case 1", "[benchmark][Algorithm]") {
     const json data = json::parse(file);
     auto input_v1 = packing::BasicInput<packing::BasicSmallItem>{data};
     auto input_v2 = packing::BasicInput<packing::SmallItemWithSurface>{data};
+    auto input_v3 = packing::BasicInput<packing::BasicSmallItem>{data};
     file.close();
 
     BENCHMARK("LargestFitFirst") {
@@ -42,6 +45,12 @@ TEST_CASE("case 1", "[benchmark][Algorithm]") {
 
     BENCHMARK("LargestFitFirstV2") {
         auto algorithm = LargestFitFirstV2(input_v2);
+        algorithm.allocate();
+        return algorithm.allocated_items();
+    };
+
+    BENCHMARK("LargestFitFirstV3") {
+        auto algorithm = LargestFitFirstV3(input_v3);
         algorithm.allocate();
         return algorithm.allocated_items();
     };
