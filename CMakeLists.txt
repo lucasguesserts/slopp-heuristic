@@ -19,6 +19,7 @@ include(cmake/CPM.cmake)
 CPMAddPackage("gh:nlohmann/json@3.11.2")
 CPMAddPackage("gh:catchorg/Catch2@3.3.2")
 CPMAddPackage("gh:ryanhaining/cppitertools@2.1")
+include_directories(${CMAKE_SOURCE_DIR}/dependency/brkga_mp_ipr/)
 
 set(PROJECT_LIBRARY ${PROJECT_NAME})
 set(HEADER_DIR ${CMAKE_SOURCE_DIR}/include)

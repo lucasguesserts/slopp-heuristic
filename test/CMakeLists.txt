@@ -7,6 +7,7 @@ include_directories(${CMAKE_SOURCE_DIR}/${PROJECT_NAME}/)
 set(
     TEST_CASE_SOURCE_LIST
     Dependency/json.test.cpp
+    Dependency/brkga.test.cpp
     Timer/Timer.cpp
     Geometry/Vector3D.test.cpp
     Algorithm/LargestFitFirst.test.cpp
