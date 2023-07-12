@@ -34,11 +34,15 @@ namespace algorithm {
         for (const auto & small_item : data.small_items()) {
             this->add_item(small_item);
         }
+        this->compare_small_items = [](const std::shared_ptr<SmallItemWithSurface> & lhs, const std::shared_ptr<SmallItemWithSurface> & rhs) {
+            return lhs->measurement().volume() > rhs->measurement().volume();
+        };
         return;
     }
 
     auto LargestFitFirstV2::allocate() -> void {
         this->timer->start();
+        std::sort(this->small_items.begin(), this->small_items.end(), this->compare_small_items);
         this->corner_points.emplace(0, 0, 0);
         while (!this->corner_points.empty()) {
             const auto point_to_allocate = this->corner_points.top();

@@ -36,11 +36,15 @@ namespace algorithm {
         for (const auto & small_item : data.small_items()) {
             this->add_item(small_item);
         }
+        this->compare_small_items = [](const std::shared_ptr<BasicSmallItem> & lhs, const std::shared_ptr<BasicSmallItem> & rhs) {
+            return lhs->measurement().volume() > rhs->measurement().volume();
+        };
         return;
     }
 
     auto LargestFitFirstV3::allocate() -> void {
         this->timer->start();
+        std::sort(this->small_items.begin(), this->small_items.end(), this->compare_small_items);
         this->empty_space_operator.add_to_collection(
             BasicEmptySpace{{0, 0, 0}, this->large_object.measurement()},
             this->empty_spaces);

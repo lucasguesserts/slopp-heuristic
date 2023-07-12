@@ -2,6 +2,7 @@
 #define LARGEST_FIT_FIRST_ALGORITHM_HPP_
 
 #include <algorithm>
+#include <functional>
 #include <stdexcept>
 #include <string>
 #include <utility>
@@ -35,11 +36,12 @@ namespace algorithm {
 
         auto add_item(const std::shared_ptr<ItemType> small_item) -> void {
             this->quantity_manager.add_item(small_item);
-            this->small_items.insert(std::move(small_item));
+            this->small_items.push_back(std::move(small_item));
             return;
         }
 
         virtual auto allocate() -> void {
+            std::sort(this->small_items.begin(), this->small_items.end(), this->compare_small_items);
             this->timer->start();
             for (auto && [z, y, x] : this->all_space()) {
                 if (this->space.is_free(x, y, z)) {
@@ -102,10 +104,13 @@ namespace algorithm {
     protected:
         const BasicLargeObject large_object;
         BoolCuboid space;
-        OrderedSmallItemsByVolume<std::shared_ptr<ItemType>> small_items;
+        std::vector<std::shared_ptr<ItemType>> small_items;
         QuantityManager<std::shared_ptr<ItemType>, ItemTypeHash> quantity_manager;
         std::vector<AllocatedItemType> allocated_small_items;
         TimerPtr timer;
+        std::function<bool(const std::shared_ptr<ItemType> &, const std::shared_ptr<ItemType> &)> compare_small_items = [](const std::shared_ptr<ItemType> & lhs, const std::shared_ptr<ItemType> & rhs) {
+            return lhs->measurement().volume() > rhs->measurement().volume();
+        };
 
         LargestFitFirst(const BasicLargeObject large_object)
             : large_object(large_object)
