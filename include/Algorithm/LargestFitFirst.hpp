@@ -15,7 +15,6 @@
 #include "Geometry/Vector3D.hpp"
 #include "Input/Specialization/BasicInput.hpp"
 #include "LargeObject/Specialization/BasicLargeObject.hpp"
-#include "SmallItem/Container/OrderedSmallItemsByVolume.hpp"
 #include "SmallItem/Container/QuantityManager.hpp"
 #include "Timer/Timer.hpp"
 #include "Timer/UserTimer.hpp"

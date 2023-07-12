@@ -13,7 +13,6 @@
 #include "Input/Specialization/BasicInput.hpp"
 #include "LargeObject/Specialization/BasicLargeObject.hpp"
 #include "LargestFitFirst.hpp"
-#include "SmallItem/Container/OrderedSmallItemsByVolume.hpp"
 #include "SmallItem/Container/QuantityManager.hpp"
 #include "Timer/Timer.hpp"
 
