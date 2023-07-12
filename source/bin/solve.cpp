@@ -58,9 +58,13 @@ auto main(int argc, char * argv[]) -> int {
     const json data = json::parse(input_file);
     input_file.close();
     auto input = packing::BasicInput<packing::BasicSmallItem>{data};
+    std::vector<double> sort_order;
+    for (const auto & small_item : input.small_items()) {
+        sort_order.push_back(small_item->measurement().volume());
+    }
 
     // solve
-    algorithm = std::make_unique<LargestFitFirstV3>(input);
+    algorithm = std::make_unique<LargestFitFirstV3>(input, sort_order);
     signal(SIGINT, handler);
     signal(SIGTERM, handler);
     algorithm->allocate();

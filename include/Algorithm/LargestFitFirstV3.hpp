@@ -1,6 +1,7 @@
 #ifndef LARGEST_FIT_FIRST_ALGORITHM_V3_HPP_
 #define LARGEST_FIT_FIRST_ALGORITHM_V3_HPP_
 
+#include <unordered_map>
 #include <vector>
 
 #include "SmallItem/Specialization/BasicSmallItem.hpp"
@@ -21,11 +22,12 @@ namespace algorithm {
 
     class LargestFitFirstV3 : public LargestFitFirst<BasicSmallItem, BasicSmallItem::Hash, BasicAllocatedSmallItem<BasicSmallItem>> {
     public:
-        LargestFitFirstV3(BasicInput<BasicSmallItem> & data);
+        LargestFitFirstV3(BasicInput<BasicSmallItem> & data, const std::vector<double> & sort_order);
 
         auto allocate() -> void override;
 
     protected:
+        std::unordered_map<BasicSmallItem::Ptr, double, BasicSmallItem::Hash> values_for_small_items_allocation_order;
         std::vector<maximal_empty_space::BasicEmptySpace> empty_spaces;
         maximal_empty_space::EmptySpaceOperator<BasicSmallItem> empty_space_operator;
 

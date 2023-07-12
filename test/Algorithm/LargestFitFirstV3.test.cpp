@@ -1,6 +1,7 @@
 #include "SmallItem/Specialization/SmallItemWithSurface.hpp"
 #include "Test/Test.hpp"
 
+#include <algorithm>
 #include <filesystem>
 #include <fstream>
 #include <string>
@@ -31,7 +32,11 @@ TEST_CASE("all cases", "[LargestFitFirstV3]") {
             auto input = BasicInput<BasicSmallItem>{data.at("input").get<nlohmann::json>()};
             const auto expected = data.at("output").get<nlohmann::json>();
             // allocate
-            auto algorithm = LargestFitFirstV3(input);
+            std::vector<double> sort_order;
+            for (const auto & small_item : input.small_items()) {
+                sort_order.push_back(small_item->measurement().volume());
+            }
+            auto algorithm = LargestFitFirstV3(input, sort_order);
             algorithm.allocate();
             // check
             const auto output = algorithm.to_json();

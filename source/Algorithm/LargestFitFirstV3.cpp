@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <stdexcept>
 #include <string>
+#include <unordered_map>
 #include <utility>
 
 #include "SmallItem/Specialization/BasicSmallItem.hpp"
@@ -30,14 +31,17 @@ namespace algorithm {
     LargestFitFirstV3::LargestFitFirstV3(const BasicLargeObject large_object)
         : LargestFitFirst{large_object} {}
 
-    LargestFitFirstV3::LargestFitFirstV3(BasicInput<BasicSmallItem> & data)
+    LargestFitFirstV3::LargestFitFirstV3(BasicInput<BasicSmallItem> & data, const std::vector<double> & sort_order)
         : LargestFitFirstV3{data.large_object()} {
         // small items
         for (const auto & small_item : data.small_items()) {
             this->add_item(small_item);
         }
-        this->compare_small_items = [](const std::shared_ptr<BasicSmallItem> & lhs, const std::shared_ptr<BasicSmallItem> & rhs) {
-            return lhs->measurement().volume() > rhs->measurement().volume();
+        for (auto i = 0u; i < this->small_items.size(); ++i) {
+            this->values_for_small_items_allocation_order[this->small_items[i]] = sort_order[i];
+        }
+        this->compare_small_items = [this](const std::shared_ptr<BasicSmallItem> & lhs, const std::shared_ptr<BasicSmallItem> & rhs) {
+            return this->values_for_small_items_allocation_order[lhs] > this->values_for_small_items_allocation_order[rhs];
         };
         return;
     }

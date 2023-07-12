@@ -35,6 +35,10 @@ TEST_CASE("case 1", "[benchmark][Algorithm]") {
     auto input_v1 = packing::BasicInput<packing::BasicSmallItem>{data};
     auto input_v2 = packing::BasicInput<packing::SmallItemWithSurface>{data};
     auto input_v3 = packing::BasicInput<packing::BasicSmallItem>{data};
+    std::vector<double> sort_order;
+    for (const auto & small_item : input_v3.small_items()) {
+        sort_order.push_back(small_item->measurement().volume());
+    }
     file.close();
 
     BENCHMARK("LargestFitFirst") {
@@ -50,7 +54,7 @@ TEST_CASE("case 1", "[benchmark][Algorithm]") {
     };
 
     BENCHMARK("LargestFitFirstV3") {
-        auto algorithm = LargestFitFirstV3(input_v3);
+        auto algorithm = LargestFitFirstV3(input_v3, sort_order);
         algorithm.allocate();
         return algorithm.allocated_items();
     };
